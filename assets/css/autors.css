@@ -1,0 +1,6 @@
+.tagsstat .zebra { display: inline-flex;    flex-wrap: wrap;    width: 98%;    height: 500px;    flex-direction: column;  list-style: none;  padding: 0;} .tagsstat .zebra li {  padding: 5px; margin-right: 5px; } .tagsstat .zebra li:nth-child(odd) {  background: #EFEFEF; } .tagsstat .zebra li:nth-child(even) {  background: white; }
+.zebratable {width: 98%; margin: 0 auto;}
+.zebratable td {padding: 5px;}
+.zebratable tr.upper {font-weight: bold;}
+.zebratable tr:nth-child(odd) {  background: #EFEFEF; }
+.zebratable tr:nth-child(even) {  background: #white; }

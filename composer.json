@@ -1,0 +1,5 @@
+{
+    "require": {
+        "jbzoo/http-client": "^1.1"
+    }
+}

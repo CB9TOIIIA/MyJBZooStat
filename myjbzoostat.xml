@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<extension type="component" version="1.6.0" method="upgrade">
+    <name>com_myjbzoostat</name>
+    <author>CB9TOIIIA</author>
+    <authorEmail>cb9toiiia@gmail.com</authorEmail>
+    <authorUrl>http://cb9t.ru</authorUrl>
+    <copyright></copyright>
+    <license></license>
+    <version>1.0</version>
+    <description>COM_MYJBZOOSTAT_DESC</description>
+    <creationDate>28 June 2016</creationDate>
+    <administration>
+        <menu>COM_MYJBZOOSTAT</menu>
+        <files folder="admin">
+            <filename>index.html</filename>
+            <filename>myjbzoostat.php</filename>
+            <filename>controller.php</filename>
+            <filename>config.xml</filename>
+            <filename>access.xml</filename>
+            <folder>views</folder>
+            <folder>controllers</folder>
+            <folder>helpers</folder>
+        </files>
+        <languages folder="admin">
+            <language tag="ru-RU">language/ru-RU/ru-RU.com_myjbzoostat.ini</language>
+            <language tag="ru-RU">language/ru-RU/ru-RU.com_myjbzoostat.sys.ini</language>
+        </languages>
+    </administration>
+</extension>

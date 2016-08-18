@@ -1,0 +1,20 @@
+.tagsstat .zebra { display: inline-flex;    flex-wrap: wrap;    width: 98%;    height: 200px;    flex-direction: column;  list-style: none;  padding: 0;} .tagsstat .zebra li {  padding: 5px; margin-right: 5px; } .tagsstat .zebra li:nth-child(odd) {  background: #EFEFEF; } .tagsstat .zebra li:nth-child(even) {  background: white; }
+.zebratable {width: 98%; margin: 0 auto;}
+.zebratable td {padding: 5px;}
+.zebratable tr.upper {font-weight: bold;}
+.zebratable tr:nth-child(odd) {  background: #EFEFEF; }
+.zebratable tr:nth-child(even) {  background: #white; }
+.month {width: 90px;}
+.formnameatu {float: left; margin-right: 25px; }
+ tr.upper.tablesorter-headerRow { background: white !important;}
+ 
+.tablesorter-pager{padding:5px}
+td.tablesorter-pager{background-color:#e6eeee;margin:0}
+.tablesorter-pager img{vertical-align:middle;margin-right:2px;cursor:pointer}
+.tablesorter-pager .pagedisplay{padding:0 5px;width:auto;white-space:nowrap;text-align:center}
+.tablesorter-pager select{margin:0;padding:0}
+.tablesorter-pager.disabled{display:none}
+.tablesorter-pager .disabled{opacity:.5;filter:alpha(opacity=50);cursor:default}
+tr.upper td img{margin-left:1%;opacity:.2}
+tr.upper:hover{cursor:pointer}
+ 

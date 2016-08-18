@@ -1,0 +1,272 @@
+[
+    {
+        "name": "rmccue/requests",
+        "version": "v1.6.1",
+        "version_normalized": "1.6.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rmccue/Requests.git",
+            "reference": "6aac485666c2955077d77b796bbdd25f0013a4ea"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rmccue/Requests/zipball/6aac485666c2955077d77b796bbdd25f0013a4ea",
+            "reference": "6aac485666c2955077d77b796bbdd25f0013a4ea",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2"
+        },
+        "require-dev": {
+            "satooshi/php-coveralls": "dev-master"
+        },
+        "time": "2014-05-18 04:59:02",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Requests": "library/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "ISC"
+        ],
+        "authors": [
+            {
+                "name": "Ryan McCue",
+                "homepage": "http://ryanmccue.info"
+            }
+        ],
+        "description": "A HTTP library written in PHP, for human beings.",
+        "homepage": "http://github.com/rmccue/Requests",
+        "keywords": [
+            "curl",
+            "fsockopen",
+            "http",
+            "idna",
+            "ipv6",
+            "iri",
+            "sockets"
+        ]
+    },
+    {
+        "name": "jbzoo/data",
+        "version": "1.5.0",
+        "version_normalized": "1.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/JBZoo/Data.git",
+            "reference": "fd9e8c29b3cc98358e1f149ff6300b23f57b2c5d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/JBZoo/Data/zipball/fd9e8c29b3cc98358e1f149ff6300b23f57b2c5d",
+            "reference": "fd9e8c29b3cc98358e1f149ff6300b23f57b2c5d",
+            "shasum": ""
+        },
+        "require": {
+            "jbzoo/utils": "^1.4.2",
+            "php": ">=5.3"
+        },
+        "require-dev": {
+            "jbzoo/phpunit": "^1.10",
+            "jbzoo/profiler": "^1.0",
+            "symfony/yaml": "^2.8|^3.0"
+        },
+        "suggest": {
+            "symfony/yaml": "^2.8|^3.0"
+        },
+        "time": "2016-08-06 13:35:10",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "JBZoo\\Data\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "SmetDenis",
+                "email": "denis@jbzoo.com",
+                "role": "lead"
+            }
+        ],
+        "description": "Extended implementation of ArrayObject",
+        "keywords": [
+            "array",
+            "arrayobject",
+            "config",
+            "data",
+            "ini",
+            "json",
+            "params",
+            "yml"
+        ]
+    },
+    {
+        "name": "jbzoo/utils",
+        "version": "1.7.8",
+        "version_normalized": "1.7.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/JBZoo/Utils.git",
+            "reference": "bf96ae98a85c8d1cb374dc91610bac3aadac4fb1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/JBZoo/Utils/zipball/bf96ae98a85c8d1cb374dc91610bac3aadac4fb1",
+            "reference": "bf96ae98a85c8d1cb374dc91610bac3aadac4fb1",
+            "shasum": ""
+        },
+        "require": {
+            "jbzoo/data": "^1.0",
+            "php": ">=5.3.10"
+        },
+        "require-dev": {
+            "jbzoo/phpunit": "^1.6|1.x-dev",
+            "jbzoo/profiler": "^1.0",
+            "symfony/polyfill-mbstring": "^1.2",
+            "symfony/process": "^2.8|^3.1"
+        },
+        "suggest": {
+            "ext-mbstring": "Provides multibyte specific string functions",
+            "symfony/polyfill-mbstring": "For UTF-8 if ext-mbstring disabled",
+            "symfony/process": "For Cli::exec() method only"
+        },
+        "time": "2016-08-05 13:10:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/defines.php"
+            ],
+            "psr-4": {
+                "JBZoo\\Utils\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Brandon Wamboldt",
+                "email": "brandon.wamboldt@gmail.com"
+            },
+            {
+                "name": "SmetDenis",
+                "email": "denis@jbzoo.com",
+                "role": "lead"
+            },
+            {
+                "name": "Luís Nóbrega",
+                "email": "luis.barros.nobrega@gmail.com"
+            }
+        ],
+        "description": "A collection of useful PHP functions, mini classes and snippets that you need every day.",
+        "keywords": [
+            "array",
+            "cli",
+            "collection",
+            "command line",
+            "dates",
+            "email",
+            "env",
+            "environment",
+            "filesystem",
+            "filter",
+            "helper",
+            "helpers",
+            "http",
+            "image",
+            "mbstring",
+            "misc",
+            "serialize",
+            "slugify",
+            "string",
+            "timer",
+            "url",
+            "utility",
+            "utils"
+        ]
+    },
+    {
+        "name": "jbzoo/http-client",
+        "version": "1.1.2",
+        "version_normalized": "1.1.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/JBZoo/Http-Client.git",
+            "reference": "e717591d61345f17fa412cef948788905ad3e3dd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/JBZoo/Http-Client/zipball/e717591d61345f17fa412cef948788905ad3e3dd",
+            "reference": "e717591d61345f17fa412cef948788905ad3e3dd",
+            "shasum": ""
+        },
+        "require": {
+            "jbzoo/data": "^1.4",
+            "php": ">=5.3",
+            "rmccue/requests": "^1.6"
+        },
+        "require-dev": {
+            "jbzoo/phpunit": "^1.10",
+            "jbzoo/utils": "^1.7.8"
+        },
+        "suggest": {
+            "guzzlehttp/guzzle": "For PHP 5.4+ please use versions ^5.3|^6.2"
+        },
+        "time": "2016-08-06 12:42:30",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "JBZoo\\HttpClient\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "SmetDenis",
+                "email": "denis@jbzoo.com",
+                "role": "lead"
+            }
+        ],
+        "description": "Simple HTTP-client, wrapper for Guzzle and rmccue/requests",
+        "keywords": [
+            "Guzzle",
+            "client",
+            "curl",
+            "guzzlehttp",
+            "http",
+            "https",
+            "request",
+            "requests",
+            "rmccue"
+        ]
+    }
+]

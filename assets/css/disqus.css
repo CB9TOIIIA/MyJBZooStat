@@ -1,0 +1,28 @@
+
+.clrred{color:red}
+blockquote.postaclass{margin-bottom:30px}
+li.inforepsmile img:not(:first-child),.messageauthor + img + img,.messageauthorafds + li img:not(:first-child){margin-left:10px}
+.hideinfouser{margin-top:10px;font-weight:700;color:red}
+.avamesinfo{margin-top:10px;position:absolute}
+.avamesinfo + ul{margin-left:120px}
+.avamesinfo img{border-radius:50%}
+.messageauthor,.messageauthorafds{display:inline-block;width:100%;padding:5px 10px;margin:10px 0;border:1px dashed rgba(204,204,204,0.7);border-radius:5px}
+.messageauthorafds{text-indent:0}
+.nameames{color:#000}
+.osebe{margin-left:40px}
+.scrollbar-inner-left{width:30%;float:left;display:inline-block}
+.scrollbar-inner{width:65%;display:inline-block;padding:0 20px}
+.sticky{position:fixed;top:100px;z-index:101}
+.spammessage{background-color:#ffee3f!important}
+.deletemessage{background-color:#f5e1e1!important}
+.righappuse{position:absolute;right:20px;font-weight:700;font-family:monospace}
+.bg-danger{background-color:#f2dede;padding:15px}
+form.form-inline{margin-left:1%}
+form.form-inline select,form.form-inline input{margin-right:1%}
+.circleimg img{border-radius:50%;margin-bottom:15px}
+.chislocom{background-color:#000;color:#fff;padding:3px;font-weight:700;border-radius:50%}
+.threadclass ul li,.postaclass ul li{list-style-type:none}
+.threepx{margin:3px}
+.flform{display:inline;margin-left:5px}
+form + a > em.icon-out-2{position:absolute;margin-left:10px;margin-top:5px}
+.numbercoma{margin-left:-27px;position:absolute;font-weight:700;text-decoration:underline}
