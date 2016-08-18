@@ -516,7 +516,7 @@ $datacurdate = json_decode($responcecurdate);
 
                chart = new AmCharts.AmSerialChart();
 
-               chart.pathToImages = "/libraries/amcharts/amcharts/images/";
+               chart.pathToImages = "/administrator/components/com_myjbzoostat/assets/amcharts/amcharts/images/";
 
                chart.dataProvider = line_chartData;
 
