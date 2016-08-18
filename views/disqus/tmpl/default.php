@@ -122,17 +122,6 @@ function disqusRequest($url, $params = [], $ttl = DISQUS_TTL, $debugurl = 0)
 }
 
 
-
-//убрать позже
-// $httpClientjbzoo = new HttpClient([
-//     'driver'          => 'auto',    // (Auto|Guzzle5|Guzzle6|Rmccue)
-//     'timeout'         => 10,        // Wait in seconds
-//     'verify'          => false,     // Check cert for SSL
-//     'exceptions'      => false,     // Show exceptions for statuses 4xx and 5xx
-//     'allow_redirects' => true,      // Show real 3xx-header or result?
-//     'max_redirects'   => 10,        // How much to reirect?
-// ]);
-
 ?>
 <div class="item-page">
 
@@ -272,12 +261,7 @@ if (!empty($urllistPosts)) {
    $numlistPostsrespost = '0';
     foreach ($listPostsres as $listPostsrespost) {
 //dump($listPostsrespost,0,'$listPostsrespost');
-//  media (Array, 1)
-// 0 (Array, 14)
-// thumbnailURL (String, 66) //a.disquscdn.com/uploads/mediaembed/images/4090/8103/cached75.jpg
-// url (String, 66) //a.disquscdn.com/uploads/mediaembed/images/4090/8103/original.jpg
-// $lpdisqusthumbnailURLimg = $listPostsrespost['media']['thumbnailURL'];
-// $lpdisqusthumbnailURLimgUrl = $listPostsrespost['media']['url'];
+
 $lpdisqusthumbimg = $listPostsrespost['media'];
 
 if (!empty($lpdisqusthumbimg)) {
@@ -469,17 +453,10 @@ echo "<div id='infoarticle' class='scrollbar-inner-left'>";
          if ($userdisqusisPrivate === true) {
                echo "<li class='hideinfouser'><u>Пользователь скрыл личную информацию</u></li>";
          }
-    //      if ($userdisqusprofileUrl) {
-    // if ($lpdisqususername) {      echo "<li><b>Никнейм:</b> {$lpdisqususername}</li>";   }
-    // if ($lpdisqusabout) {      echo "<li><b>Инфо:</b> {$lpdisqusabout}</li>";   }
-    // if ($lpdisqusrep) {      echo "<li><b>Репутация:</b> {$lpdisqusrep}</li>";   }
-    // if ($lpdisqusisPrivate) {      echo "<li><b>Приватность:</b> {$lpdisqusisPrivate}</li>";   }
-    // if ($lpdisqusid) {      echo "<li><b>ID пользователя:</b> {$lpdisqusid}</li>";   }
-    //    }
+
          echo "</ul>";
     echo "</blockquote>";
 
-    //Returns details of a user.
     if (!empty($userdisqusform)) {
       $databl = [
         'query' => $userdisqusform,
@@ -525,14 +502,7 @@ echo "</div>";
 
   }
 }
-// else {
-//     echo "<p class='bg-danger' align='center'><small>Введите ссылку сайта, чтобы узнать детальную информацию Disqus.</small></p>";
-// }
 
-// preg_match("/[^0-9]/",$userdisqusform,$matchdisqus);
-//!empty($matchdisqus) &&
-// dump($matchdisqus,0,'$matchdisqus');
-//$userdisqusisPrivate === false &&
 if (empty($urllistPosts) && !empty($userdisqusid)) {
   $userdisqusform = $userdisqusid;
 
@@ -546,7 +516,7 @@ if (empty($urllistPosts) && !empty($userdisqusid)) {
   $urluserslistPosts = 'https://disqus.com/api/3.0/users/listPosts.json?'. http_build_query($datauserslistPosts,null,'&');
 echo "<div class='scrollbar-inner'>";
 
-//
+
 //   $responcelistuserposts = MyjbzoostatHelper::open_http($urluserslistPosts, $method);
 //   $responcelistuserpostsresult = json_decode($responcelistuserposts, true);
 // // dump($responcelistuserpostsresult,0,'$responcelistuserpostsresult');
