@@ -30,10 +30,10 @@ $mainframe = JFactory::getApplication();
 $namecomponent = $mainframe->scope;
 
 $document = JFactory::getDocument();
-$document->addStyleSheet(JUri::root().'administrator/components/'.$namecomponent.'/assets/css/sort.css');
-$document->addStyleSheet(JUri::root().'administrator/components/'.$namecomponent.'/assets/css/articles.css');
-$document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/assets/js/sort.js');
-$document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/assets/js/chart.js');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/articles.css');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');
 
 //JUST DO IT 😹 $this->app   ----> $app
  ?>
@@ -242,7 +242,7 @@ foreach ($comparear as $idnothavatags) {
   $idnottag = $itemnothavatags->id;
   $typenottag = $itemnothavatags->type;
   //dump($itemnothavatags,0,'$itemnothavatags');
- $genurl = '/item/'.$aliasnottag.'.html';
+ $genurl = JRoute::_($app->jbrouter->externalItem($itemnothavatags, false), false, 2);
  $user = JFactory::getUser($creatnottag);
  $valueid = $creatnottag;
  $bignamau = $user->name;

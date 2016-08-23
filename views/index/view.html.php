@@ -43,7 +43,7 @@ JToolBarHelper::divider();
 $bar = JToolBar::getInstance('toolbar');
 $title = JText::_('Посещаемость');
 $dhtml = "<a href=\"/administrator/index.php?option={$namecomponent}\" class=\"btn btn-small\"><i class=\"icon-options\" title=\"$title\"></i>$title</a>";
-if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list'); }
+$bar->appendButton('Custom', $dhtml, 'list');
 
 JToolBarHelper::divider();
 

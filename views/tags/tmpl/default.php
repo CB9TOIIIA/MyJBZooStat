@@ -12,12 +12,19 @@ $app = App::getInstance('zoo');
 
 
 $mainframe = JFactory::getApplication();
-$namecomponent = $mainframe->scope;
+
+$checkHTML = $mainframe->getCfg('sef_suffix');
+if ($checkHTML == '1') {
+  $tchkHTML = '.html';
+}
+else {
+  $tchkHTML = '';
+}
 
 $document = JFactory::getDocument();
-$document->addStyleSheet(JUri::root().'administrator/components/'.$namecomponent.'/assets/css/sort.css');
-$document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/assets/js/sort.js');
-$document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/assets/js/chart.js');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');
 //JUST DO IT   $this->app   ----> $app
  ?>
  <script type="text/javascript">
@@ -124,8 +131,7 @@ if ($coutgra != 0) {
 
 
        echo "<p><b><big>Статистика тегов  за  <u>{$alipublish_upformat}</u>: </big></b></p>";
-      //
-      //
+
   //     echo " <script type='text/javascript'>";
   //     echo " document.addEventListener('DOMContentLoaded',function(){";
   //     echo 'new Chartist.Line(".ct-chart", { ';
@@ -272,7 +278,7 @@ foreach ($tagsArraytagalltags as $tag) {
 	$tagsArraytagalltagss = array_unique($app->table->tag->database->queryResultArray($querycounttagalltagss));
 
   $tag = trim($tag);
-	echo "<li><a target='_blank' href='/administrator/index.php?option=com_zoo&controller=item&filter_category_id=-1&filter_type=&filter_author_id=&search={$tag}'>{$tag}</a> ({$tagsArraytagalltagss[0]}) - <a target='_blank' href='/tag/{$tag}.html''><em class='icon-out-2'></em></a></li> ";
+	echo "<li><a target='_blank' href='/administrator/index.php?option=com_zoo&controller=item&filter_category_id=-1&filter_type=&filter_author_id=&search={$tag}'>{$tag}</a> ({$tagsArraytagalltagss[0]}) - <a target='_blank' href='/tag/{$tag}{$tchkHTML}''><em class='icon-out-2'></em></a></li> ";
 
 
 }

@@ -25,9 +25,9 @@ echo "<style>div#system-message-container {display:none;}</style>";
 
 $document = JFactory::getDocument();
 
-$document->addStyleSheet(JUri::root().'administrator/components/'.$namecomponent.'/assets/css/metrika.css');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/metrika.css');
 
-$document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/assets/js/metrika.js');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/metrika.js');
 
 
 $eyed = 'data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNMjU2LDk2QzE0NC4zNDEsOTYsNDcuNTU5LDE2MS4wMjEsMCwyNTZjNDcuNTU5LDk0Ljk3OSwxNDQuMzQxLDE2MCwyNTYsMTYwYzExMS42NTYsMCwyMDguNDM5LTY1LjAyMSwyNTYtMTYwICAgQzQ2NC40NDEsMTYxLjAyMSwzNjcuNjU2LDk2LDI1Niw5NnogTTM4Mi4yMjUsMTgwLjg1MmMzMC4wODIsMTkuMTg3LDU1LjU3Miw0NC44ODcsNzQuNzE5LDc1LjE0OCAgIGMtMTkuMTQ2LDMwLjI2MS00NC42MzksNTUuOTYxLTc0LjcxOSw3NS4xNDhDMzQ0LjQyOCwzNTUuMjU3LDMwMC43NzksMzY4LDI1NiwzNjhjLTQ0Ljc4LDAtODguNDI4LTEyLjc0My0xMjYuMjI1LTM2Ljg1MiAgIGMtMzAuMDgtMTkuMTg4LTU1LjU3LTQ0Ljg4OC03NC43MTctNzUuMTQ4YzE5LjE0Ni0zMC4yNjIsNDQuNjM3LTU1Ljk2Miw3NC43MTctNzUuMTQ4YzEuOTU5LTEuMjUsMy45MzgtMi40NjEsNS45MjktMy42NSAgIEMxMzAuNzI1LDE5MC44NjYsMTI4LDIwNS42MTMsMTI4LDIyMWMwLDcwLjY5MSw1Ny4zMDgsMTI4LDEyOCwxMjhjNzAuNjkxLDAsMTI4LTU3LjMwOSwxMjgtMTI4ICAgYzAtMTUuMzg3LTIuNzI1LTMwLjEzNC03LjcwMy00My43OTlDMzc4LjI4NSwxNzguMzksMzgwLjI2NiwxNzkuNjAyLDM4Mi4yMjUsMTgwLjg1MnogTTI1NiwyMDVjMCwyNi41MS0yMS40OSw0OC00OCw0OCAgIHMtNDgtMjEuNDktNDgtNDhzMjEuNDktNDgsNDgtNDhTMjU2LDE3OC40OSwyNTYsMjA1eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=';
@@ -238,14 +238,24 @@ if(!empty($counter_id) && !empty($app_token))
     $datapopular = json_decode($responcepopular);
 
 
+// HACK: fix minus 1 day
 
+$ModDate1 = new DateTime($date1);
+$ModDate1->modify('-1 day');
+$ModDate1 = $ModDate1->format('Ymd');
 
+$ModDate2 = new DateTime($date2);
+$ModDate2->modify('-1 day');
+$ModDate2 = $ModDate2->format('Ymd');
+
+// dump($ModDate1,0,'$ModDate1');
+// dump($ModDate2,0,'$ModDate2');
 
     $urlgeo = 'http://api-metrika.yandex.ru/stat/geo.json?id='.$counter_id;
 
-    $urlgeo .= '&date1='.$date1;
+    $urlgeo .= '&date1='.$ModDate1;
 
-    $urlgeo .= '&date2='.$date2;
+    $urlgeo .= '&date2='.$ModDate2;
 
     $urlgeo .= '&per_page=12';
 
@@ -435,11 +445,11 @@ $datacurdate = json_decode($responcecurdate);
 
         $document = JFactory::getDocument();
 
-        $document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/assets/amcharts/amcharts/amcharts.js');
+        $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/amcharts/amcharts/amcharts.js');
 
-        $document->addScript(JUri::root() . 'administrator/components/'.$namecomponent.'/assets/amcharts/amcharts/serial.js');
+        $document->addScript(JUri::root() . 'administrator/components/com_myjbzoostat/assets/amcharts/amcharts/serial.js');
 
-        $document->addScript(JUri::root() . 'administrator/components/'.$namecomponent.'/assets/amcharts/amcharts/lang/ru.js');
+        $document->addScript(JUri::root() . 'administrator/components/com_myjbzoostat/assets/amcharts/amcharts/lang/ru.js');
 
 
         $dataValues = array();
@@ -1717,7 +1727,7 @@ if ($valuesvodka->name == 'Переходы по ссылкам на сайта�
 
 
 
-echo "<br>";
+echo "<div style='clear:both'></div>";
 
 
 
@@ -1889,7 +1899,9 @@ if ($datavchera) {
 
 
 
-echo "<br>";
+
+
+echo "<div style='clear:both'></div>";
 
 
 
@@ -2065,7 +2077,9 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozavcheradate
 
 
 
-echo "<br>";
+
+
+echo "<div style='clear:both'></div>";
 
 
 
@@ -2251,7 +2265,9 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozapozavchera
 
 
 
-echo "<br>";
+
+
+echo "<div style='clear:both'></div>";
 
 
 
@@ -2273,7 +2289,7 @@ $disqusApiShort = $params->disqus_api_short_name;
 
 <?php
 
-echo "<script type='text/javascript' src='//yastatic.net/share/share.js' charset='utf-8' async></script>";
+echo "<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script> <script type='text/javascript' src='//yastatic.net/share2/share.js'></script>";
 
 if (!empty($disqusApiShort)) {
 	echo "<script id='dsq-count-scr' src='//{$disqusApiShort}.disqus.com/count.js' async></script>";
@@ -2377,7 +2393,7 @@ if (!empty($disqusApiShort)) { echo "<td><span class='disqus-comment-count' data
 
 echo "<td><a target='_blank' href='{$popurl}'>{$popurl}</a></td>";
 
-echo "<td><div class='yashare-auto-init' data-yashareL10n='ru' data-yashareType='small' data-yashareQuickServices='vkontakte,facebook,odnoklassniki' data-yashareLink='{$popurl}' data-yashareTheme='counter'></div></td>";
+echo "<td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$popurl}'  data-size='m' data-counter=''></div></td>";
 
 echo "</tr>";
 

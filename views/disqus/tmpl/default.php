@@ -22,9 +22,9 @@ $mainframe = JFactory::getApplication();
 $namecomponent = $mainframe->scope;
 
 $document = JFactory::getDocument();
-$document->addStyleSheet(JUri::root().'administrator/components/'.$namecomponent.'/assets/css/sort.css');
-$document->addStyleSheet(JUri::root().'administrator/components/'.$namecomponent.'/assets/css/disqus.css');
-$document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/assets/js/disqus.js');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/disqus.css');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/disqus.js');
 
 
 //dump($_POST,0,'$_POST');
@@ -58,7 +58,7 @@ define('URL_USERS_DETAILS', 'https://disqus.com/api/3.0/users/details.json');
 define('URL_BLACKLISTS_LIST', 'https://disqus.com/api/3.0/blacklists/list.json?type=user&type=email&type=ip&type=domain');
 define('URL_USERS_LISTPOSTS', 'https://disqus.com/api/3.0/users/listPosts.json');
 
-echo "<script type='text/javascript' src='//yastatic.net/share/share.js' charset='utf-8' async></script>";
+echo "<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script> <script type='text/javascript' src='//yastatic.net/share2/share.js'></script>";
 echo "<script id='dsq-count-scr' src='//{$disqusApiShort}.disqus.com/count.js' async></script>";
 
 $input = JFactory::getApplication()->input;
@@ -310,6 +310,37 @@ $lpdisqussignedUrl = $listPostsrespost['author']['signedUrl'];
 $lpdisqusavatar = $listPostsrespost['author']['avatar']['permalink'];
 // $lplinktodisqussitethread = 'https://'.$disqusApiShort.'.disqus.com/admin/moderate/#/all/search/thread:'.$lpdisqusthread.'';
 $lplinktodisqussiteidcomment = 'https://'.$disqusApiShort.'.disqus.com/admin/moderate/#/all/search/id:'.$lpdisqusidcomment.'';
+
+$approveAr = [
+   'post ' => $lpdisqusidcomment,
+   'access' => $disqusApiSecret
+  ];
+
+$approve = 'https://disqus.com/api/3.0/posts/approve.json?'. http_build_query($approveAr,null,'&');
+
+$spamAr = [
+   'post ' => $lpdisqusidcomment,
+   'access' => $disqusApiSecret
+  ];
+
+$spam = 'https://disqus.com/api/3.0/posts/spam.json?'. http_build_query($spamAr,null,'&');
+
+$removeAr = [
+   'post ' => $lpdisqusidcomment,
+   'access' => $disqusApiSecret
+  ];
+
+$remove = 'https://disqus.com/api/3.0/posts/remove.json?'. http_build_query($removeAr,null,'&');
+// $remove = str_replace('+','',$remove);
+
+$reportAr = [
+   'post ' => $lpdisqusidcomment,
+   'access' => $disqusApiSecret
+  ];
+
+$report = 'https://disqus.com/api/3.0/posts/report.json?'. http_build_query($reportAr,null,'&');
+
+
 $lpdisquscreated = date('d.m.Y H:i:s', strtotime("+3 hours", strtotime($lpdisquscreated)));
 $numlistPostsrespost++;
 
@@ -363,8 +394,19 @@ if (!empty($lpdisqusthumbimg && $lpdisqusthumbnailURLimgUrl) ) {
     echo "<li class='hideinfouser'><u>Это сообщение попало в СПАМ!</u></li>";
   }
   echo "</ul>";
+  echo "<script>";
+  echo "jQuery(document).ready(function($) {";
+  echo "$('#report-{$lpdisqusidcomment}').click(function(){
+    $.ajax({
+        type: 'POST',
+        url: '{$report}'
+     });
+   });
+  });";
+  echo "</script>";
+  // echo "<p class='mlplus'><a id='delete-$lpdisqusidcomment' href='#'>[Удалить]</a> <a id='spam-$lpdisqusidcomment' target='_blank' href='{$spam}'>[Спам]</a> <a id='report-$lpdisqusidcomment' href='#'>[Предупреждение]</a> <a id='approve-$lpdisqusidcomment' target='_blank' href='{$approve}'>[Опубликовать]</a> </p>";
   echo "</blockquote>";
-
+//need share2
 }
 // dump($listPostsrespost,0,'$listPostsrespost');
     }
@@ -660,48 +702,54 @@ if (empty($urllistPosts) && empty($userdisqusform)) {
   $itemIdsResultsdate = $db->loadObjectList();
   $Disid = array();
   $myhtml = array();
-  echo "<tr>";
-  echo "<td><b>Дата</b></td>";
-  echo "<td><b>Статья</b></td>";
-  echo "<td><b>Автор</b></td>";
-  echo "<td><b>Disqus</b></td>";
-  echo "<td><b>Share</b></td>";
-  echo "</tr>";
-  foreach ($itemIdsResultsdate as $idarts) {
-    foreach ($idarts as $idart) {
-      $Disitem = $app->table->item->get($idart);
-      $Dispublish_up = $Disitem->publish_up;
-      $Dispublish_up1 = date('d.m.Y',strtotime($Dispublish_up));
-      $Dispublish_up = date('d.m.Y H:i:s',strtotime($Dispublish_up));
-      $Dispublish_up3 = date('H:i:s',strtotime($Dispublish_up));
-      $Disid[] = $Disitem->id;
-      $Disname = $Disitem->name;
-      $Distype = $Disitem->type;
-      $Discreated_by = $Disitem->created_by;
-      $userauthor = JFactory::getUser($Discreated_by);
-      $userauthor = $userauthor->name;
-      $myurltosite = JRoute::_($app->jbrouter->externalItem($Disitem, false), false, 2);
+  if (!empty($itemIdsResultsdate)) {
 
-          echo "</tr>";
+    echo "<tr>";
+    echo "<td><b>Дата</b></td>";
+    echo "<td><b>Статья</b></td>";
+    echo "<td><b>Автор</b></td>";
+    echo "<td><b>Disqus</b></td>";
+    echo "<td><b>Share</b></td>";
+    echo "</tr>";
+    foreach ($itemIdsResultsdate as $idarts) {
+      foreach ($idarts as $idart) {
+        $Disitem = $app->table->item->get($idart);
+        $Dispublish_up = $Disitem->publish_up;
+        $Dispublish_up1 = date('d.m.Y',strtotime($Dispublish_up));
+        $Dispublish_up = date('d.m.Y H:i:s',strtotime($Dispublish_up));
+        $Dispublish_up3 = date('H:i:s',strtotime($Dispublish_up));
+        $Disid[] = $Disitem->id;
+        $Disname = $Disitem->name;
+        $Distype = $Disitem->type;
+        $Discreated_by = $Disitem->created_by;
+        $userauthor = JFactory::getUser($Discreated_by);
+        $userauthor = $userauthor->name;
+        $myurltosite = JRoute::_($app->jbrouter->externalItem($Disitem, false), false, 2);
 
-      $myhtml[] = "<tr><td>{$Dispublish_up3}</td><td><form  class='flform' action='/administrator/index.php?option={$namecomponent}&view=disqus' name='form{$idart}' method='post' >
-      <input type='hidden' name='userdisqusform' value='{$myurltosite}' />
-      <input class='btn btn-small' type='submit' value='{$Disname}' > </form></td>
-      <td>  <form action='/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile' name='a{$idart}' method='post' >
-       <input  type='hidden' name='authorids'  value='{$Discreated_by}' />
-       <input class='btn btn-small' type='submit' value='{$userauthor}' > </form></td>
+        echo "</tr>";
 
-      <td><span class='disqus-comment-count' data-disqus-url='{$myurltosite}'></span></td><td><div class='yashare-auto-init' data-yashareL10n='ru' data-yashareType='small' data-yashareQuickServices='vkontakte,facebook,odnoklassniki,moimir,gplus' data-yashareLink='{$myurltosite}' data-yashareTheme='counter'></div></td></tr>";
+        $myhtml[] = "<tr><td>{$Dispublish_up3}</td><td><form  class='flform' action='/administrator/index.php?option={$namecomponent}&view=disqus' name='form{$idart}' method='post' >
+        <input type='hidden' name='userdisqusform' value='{$myurltosite}' />
+        <input class='btn btn-small' type='submit' value='{$Disname}' > </form></td>
+        <td>  <form action='/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile' name='a{$idart}' method='post' >
+        <input  type='hidden' name='authorids'  value='{$Discreated_by}' />
+        <input class='btn btn-small' type='submit' value='{$userauthor}' > </form></td>
 
+        <td><span class='disqus-comment-count' data-disqus-url='{$myurltosite}'></span></td>
+
+        <td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$myurltosite}'  data-size='m' data-counter=''></div></td></tr>";
+
+      }
+    } $datearraydatemonth = count($Disid);
+    if (!empty($datearraydatemonth)) {
+      echo "<h3>Статьи за сегодня: {$datearraydatemonth} шт.</h3>";
+      foreach ($myhtml as $myhtmla) {
+        echo $myhtmla;
+      }
     }
-  } $datearraydatemonth = count($Disid);
-  if (!empty($datearraydatemonth)) {
-    echo "<h3>Статьи за сегодня: {$datearraydatemonth} шт.</h3>";
-    foreach ($myhtml as $myhtmla) {
-      echo $myhtmla;
-    }
+
+
   }
-
 
 }
 echo "</table>";

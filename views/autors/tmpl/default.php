@@ -14,7 +14,7 @@ $mainframe = JFactory::getApplication();
 $namecomponent = $mainframe->scope;
 
 $document = JFactory::getDocument();
-$document->addStyleSheet(JUri::root().'administrator/components/'.$namecomponent.'/assets/css/autors.css');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/autors.css');
 //JUST DO IT   $this->app   ----> $app
  ?>
  <style>

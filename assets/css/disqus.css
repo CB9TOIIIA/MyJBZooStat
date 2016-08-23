@@ -1,10 +1,11 @@
-
 .clrred{color:red}
 blockquote.postaclass{margin-bottom:30px}
 li.inforepsmile img:not(:first-child),.messageauthor + img + img,.messageauthorafds + li img:not(:first-child){margin-left:10px}
 .hideinfouser{margin-top:10px;font-weight:700;color:red}
 .avamesinfo{margin-top:10px;position:absolute}
-.avamesinfo + ul{margin-left:120px}
+.avamesinfo + ul {margin-left:120px}
+.mlplus {margin-left:120px; font-size: 0.9em;}
+.mlplus a:not(:last-child) {margin-right: 30px;}
 .avamesinfo img{border-radius:50%}
 .messageauthor,.messageauthorafds{display:inline-block;width:100%;padding:5px 10px;margin:10px 0;border:1px dashed rgba(204,204,204,0.7);border-radius:5px}
 .messageauthorafds{text-indent:0}

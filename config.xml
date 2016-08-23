@@ -115,6 +115,11 @@
       <field name="disqus_api_short_name" type="text" default="" label="Disqus short name" description="DISQUS_API_SHORT_NAME" size="30" />
       <field name="disqus_api_app" type="text" default="" label="Disqus application" description="DISQUS_API_APP" size="30" />
     </fieldset>
+    <fieldset name="jbzoo" label="JBZoo">
+      <field name="appidzoo"  type="text"   label="AppID JBZoo"   description="Введите нужное AppID"  default="1"/>
+      <field name="typeauthors"  type="text"   label="Тип авторов"   description="Введите тип Авторов (type)"  default=""/>
+    </fieldset>
+
     <fieldset
             name="permissions"
             label="JCONFIG_PERMISSIONS_LABEL"

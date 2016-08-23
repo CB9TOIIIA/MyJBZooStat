@@ -11,7 +11,6 @@ require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes
 $app = App::getInstance('zoo');
 $domainhttp = JURI::root();
 $db     = JFactory::getDBO();
-$appId  = 1;
 $user   = JFactory::getUser();
 $authoridmy = $user->get('id');
 
@@ -22,11 +21,20 @@ $monthdate = $input->get('monthdate', date('Y-m'), 'string');
 $mainframe = JFactory::getApplication();
 $namecomponent = $mainframe->scope;
 
+$component = JComponentHelper::getComponent($namecomponent);
+$params = json_decode($component->params);
+
+$disqusApiShort = $params->disqus_api_short_name;
+$AppidZoo = $params->appidzoo;
+$TypeAuthors = $params->typeauthors;
+
+$appId  = $AppidZoo;
+
 $document = JFactory::getDocument();
-// $document->addStyleSheet(JUri::root().'administrator/components/'.$namecomponent.'/assets/css/sort.css');
-$document->addStyleSheet(JUri::root().'administrator/components/'.$namecomponent.'/assets/css/auhorsprofile.css');
-$document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/assets/js/sort.js');
-$document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/assets/js/chart.js');
+// $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/auhorsprofile.css');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');
 //JUST DO IT   $this->app   ----> $app
  ?>
 
@@ -47,12 +55,8 @@ $document->addScript(JUri::root().'administrator/components/'.$namecomponent.'/a
 
   <?php
 
-  $component = JComponentHelper::getComponent($namecomponent);
-  $params = json_decode($component->params);
-  $disqusApiShort = $params->disqus_api_short_name;
 
-
-  echo "<script type='text/javascript' src='//yastatic.net/share/share.js' charset='utf-8' async></script>";
+  echo "<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script> <script type='text/javascript' src='//yastatic.net/share2/share.js'></script>";
   echo "<script id='dsq-count-scr' src='//{$disqusApiShort}.disqus.com/count.js' async></script>";
 
    ?>
@@ -79,16 +83,20 @@ function rdate($param, $time=0) {
 
 $querynameauth = $db->getQuery(true);
 
-		$querynameauth = "SELECT created_by, name"
-		." FROM " . ZOO_TABLE_ITEM
-		." WHERE type = 'authors'";
 
+if (!(empty($TypeAuthors))) {
 
+  		$querynameauth = "SELECT created_by, name"
+  		." FROM " . ZOO_TABLE_ITEM
+  		." WHERE type = 'authors'";
+}
+else {
+  $querynameauth = "SELECT created_by, name"
+  ." FROM " . ZOO_TABLE_ITEM;
+}
 
 $db->setQuery($querynameauth);
 $itemIdsResultnameauth = $db->loadObjectList();
-
-
 
 //jbdump($itemIdsResultnameauth,1,'tagsArrayauthors');
 echo "<div class='formnameatu'>";
@@ -401,7 +409,8 @@ if ($keymonthcountv > '100') {
    echo "<td>Счетчики отключены (>100)</td>";
 }
 else {
-   echo "<td><div class='yashare-auto-init' data-yashareL10n='ru' data-yashareType='small' data-yashareQuickServices='vkontakte,facebook,odnoklassniki,moimir,gplus' data-yashareLink='{$myurltosite}' data-yashareTheme='counter'></div></td>";
+  echo "<td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$myurltosite}'  data-size='m' data-counter=''></div></td>";
+
 }
 
        echo "<td><span class='disqus-comment-count' data-disqus-url='{$myurltosite}'></span></td>";
@@ -448,7 +457,7 @@ endif;
 //     echo "<td>".$aliid."</td>";
 //     echo "<td>".$alipublish_upformat."</td>";
 //     echo "<td><a target='_blank' href='{$myurltositesfd}'>".$aliname."</a></td>";
-//     echo "<td><div class='yashare-auto-init' data-yashareL10n='ru' data-yashareType='small' data-yashareQuickServices='vkontakte,facebook,odnoklassniki,moimir,gplus' data-yashareLink='{$myurltositesfd}' data-yashareTheme='counter'></div></td>";
+//     echo "<td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$myurltositesfd}'  data-size='m' data-counter=''></div></td>";
 //     echo "<td><span class='disqus-comment-count' data-disqus-url='{$myurltositesfd}'></span></td>";
 //     echo "</tr>";
 //
