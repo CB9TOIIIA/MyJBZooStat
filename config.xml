@@ -101,6 +101,12 @@
                             <option value="no">Нет</option>
                         </field>
                         <field
+                                name="perpagepopular"
+                                type="text"
+                                label="Кол-во популярного неделю"
+                                description=""
+                                default="20"/>
+                        <field
                                 name="filterpopular"
                                 type="text"
                                 label="RegExp для популярного"
@@ -118,6 +124,16 @@
     <fieldset name="jbzoo" label="JBZoo">
       <field name="appidzoo"  type="text"   label="AppID JBZoo"   description="Введите нужное AppID"  default="1"/>
       <field name="typeauthors"  type="text"   label="Тип авторов"   description="Введите тип Авторов (type)"  default=""/>
+      <field
+                name="taghorizont"
+                type="radio"
+                label="Колонки графика во вкладке теги"
+                description=""
+                class="btn-group btn-group-yesno"
+                default="hor">
+                  <option value="hor">Горизонтально</option>
+                  <option value="ver">Вертикально</option>
+              </field>
     </fieldset>
 
     <fieldset

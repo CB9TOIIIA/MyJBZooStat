@@ -3,33 +3,12 @@
 defined( '_JEXEC' ) or die; // No direct access
 ?>
 <?php
-$input = JFactory::getApplication()->input;
-require_once JPATH_ADMINISTRATOR . '/components/com_zoo/config.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/jbzoo.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbmodulehelper.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbtemplate.php';
-$app = App::getInstance('zoo');
-$input = JFactory::getApplication()->input;
-
-$mainframe = JFactory::getApplication();
-$namecomponent = $mainframe->scope;
-
-$component = JComponentHelper::getComponent($namecomponent);
-$params = json_decode($component->params);
-
-// dump($params,0,'$params');
-
-$threshold = $params->threshold;
-
-
+require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 if (empty($threshold)) {
   $threshold = '2';
 }
 
-$mainframe = JFactory::getApplication();
-$namecomponent = $mainframe->scope;
 
-$document = JFactory::getDocument();
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/articles.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
@@ -49,10 +28,6 @@ $("#myTable").tablesorter({});
 
 <?php
 
-$db     = JFactory::getDBO();
-
-$appId  = 1;
-
 
 function rdate($param, $time=0) {
  if(intval($time)==0)$time=time();
@@ -63,12 +38,6 @@ function rdate($param, $time=0) {
 
 $month = $input->get('month', date('m'), 'string');
 $year = $input->get('year', date('Y'), 'string');
-
-// dump($month,0,'$month');
-// dump($year,0,'$year');
-// dump($_POST,0,'$_POST');
-
-
 
 echo '<div class="monthdate">';
 echo '<form action="/administrator/index.php?option=com_myjbzoostat&view=articles" method="post" class="form-inline">';

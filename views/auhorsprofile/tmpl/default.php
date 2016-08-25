@@ -3,34 +3,7 @@
 defined( '_JEXEC' ) or die; // No direct access
 ?>
 <?php
-$input = JFactory::getApplication()->input;
-require_once JPATH_ADMINISTRATOR . '/components/com_zoo/config.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/jbzoo.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbmodulehelper.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbtemplate.php';
-$app = App::getInstance('zoo');
-$domainhttp = JURI::root();
-$db     = JFactory::getDBO();
-$user   = JFactory::getUser();
-$authoridmy = $user->get('id');
-
-$authorid = $input->get('authorids', $authoridmy, 'string');
-$monthdate = $input->get('monthdate', date('Y-m'), 'string');
-
-
-$mainframe = JFactory::getApplication();
-$namecomponent = $mainframe->scope;
-
-$component = JComponentHelper::getComponent($namecomponent);
-$params = json_decode($component->params);
-
-$disqusApiShort = $params->disqus_api_short_name;
-$AppidZoo = $params->appidzoo;
-$TypeAuthors = $params->typeauthors;
-
-$appId  = $AppidZoo;
-
-$document = JFactory::getDocument();
+require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 // $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/auhorsprofile.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
@@ -71,9 +44,16 @@ function rdate($param, $time=0) {
    else return date(str_replace('M',$MonthNames[date('n',$time)-1],$param), $time);
 }
 
-			$queryauthors = "SELECT created_by"
-			    ." FROM " . ZOO_TABLE_ITEM
-			    ." WHERE type = 'authors'";
+if (!empty($TypeAuthors)) {
+      $queryauthors = "SELECT created_by"
+          ." FROM " . ZOO_TABLE_ITEM
+            	." WHERE type = '".$TypeAuthors."'";
+}
+else {
+  $queryauthors = "SELECT created_by"
+      ." FROM " . ZOO_TABLE_ITEM;
+}
+
 
 			$Arrayauthorscount = count($app->table->tag->database->queryResultArray($queryauthors));
 			$Arrayauthors = array_unique($app->table->tag->database->queryResultArray($queryauthors));
@@ -88,7 +68,7 @@ if (!(empty($TypeAuthors))) {
 
   		$querynameauth = "SELECT created_by, name"
   		." FROM " . ZOO_TABLE_ITEM
-  		." WHERE type = 'authors'";
+  		." WHERE type = '".$TypeAuthors."'";
 }
 else {
   $querynameauth = "SELECT created_by, name"

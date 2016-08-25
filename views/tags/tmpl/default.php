@@ -3,16 +3,7 @@
 defined( '_JEXEC' ) or die; // No direct access
 ?>
 <?php
-$input = JFactory::getApplication()->input;
-require_once JPATH_ADMINISTRATOR . '/components/com_zoo/config.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/jbzoo.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbmodulehelper.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbtemplate.php';
-$app = App::getInstance('zoo');
-
-
-$mainframe = JFactory::getApplication();
-
+require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 $checkHTML = $mainframe->getCfg('sef_suffix');
 if ($checkHTML == '1') {
   $tchkHTML = '.html';
@@ -21,7 +12,6 @@ else {
   $tchkHTML = '';
 }
 
-$document = JFactory::getDocument();
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');
@@ -164,9 +154,13 @@ if ($coutgra != 0) {
           echo "series: [   [".$itemmonth4s."]  ]},  {
             seriesBarDistance: 100,
             reverseData: true,
-            scaleMinSpace: 80,
-            horizontalBars: true,
-            axisY: {
+            scaleMinSpace: 80,";
+
+if ($taghorizont == 'hor') {
+  echo 'horizontalBars: true,';
+}
+
+      echo "        axisY: {
               offset: 100
             },
             plugins: [
@@ -205,19 +199,19 @@ if ($coutgra != 0) {
 //        ";
 //         echo "</script> ";
 
-if ($coutgra < 5) {
+if ($coutgra < '5') {
   echo "<style>  .ct-chart {  height: 150px !important;  }</style>";
 }
 
-if ($coutgra >5 && $coutgra < 10) {
+if ($coutgra >'5' && $coutgra < '10') {
   echo "<style>  .ct-chart {  height: 300px !important;  }</style>";
 }
 
-if ($coutgra > 34) {
+if ($coutgra > '34') {
   echo "<style>  .ct-chart {  height: 1200px !important;  }</style>";
 }
 
-if ($coutgra > 0) {
+if ($coutgra > '0') {
       echo "<hr> ";
   echo "<style>  .ct-chart {  height: 700px;  }</style>";
   echo "<div class='ct-chart'></div>";
@@ -264,7 +258,6 @@ if ($coutgra > 0) {
 <?php
 
 $db = JFactory::getDBO();
-$appId  = 1;
 $querycounttagalltags = $db->getQuery(true);
 
 $querycounttagalltags = "SELECT name FROM " . ZOO_TABLE_TAG ." ORDER BY name";

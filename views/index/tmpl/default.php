@@ -1,20 +1,9 @@
 <?php
-
-/** @var $this MyjbzoostatViewAutors */
-
-defined( '_JEXEC' ) or die; // No direct access
+defined( '_JEXEC' ) or die;
 
 jimport('joomla.html.html.bootstrap');
+require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 
-$mainframe = JFactory::getApplication();
-$namecomponent = $mainframe->scope;
-
-$component = JComponentHelper::getComponent($namecomponent);
-$params = json_decode($component->params);
-
-$comcontent = $params->comcontent;
-$csshack = $params->csshack;
-$filterpopular = $params->filterpopular;
 
 if ($csshack == 'yes') {
 echo "<style>div#system-message-container {display:none;}</style>";
@@ -227,7 +216,7 @@ if(!empty($counter_id) && !empty($app_token))
 
     $urlpopular .= '&date2='.$date2;
 
-    $urlpopular .= '&per_page=20';
+    $urlpopular .= '&per_page='.$perpagepopular;
 
     $urlpopular .= '&oauth_token='.$app_token;
 
@@ -2372,8 +2361,7 @@ echo "<br>";
 
         //    dump($valueobjarticle,0,'$valueobjarticle');
 
- if (preg_match($filterpopular, $popurl)) :
-
+      if (preg_match($filterpopular, $popurl)) :
 
    $countadd++;
 

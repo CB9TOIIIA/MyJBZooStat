@@ -3,17 +3,7 @@
 defined( '_JEXEC' ) or die; // No direct access
 ?>
 <?php
-$input = JFactory::getApplication()->input;
-require_once JPATH_ADMINISTRATOR . '/components/com_zoo/config.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/jbzoo.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbmodulehelper.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbtemplate.php';
-$app = App::getInstance('zoo');
-
-$mainframe = JFactory::getApplication();
-$namecomponent = $mainframe->scope;
-
-$document = JFactory::getDocument();
+require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/autors.css');
 //JUST DO IT   $this->app   ----> $app
  ?>
@@ -26,32 +16,19 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
 
 $db     = JFactory::getDBO();
 
-$appId  = 1;
-		//	$author = $this->_item->created_by_alias;
-		//	$user   = $app->user->get($this->item->created_by);
-	//		$authorid = $user->id;
-	//		$authorname = $user->name;
-
-
-			$authorid = '501';  //gwinplane
-			$authorname = 'gwinplane';
-	//	 dump($authorid,0,'Массив');
-
-//	$queryauthors = $db->getQuery(true);
-
-			$queryauthors = "SELECT created_by"
-			    ." FROM " . ZOO_TABLE_ITEM
-			    ." WHERE type = 'authors'";
+if (!empty($TypeAuthors)) {
+  $queryauthors = "SELECT created_by"
+      ." FROM " . ZOO_TABLE_ITEM
+    	." WHERE type = '".$TypeAuthors."'";
+}
+else {
+  $queryauthors = "SELECT created_by"
+      ." FROM " . ZOO_TABLE_ITEM;
+}
 
 			$Arrayauthorscount = count($app->table->tag->database->queryResultArray($queryauthors));
 			$Arrayauthors = array_unique($app->table->tag->database->queryResultArray($queryauthors));
 			ksort($Arrayauthors);
-
-//SIMPLE FIX
-// $tagsArrayauthors = array('75,77,501');
-//	 dump($tagsArrayauthors,0,'tagsArrayauthors');
-
-//$tagsArrayauthors - id авторов из типа авторы
 
 echo '<big><big>Всего авторов: <b>'.$Arrayauthorscount.'</b></big></big>';
 echo "<br>";

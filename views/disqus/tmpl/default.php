@@ -3,65 +3,21 @@
 // error_reporting(E_ALL);
 /** @var $this MyjbzoostatViewAutors */
 defined( '_JEXEC' ) or die; // No direct access
+require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/vendor/autoload.php'; // composer autoload.php
 // require_once '/../../../vendor/autoload.php'; // composer autoload.php
 
 use JBZoo\HttpClient\HttpClient;
 use JBZoo\HttpClient\Response;
 
-$mainframe = JFactory::getApplication();
-$namecomponent = $mainframe->scope;
-$input = JFactory::getApplication()->input;
-require_once JPATH_ADMINISTRATOR . '/components/com_zoo/config.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/jbzoo.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbmodulehelper.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbtemplate.php';
-$app = App::getInstance('zoo');
 
-$mainframe = JFactory::getApplication();
-$namecomponent = $mainframe->scope;
-
-$document = JFactory::getDocument();
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/disqus.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/disqus.js');
 
 
-//dump($_POST,0,'$_POST');
-
-$component = JComponentHelper::getComponent($namecomponent);
-$params = json_decode($component->params);
-
-// dump($params,0,'$params');
-
-$method = $params->method;
-
-//old support
-$disqusApiPublic = $params->disqus_api_key;
-$disqusApiSecret = $params->disqus_api_secret;
-$disqusApiToken = $params->disqus_access_token;
-$disqusApiShort = $params->disqus_api_short_name;
-$disqusApplication = $params->disqus_api_app;
-
-define('DISQUS_API_SHORT_NAME', $disqusApiShort);
-define('DISQUS_API_KEY', $disqusApiPublic);
-define('DISQUS_API_SECRET', $disqusApiSecret);
-define('DISQUS_API_APP', $disqusApplication);
-define('DISQUS_ACCESS_TOKEN', $disqusApiToken);
-define('DISQUS_TTL', 60);
-define('DEBUG_URL', 0);
-
-define('URL_LIST_USAGE', 'https://disqus.com/api/3.0/applications/listUsage.json');
-define('URL_FORUMS_LISTTHREADS', 'https://disqus.com/api/3.0/forums/listThreads.json');
-define('URL_POSTS_LIST', 'https://disqus.com/api/3.0/posts/list.json');
-define('URL_USERS_DETAILS', 'https://disqus.com/api/3.0/users/details.json');
-define('URL_BLACKLISTS_LIST', 'https://disqus.com/api/3.0/blacklists/list.json?type=user&type=email&type=ip&type=domain');
-define('URL_USERS_LISTPOSTS', 'https://disqus.com/api/3.0/users/listPosts.json');
-
 echo "<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script> <script type='text/javascript' src='//yastatic.net/share2/share.js'></script>";
 echo "<script id='dsq-count-scr' src='//{$disqusApiShort}.disqus.com/count.js' async></script>";
-
-$input = JFactory::getApplication()->input;
 
     $httpClient = new HttpClient([
         'driver'  => 'auto',

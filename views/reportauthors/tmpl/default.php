@@ -3,17 +3,7 @@
 defined( '_JEXEC' ) or die; // No direct access
 ?>
 <?php
-$input = JFactory::getApplication()->input;
-require_once JPATH_ADMINISTRATOR . '/components/com_zoo/config.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/jbzoo.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbmodulehelper.php';
-require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/classes/jbtemplate.php';
-$app = App::getInstance('zoo');
-
-$mainframe = JFactory::getApplication();
-$namecomponent = $mainframe->scope;
-
-$document = JFactory::getDocument();
+require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/articles.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
@@ -74,25 +64,36 @@ echo '<input type="submit" value="Поиск по месяцам"></form>';
 echo '</div>';
 echo '<hr>';
 $monthnew = rdate('M', mktime(0, 0, 0, intval($month), 10));
-echo '<h1>Статистика за '.$monthnew.' '.$year.'</h1>';
-echo '<hr>';
+
  // dump($month,0,'$_POST');
  // dump($year,0,'$_POST');
 
 
 $db = JFactory::getDBO();
 
-$appId  = 1;
 
-$querys = $db->getQuery(true);
-$querys
-    ->select($db->quoteName('created_by'))
-    ->from($db->quoteName(ZOO_TABLE_ITEM))
-    ->where($db->quoteName('type') . ' = ' . $db->quote('authors'));
+if (!empty($TypeAuthors)) {
+  $querys = $db->getQuery(true);
+  $querys
+      ->select($db->quoteName('created_by'))
+      ->from($db->quoteName(ZOO_TABLE_ITEM))
+      ->where($db->quoteName('type') . ' = ' . $db->quote($TypeAuthors));
+}
+
+else {
+  $querys = $db->getQuery(true);
+  $querys
+      ->select($db->quoteName('created_by'))
+      ->from($db->quoteName(ZOO_TABLE_ITEM));
+}
+
+
 
 
 $db->setQuery($querys);
 $itemIdsResultsdate = $db->loadObjectList();
+
+
 
 
 $itemIds = array();
@@ -100,10 +101,13 @@ $itemIds = array();
 foreach ($itemIdsResultsdate as $it) {
     $itemIds[] = $it->created_by;
 }
-
-// dump($itemIds,0,'Все авторы ID');
-// dump($itemName,0,'Все авторы NAME');
 $idadd = '0';
+
+  echo '<h1>Статистика за '.$monthnew.' '.$year.'</h1>';
+  echo '<hr>';
+
+
+
 echo "<table id='myTable' class='zebratable'>";
 echo "<thead>";
 echo "<tr class='upper'>";
@@ -114,9 +118,6 @@ echo "<td>Кол-во статей  <img src='data:image/png;base64,iVBORw0KGgoA
 echo "</tr>";
 echo "</thead>";
 echo "<tbody>";
-
-
-
 
 foreach ($itemIds as $key => $valueid) {
 
@@ -130,27 +131,7 @@ $queryauthorss = "SELECT COUNT(id)"
     $Arrayauthorsscount = array($app->table->tag->database->queryResultArray($queryauthorss));
 
 
-
-
-
-
-
 // HACK: maybe PIE chart
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
