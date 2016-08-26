@@ -13,16 +13,13 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
 <div class="item-page">
 
   <?php
-  
-  if (!empty($TypeAuthors)) {
+  if (!empty($TypeAuthors)):
+
+
     $queryauthors = "SELECT created_by"
     ." FROM " . ZOO_TABLE_ITEM
     ." WHERE type = '".$TypeAuthors."'";
-  }
-  else {
-    $queryauthors = "SELECT created_by"
-    ." FROM " . ZOO_TABLE_ITEM;
-  }
+
 
   $Arrayauthorscount = count($app->table->tag->database->queryResultArray($queryauthors));
   $Arrayauthors = array_unique($app->table->tag->database->queryResultArray($queryauthors));
@@ -36,9 +33,10 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
 
   $querynameauth = $db->getQuery(true);
 
-  $querynameauth = "SELECT created_by, name"
-  ." FROM " . ZOO_TABLE_ITEM
-  ." WHERE type = 'authors'";
+
+    $querynameauth = "SELECT  created_by, name"
+    ." FROM " . ZOO_TABLE_ITEM
+    ." WHERE type = '".$TypeAuthors."'";
 
 
 
@@ -60,13 +58,18 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
     <input  type="hidden" name="monthdate"  value="'.$monthdate.'" />
 
 
-
     </form> <a class="test-submit" href="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" OnClick="a'.$created_bycreated.'.submit();return false;">'.$created_byname.'</a> </li>';
     //   echo  $itemIdsResultnameauth[] = '<option value="'.$created_by.'">'.$name.'</option>';
 
   }
   echo "</ul>";
   echo "</div>";
+
+endif;
+
+if (empty($TypeAuthors)) :
+echo "<h1 class='center'>Заполните тип авторов в настройках компонента</h1>";
+endif;
 
   ?>
 

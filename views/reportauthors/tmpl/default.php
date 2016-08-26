@@ -50,6 +50,9 @@ jQuery(document).ready(function($) {
   <div class="tagsstat">
 
     <?php
+    if (!empty($TypeAuthors)) :
+
+
     function rdate($param, $time=0) {
       if(intval($time)==0)$time=time();
       $MonthNames=array("январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь");
@@ -183,6 +186,10 @@ jQuery(document).ready(function($) {
     echo "</table>";
 
 
+    endif;
+    if (empty($TypeAuthors)) :
+    echo "<h1 class='center'>Заполните тип авторов в настройках компонента</h1>";
+    endif;
 
     ?>
 

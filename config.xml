@@ -182,6 +182,12 @@
       description="Введите тип Авторов (type)"
       default=""/>
       <field
+      name="typearticleorproduct"
+      type="text"
+      label="Тип товаров/статей"
+      description="Введите тип товаров или статей"
+      default="news"/>
+      <field
       name="taghorizont"
       type="radio"
       label="Колонки графика во вкладке теги"

@@ -314,14 +314,9 @@ $datacurdate = json_decode($responcecurdate);
 //https://tech.yandex.ru/metrika/doc/ref/stat/geo-docpage/
 
 
-
-
-
     if(!is_null($data) && is_array($data->data) && count($data->data))
 
     {
-
-        $document = JFactory::getDocument();
 
         $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/amcharts/amcharts/amcharts.js');
 
@@ -709,12 +704,7 @@ if ($datageo) {
 
 
 
-
-
-
 ?>
-
-
 
 
 
@@ -724,17 +714,7 @@ echo "<h2 align='center'>Статистика: с {$datebegin} по {$dateend}</
 
 
 
-$db     = JFactory::getDBO();
-
-
-
-$appId  = 1;
-
-
-
 $daytosql = date('Ymd');
-
-
 
 
 
@@ -794,36 +774,27 @@ echo "</div>";
 
 echo "</span>";
 
-
-
-
-
-// function numberblocks($n) {
-
-//
-
-//     $n = (0+str_replace(",","",$n));
-
-//
-
-//     if(!is_numeric($n)) return false;
-
-//
-
-//     if($n>1000000) return round(($n/1000000),3).' тыс';
-
-//     else if($n>1000) return round(($n/1000),0).'+ тыc.';
-
-//
-
-//     return number_format($n);
-
-// }
-
-
+echo "<div class='allinoneline span12'>";
 
 if ($datasvodka) {
 
+$CountYaBlocks = count($datasvodka->data);
+
+$CountYaBlocksdata = $datasvodka->data;
+$checkyaarray = array();
+foreach ($CountYaBlocksdata as $CountYaBlocksdataaas) {
+  $nameneop = $CountYaBlocksdataaas->name;
+  if (preg_match('/Неопределён/', $nameneop, $matchneopr)) {
+    $checkyaarray = $matchneopr;
+    $block = 0;
+  }
+  if (empty($checkyaarray)) {
+    $block = 1;
+  }
+}
+
+
+$CountYaBlocks = ($CountYaBlocks + $block) - 3;
 
 
   $datasvodka = $datasvodka->data;
@@ -835,11 +806,6 @@ if ($datasvodka) {
 
 
     $namesvod =      $valuesvodka->name;
-
-
-
-    $namesvodarr = array('Переходы с сохранённых страниц', 'Неопределён', 'Внутренние переходы');
-
 
 
 
@@ -874,15 +840,24 @@ if ($datasvodka) {
 
     }
 
-
-
-
+        $namesvodarr = array('Переходы с сохранённых страниц', 'Неопределён', 'Внутренние переходы');
 
       if (!in_array($namesvod, $namesvodarr)) {
 
+if ($CountYaBlocks == '6') {
+  $gridmyrow = 'center myspan2 span2';
+}
+
+if ($CountYaBlocks == '5') {
+  $gridmyrow = 'center myspan25';
+}
+
+if ($CountYaBlocks == '4') {
+  $gridmyrow = 'center myspan3 span3';
+}
 
 
-      echo '<div class="myspan3 bigmonthdata">';
+      echo '<div class="'.$gridmyrow.' bigmonthdata">';
 
 
 
@@ -923,7 +898,7 @@ if ($datasvodka) {
 
 
 
-
+echo "</div>";
 
 
 
@@ -933,11 +908,7 @@ if ($datasvodka) {
 ?>
 
 
-
-
-
 <hr>
-
 
 
 <?php
@@ -981,16 +952,6 @@ if ($datageo) {
 echo "</ul>";
 
 echo "</div>";
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1331,7 +1292,7 @@ if ($comcontent == 'yes') {
 
 echo "</ul>";
 
-echo "<span class='allinfo'> <span class='span1'></span> <span class='span3'> <b> <img src='{$eyed}' />  Визиты:</b> Суммарное количество визитов.  </span> <span class='span1'></span> <span class='span3'><b>   <img src='{$usersd}' />  Посетители:</b> Количество уникальных посетителей. </span> <span class='span4'><b> <img src='{$oneuserd}' /> Просмотры:</b> Число просмотров страниц на сайте за отчетный период. </span></span>";
+echo "<span class='allinfo span12 center'> <span class='span4'> <b> <img src='{$eyed}' />  Визиты:</b> Суммарное количество визитов.  </span>  <span class='span4'><b>   <img src='{$usersd}' />  Посетители:</b> Количество уникальных посетителей. </span> <span class='span4'><b> <img src='{$oneuserd}' /> Просмотры:</b> Число просмотров страниц на сайте за отчетный период. </span></span>";
 
 
 
@@ -1398,8 +1359,15 @@ if ($datacurdate) {
   }
 
 
+  if ($CountYaBlocks == '5') {
+    $gridmyrow = 'center myspan2 span2';
+  }
 
-    echo '<div class="myspan2 bigmonthdata todaystats" style="'.$cssclasstoblock.'">';
+  if ($CountYaBlocks == '4') {
+    $gridmyrow = 'center myspan25 span2';
+  }
+
+    echo '<div class="'.$gridmyrow.'  bigmonthdata todaystats" style="'.$cssclasstoblock.'">';
 
       echo ' <img src='.$iconc.' /> ';
 
@@ -1560,8 +1528,16 @@ if ($valuesvodka->name == 'Переходы по ссылкам на сайта�
 }
 
 
+  if ($CountYaBlocks == '5') {
+    $gridmyrow = 'center myspan2 span2';
+  }
 
-      echo '<div class="myspan2 bigmonthdata todaystats" style="'.$cssclasstoblock.'">';
+  if ($CountYaBlocks == '4') {
+    $gridmyrow = 'center myspan25 span2';
+  }
+
+
+    echo '<div class="'.$gridmyrow.' bigmonthdata todaystats" style="'.$cssclasstoblock.'">';
 
 
 
@@ -1633,7 +1609,16 @@ if ($datavchera) {
 
   $checkdynamick = ($datavcheratalpv > $daytotalpv1) ? '<img src='.$icond.' />' : '<img src='.$iconf.' />' ;
 
-  echo '<div class="myspan2 bigmonthdata">';
+
+    if ($CountYaBlocks == '5') {
+      $gridmyrow = 'center myspan2 span2';
+    }
+
+    if ($CountYaBlocks == '4') {
+      $gridmyrow = 'center myspan25 span2';
+    }
+
+      echo '<div class="'.$gridmyrow.'  bigmonthdata">';
 
     echo ' <img src='.$iconc.' /> ';
 
@@ -1734,8 +1719,15 @@ if ($datavchera) {
 
 
 
+            if ($CountYaBlocks == '5') {
+              $gridmyrow = 'center myspan2 span2';
+            }
 
-  echo '<div class="myspan2 bigmonthdata " style="'.$cssclasstoblock.'">';
+            if ($CountYaBlocks == '4') {
+              $gridmyrow = 'center myspan25 span2';
+            }
+
+              echo '<div class="'.$gridmyrow.'  bigmonthdata " style="'.$cssclasstoblock.'">';
 
 
 
@@ -1817,7 +1809,16 @@ if ($datapozavchera) {
 
   $checkdynamick = ($daytotalpv > $datapozapozapv1) ? '<img src='.$icond.' />' : '<img src='.$iconf.' />' ;
 
-  echo '<div class="myspan2 bigmonthdata">';
+
+    if ($CountYaBlocks == '5') {
+      $gridmyrow = 'center myspan2 span2';
+    }
+
+    if ($CountYaBlocks == '4') {
+      $gridmyrow = 'center myspan25 span2';
+    }
+
+      echo '<div class="'.$gridmyrow.'   bigmonthdata">';
 
     echo ' <img src='.$iconc.' /> ';
 
@@ -1915,7 +1916,15 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozavcheradate
 
 
 
-  echo '<div class="myspan2 bigmonthdata " style="'.$cssclasstoblock.'">';
+            if ($CountYaBlocks == '5') {
+              $gridmyrow = 'center myspan2 span2';
+            }
+
+            if ($CountYaBlocks == '4') {
+              $gridmyrow = 'center myspan25 span2';
+            }
+
+              echo '<div class="'.$gridmyrow.'  bigmonthdata " style="'.$cssclasstoblock.'">';
 
       echo ' <img src='.$iconc.' /> ';
 
@@ -1995,7 +2004,17 @@ if ($datapozapozavchera) {
 
   $checkdynamick = ($daytotalpv > $datapozapozapv12) ? '<img src='.$icond.' />' : '<img src='.$iconf.' />' ;
 
-  echo '<div class="myspan2 bigmonthdata">';
+
+
+    if ($CountYaBlocks == '5') {
+      $gridmyrow = 'center myspan2 span2';
+    }
+
+    if ($CountYaBlocks == '4') {
+      $gridmyrow = 'center myspan25 span2';
+    }
+
+      echo '<div class="'.$gridmyrow.'   bigmonthdata">';
 
     echo ' <img src='.$iconc.' /> ';
 
@@ -2093,7 +2112,15 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozapozavchera
 
 
 
-  echo '<div class="myspan2 bigmonthdata " style="'.$cssclasstoblock.'">';
+            if ($CountYaBlocks == '5') {
+              $gridmyrow = 'center myspan2 span2';
+            }
+
+            if ($CountYaBlocks == '4') {
+              $gridmyrow = 'center myspan25 span2';
+            }
+
+              echo '<div class="'.$gridmyrow.' bigmonthdata " style="'.$cssclasstoblock.'">';
 
       echo ' <img src='.$iconc.' /> ';
 
@@ -2141,25 +2168,9 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozapozavchera
 
 
 
-
-
-
-
 echo "<div style='clear:both'></div>";
 
 
-
-$mainframe = JFactory::getApplication();
-
-$namecomponent = $mainframe->scope;
-
-
-
-$component = JComponentHelper::getComponent($namecomponent);
-
-$params = json_decode($component->params);
-
-$disqusApiShort = $params->disqus_api_short_name;
 
  ?>
 
@@ -2174,11 +2185,7 @@ if (!empty($disqusApiShort)) {
 }
 
 
-
-
  ?>
-
-
 
 
 
@@ -2188,11 +2195,7 @@ if (!empty($datapopular->data)) {
 
 
 
-echo "<br>";
-
 echo "<hr>";
-
-echo "<br>";
 
   echo "<p><b><big>Популярные статьи за последнюю неделю:</big></b></p>";
 

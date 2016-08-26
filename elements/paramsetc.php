@@ -28,6 +28,7 @@ $AppidZoo = $params->appidzoo;
 $appId  = $AppidZoo;
 $app_id = $AppidZoo;
 $TypeAuthors = $params->typeauthors;
+$TypeArticleorProduct = $params->typearticleorproduct;
 $method = $params->method;
 $app_password =  $params->app_password;
 $app_token =  $params->app_token;

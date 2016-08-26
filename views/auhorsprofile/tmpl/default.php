@@ -27,7 +27,7 @@ jQuery(document).ready(function($) {
 <div class="item-page">
 
   <?php
-
+  if (!empty($TypeAuthors)) :
 
   echo "<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script> <script type='text/javascript' src='//yastatic.net/share2/share.js'></script>";
   echo "<script id='dsq-count-scr' src='//{$disqusApiShort}.disqus.com/count.js' async></script>";
@@ -49,11 +49,6 @@ jQuery(document).ready(function($) {
     ." FROM " . ZOO_TABLE_ITEM
     ." WHERE type = '".$TypeAuthors."'";
   }
-  else {
-    $queryauthors = "SELECT created_by"
-    ." FROM " . ZOO_TABLE_ITEM;
-  }
-
 
   $Arrayauthorscount = count($app->table->tag->database->queryResultArray($queryauthors));
   $Arrayauthors = array_unique($app->table->tag->database->queryResultArray($queryauthors));
@@ -69,10 +64,6 @@ jQuery(document).ready(function($) {
     $querynameauth = "SELECT created_by, name"
     ." FROM " . ZOO_TABLE_ITEM
     ." WHERE type = '".$TypeAuthors."'";
-  }
-  else {
-    $querynameauth = "SELECT created_by, name"
-    ." FROM " . ZOO_TABLE_ITEM;
   }
 
   $db->setQuery($querynameauth);
@@ -311,17 +302,15 @@ jQuery(document).ready(function($) {
 
     echo "<p class='countarticlesauthor'><big><big>Всего статей автора: <b>".$countarticlesauthor."</big></big></b></p>";
 
-    /// HACK: TYPE
     $querymonth = "SELECT id"
     ." FROM " . ZOO_TABLE_ITEM
-    ." WHERE type = 'news'  AND  publish_up BETWEEN '".$monthdate."-01' AND  '".$monthdate."-31'
+    ." WHERE type = '".$TypeArticleorProduct."'  AND  publish_up BETWEEN '".$monthdate."-01' AND  '".$monthdate."-31'
     AND created_by = '".$authorid."'";
 
     $querymonthcount = "SELECT COUNT(id)"
     ." FROM " . ZOO_TABLE_ITEM
     ." WHERE publish_up BETWEEN '".$monthdate."-01' AND  '".$monthdate."-31'
     AND created_by = '".$authorid."'";
-    //jbdump($querymonth,0,'Месяцы');
 
     $Arrayquerymonth = array($app->table->tag->database->queryResultArray($querymonth));
     $Arrayquerymonthcccooount = array_count_values($app->table->tag->database->queryResultArray($querymonthcount));
@@ -570,7 +559,13 @@ jQuery(document).ready(function($) {
 
   endif;
 
-  ?>
+    endif;
+
+if (empty($TypeAuthors)) :
+echo "<h1 class='center'>Заполните тип авторов в настройках компонента</h1>";
+endif;
+
+?>
 
 
 </div>
