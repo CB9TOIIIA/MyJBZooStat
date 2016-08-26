@@ -10,10 +10,6 @@ echo "<style>div#system-message-container {display:none;}</style>";
 }
 
 
-
-
-$document = JFactory::getDocument();
-
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/metrika.css');
 
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/metrika.js');
@@ -46,98 +42,11 @@ $icong = 'data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0
 
 
 
-// $checkzoo = JComponentHelper::isEnabled('com_zoo');
-
-// if ($checkzoo != 1):
-
-// echo "<h1 style='text-align:center;color:red;'>Компонент Zoo/JBZoo не найден.</h1>";
-
-// endif;
-
-
-
-// if ($checkzoo != 1): ;
-
-
-
  ?>
 
 
 
-
-
 <?php
-
-
-
-
-
-$mainframe = JFactory::getApplication();
-
-$namecomponent = $mainframe->scope;
-
-$component = JComponentHelper::getComponent($namecomponent);
-
-$paramscomponent = json_decode($component->params);
-
-// jbdump($paramscomponent,0,'sdf');
-
-$app_id = $paramscomponent->app_id;
-
-$app_password =  $paramscomponent->app_password;
-
-$app_token =  $paramscomponent->app_token;
-
-$counter_id =  $paramscomponent->counter_id;
-
-$fillbad =  $paramscomponent->countpageviewyambad;
-
-$fillgood =  $paramscomponent->countpageviewyamgood;
-
-$fillnorm =  $paramscomponent->countpageviewyamnorm;
-
-
-
-if (empty($fillbad)) { $fillbad = '100'; }
-
-if (empty($fillgood)) { $fillgood = '200'; }
-
-if (empty($fillnorm)) { $fillnorm = '300'; }
-
-
-
-$bootstrap_size = '0';
-
-$date_diapazon = '1';
-
-$date_group = 'day';
-
-$header_class = '';
-
-$header_tag = 'h3';
-
-$height = '300';
-
-$method = 'curl';
-
-$module_tag = 'div';
-
-$show_new_visitors = '0';
-
-$show_page_views = '1';
-
-$show_visitors = '1';
-
-$show_visits = '1';
-
-$style = '0';
-
-
-
-$httpClientj = JHttpFactory::getHttp();
-
-
-
 
 
 if(!empty($counter_id) && !empty($app_token))
@@ -191,25 +100,6 @@ if(!empty($counter_id) && !empty($app_token))
     $data = json_decode($responce);
 
 
-
-		// $responce = $httpClientj->get($url, null , null);
-
-		// $responce = $responce->body;
-
-		//
-
-		// $data = json_decode($responce, true);
-
-
-
-  // $response = $httpClient->request($url);
-
-  // $data = (object)$response->body;
-
-
-
-
-
     $urlpopular = 'http://api-metrika.yandex.ru/stat/content/popular.json?id='.$counter_id;
 
     $urlpopular .= '&date1='.$date1;
@@ -237,8 +127,7 @@ $ModDate2 = new DateTime($date2);
 $ModDate2->modify('-1 day');
 $ModDate2 = $ModDate2->format('Ymd');
 
-// dump($ModDate1,0,'$ModDate1');
-// dump($ModDate2,0,'$ModDate2');
+
 
     $urlgeo = 'http://api-metrika.yandex.ru/stat/geo.json?id='.$counter_id;
 

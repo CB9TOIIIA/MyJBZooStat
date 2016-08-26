@@ -33,6 +33,35 @@ $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/asse
  }
 
 
+   $yearzoofromdb = $db->getQuery(true);
+   $yearzoofromdb
+   ->select($db->quoteName('created'))
+   ->from($db->quoteName(ZOO_TABLE_ITEM))
+   ->order($db->quoteName('created') . 'ASC LIMIT 1');
+
+ $db->setQuery($yearzoofromdb);
+ $ResYDBs = $db->loadObjectList();
+
+ foreach ($ResYDBs as $ResYDB) {
+   $MinYearJBZoo = date('Y', strtotime($ResYDB->created));
+
+ }
+
+
+   $yearzoofromdbmax = $db->getQuery(true);
+   $yearzoofromdbmax
+   ->select($db->quoteName('created'))
+   ->from($db->quoteName(ZOO_TABLE_ITEM))
+   ->order($db->quoteName('created') . 'DESC LIMIT 1');
+
+ $db->setQuery($yearzoofromdbmax);
+ $ResYDBmaxs = $db->loadObjectList();
+
+ foreach ($ResYDBmaxs as $ResYDm) {
+   $MaxYearJBZoo = date('Y', strtotime($ResYDm->created));
+ }
+
+ 
  $month = $input->get('month', date('m'), 'string');
  $year = $input->get('year', date('Y'), 'string');
 
@@ -53,17 +82,19 @@ $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/asse
  echo '</select>';
 
 
- echo '<select class="year" name="year">';
- for($i = 2014; $i < 2017; $i++){
-   $i_n = str_pad($i, 2, "0", STR_PAD_LEFT);
-   if ($year == $i_n) {
-     echo '<option selected value="'.$i_n.'">'.$i_n.'</option>';
-   }
-   else {
-     echo '<option value="'.$i_n.'">'.$i_n.'</option>';
-   }
- }
- echo '</select>';
+
+     echo '<select class="year" name="year">';
+     for($i = $MinYearJBZoo; $i <= $MaxYearJBZoo; $i++){
+       $i_n = str_pad($i, 2, "0", STR_PAD_LEFT);
+       if ($year == $i_n) {
+         echo '<option selected value="'.$i_n.'">'.$i_n.'</option>';
+       }
+       else {
+         echo '<option value="'.$i_n.'">'.$i_n.'</option>';
+       }
+     }
+     echo '</select>';
+
 
 
  echo '<input type="submit" value="Поиск по месяцам"></form>';

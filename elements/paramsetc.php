@@ -26,8 +26,35 @@ $perpagepopular = $params->perpagepopular;
 $threshold = $params->threshold;
 $AppidZoo = $params->appidzoo;
 $appId  = $AppidZoo;
+$app_id = $AppidZoo;
 $TypeAuthors = $params->typeauthors;
 $method = $params->method;
+$app_password =  $params->app_password;
+$app_token =  $params->app_token;
+$counter_id =  $params->counter_id;
+$fillbad =  $params->countpageviewyambad;
+$fillgood =  $params->countpageviewyamgood;
+$fillnorm =  $params->countpageviewyamnorm;
+
+$httpClientj = JHttpFactory::getHttp();
+
+
+if (empty($fillbad)) { $fillbad = '100'; }
+if (empty($fillgood)) { $fillgood = '200'; }
+if (empty($fillnorm)) { $fillnorm = '300'; }
+
+$bootstrap_size = '0';
+$date_diapazon = '1';
+$date_group = 'day';
+$header_class = '';
+$header_tag = 'h3';
+$height = '300';
+$module_tag = 'div';
+$show_new_visitors = '0';
+$show_page_views = '1';
+$show_visitors = '1';
+$show_visits = '1';
+$style = '0';
 
 $disqusApiPublic = $params->disqus_api_key;
 $disqusApiSecret = $params->disqus_api_secret;
@@ -38,7 +65,6 @@ $disqusApplication = $params->disqus_api_app;
 $authoridmy = $user->get('id');
 $authorid = $input->get('authorids', $authoridmy, 'string');
 $monthdate = $input->get('monthdate', date('Y-m'), 'string');
-
 
 define('DISQUS_API_SHORT_NAME', $disqusApiShort);
 define('DISQUS_API_KEY', $disqusApiPublic);

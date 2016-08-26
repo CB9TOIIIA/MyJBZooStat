@@ -1,155 +1,206 @@
 <?xml version="1.0"?>
 <config>
-    <fieldset name="global" label="JGLOBAL_FIELDSET_OPTIONS">
-        <!-- <field name="limit" type="text" value="10" label="Количество записей"/> -->
-        <field
-        					name="method"
-        					type="radio"
-        					label="Метод получения данных"
-        					description="Выберите тот, который работает, для file_get_contents должна быть включена директива php 'allow_url_fopen'."
-        					class="btn-group btn-group-yesno"
-        					default="curl">
-        						<option value="curl">curl</option>
-        						<option value="file_get_contents">file_get_contents</option>
-        				</field>
-
-                <field
-                        					name="comcontent"
-                        					type="radio"
-                        					label="Стандартные материалы "
-                        					description="com_content юзаешь?"
-                        					class="btn-group btn-group-yesno"
-                        					default="no">
-                        						<option value="yes">Да</option>
-                        						<option value="no">Нет</option>
-                        				</field>
-                <field
-                    name="threshold"
-                    type="text"
-                    label="Минимальное кол-во статей в сутки"
-                    description=""
-                    default=""/>
+  <fieldset name="global" label="JGLOBAL_FIELDSET_OPTIONS">
+    <field
+      name="method"
+      type="radio"
+      label="Метод получения данных"
+      description="Выберите тот, который работает, для file_get_contents должна быть включена директива php 'allow_url_fopen'."
+      class="btn-group btn-group-yesno"
+      default="curl">
+      <option value="curl">curl</option>
+      <option value="file_get_contents">file_get_contents</option>
+    </field>
+    <field
+      name="comcontent"
+      type="radio"
+      label="Стандартные материалы "
+      description="com_content юзаешь?"
+      class="btn-group btn-group-yesno"
+      default="no">
+      <option value="yes">Да</option>
+      <option value="no">Нет</option>
+    </field>
+    <field
+      name="threshold"
+      type="text"
+      label="Минимальное кол-во статей в сутки"
+      description=""
+      default=""/>
     </fieldset>
-    <fieldset name="yandex" label="Яндекс.Метрика" addfieldpath="administrator/components/com_myjbzoostat/elements">
-        <field name="app_id" type="text" default="" label="app_id" description="" />
-        <field name="app_password" type="text" default="" label="app_password" description="" />
-        <field name="app_token" type="text" default="" label="app_token" description="" />
-        <field name="counter_id" type="text" default="" label="counter_id" description="" />
-
-        <field
-						name="counter_id"
-						type="text"
-						label="№ счётчика"
-						description="№ счётчика метрики"
-						default=""/>
-				<field
-						name="app_url"
-						type="AppUrl"
-						label="Создать приложение"
-						description="Создать приложение для получения OAuth-токена. Указать права 'Яндекс.Метрика' - 'Получение статистики', чтение параметров своих и доверенных счётчиков. В поле 'Callback URL' вставить урл нажатием на 'Подставить URL для разработки'"
-						default=""/>
-				<field
-						name="app_id"
-						type="text"
-						label="ID приложения"
-						description="ID приложения"
-						default=""/>
-				<field
-						name="app_password"
-						type="text"
-						label="Пароль"
-						description="Пароль приложения"
-						default=""/>
-				<field
-						name="token_url"
-						type="TokenUrl"
-						label="Получить токен"
-						description="Получить OAuth-токен и вписать его в настройки. Для его получения вы должны быть авторизованы на сайте яндекса."
-						default=""/>
-				<field
-						name="app_token"
-						type="text"
-						label="Токен"
-						description="Токен приложения"
-						default=""/>
-        <field
-                name="countpageviewyamgood"
-                type="text"
-                label="Хороший день"
-                description="число просмотров = цвету"
-                default=""/>
-        <field
-                name="countpageviewyamnorm"
-                type="text"
-                label="Нормальный день"
-                description="число просмотров = цвету"
-                default=""/>
-        <field
-                name="countpageviewyambad"
-                type="text"
-                label="Плохой день"
-                description="число просмотров = цвету"
-                default=""/>
-                <field
-                          name="csshack"
-                          type="radio"
-                          label="Скрыть ошибки"
-                          description=""
-                          class="btn-group btn-group-yesno"
-                          default="yes">
-                            <option value="yes">Да</option>
-                            <option value="no">Нет</option>
-                        </field>
-                        <field
-                                name="perpagepopular"
-                                type="text"
-                                label="Кол-во популярного неделю"
-                                description=""
-                                default="20"/>
-                        <field
-                                name="filterpopular"
-                                type="text"
-                                label="RegExp для популярного"
-                                description=""
-                                default="/item/"/>
-    </fieldset>
-    <fieldset name="disqus" label="Disqus" addfieldpath="administrator/components/com_myjbzoostat/elements">
-      <field name="disqus_url"  type="DisqusUrl"   label="Disqus приложение"   description="Создать приложение Disqus вы можете тут"  default=""/>
-      <field name="disqus_api_key" type="text" default="" label="Disqus API key public" description="DISQUS_API_KEY" size="30" />
-      <field name="disqus_api_secret" type="text" default="" label="Disqus API key secret" description="DISQUS_API_SECRET" size="30" />
-      <field name="disqus_access_token" type="text" default="" label="Disqus API access token" description="DISQUS_ACCESS_TOKEN" size="30" />
-      <field name="disqus_api_short_name" type="text" default="" label="Disqus short name" description="DISQUS_API_SHORT_NAME" size="30" />
-      <field name="disqus_api_app" type="text" default="" label="Disqus application" description="DISQUS_API_APP" size="30" />
-    </fieldset>
-    <fieldset name="jbzoo" label="JBZoo">
-      <field name="appidzoo"  type="text"   label="AppID JBZoo"   description="Введите нужное AppID"  default="1"/>
-      <field name="typeauthors"  type="text"   label="Тип авторов"   description="Введите тип Авторов (type)"  default=""/>
+  <fieldset name="yandex" label="Яндекс.Метрика" addfieldpath="administrator/components/com_myjbzoostat/elements">
       <field
-                name="taghorizont"
-                type="radio"
-                label="Колонки графика во вкладке теги"
-                description=""
-                class="btn-group btn-group-yesno"
-                default="hor">
-                  <option value="hor">Горизонтально</option>
-                  <option value="ver">Вертикально</option>
-              </field>
-    </fieldset>
-
-    <fieldset
-            name="permissions"
-            label="JCONFIG_PERMISSIONS_LABEL"
-            description="JCONFIG_PERMISSIONS_DESC"
-            >
-        <field
-                name="rules"
-                type="rules"
-                label="JCONFIG_PERMISSIONS_LABEL"
-                class="inputbox"
-                validate="rules"
-                filter="rules"
-                component="com_myjbzoostat"
-                section="component"/>
-    </fieldset>
-
+        name="app_id"
+        type="text"
+        default=""
+        label="app_id"
+        description="" />
+      <field
+        name="app_password"
+        type="text"
+        default=""
+        label="app_password"
+        description="" />
+      <field
+        name="app_token"
+        type="text" default=""
+        label="app_token"
+        description="" />
+      <field
+        name="counter_id"
+        type="text"
+        default=""
+        label="counter_id"
+        description="" />
+      <field
+        name="counter_id"
+        type="text"
+        label="№ счётчика"
+        description="№ счётчика метрики"
+        default=""/>
+      <field
+        name="app_url"
+        type="AppUrl"
+        label="Создать приложение"
+        description="Создать приложение для получения OAuth-токена. Указать права 'Яндекс.Метрика' - 'Получение статистики', чтение параметров своих и доверенных счётчиков. В поле 'Callback URL' вставить урл нажатием на 'Подставить URL для разработки'"
+        default=""/>
+      <field
+        name="app_id"
+        type="text"
+        label="ID приложения"
+        description="ID приложения"
+        default=""/>
+      <field
+        name="app_password"
+        type="text"
+        label="Пароль"
+        description="Пароль приложения"
+        default=""/>
+      <field
+        name="token_url"
+        type="TokenUrl"
+        label="Получить токен"
+        description="Получить OAuth-токен и вписать его в настройки. Для его получения вы должны быть авторизованы на сайте яндекса."
+        default=""/>
+      <field
+        name="app_token"
+        type="text"
+        label="Токен"
+        description="Токен приложения"
+        default=""/>
+      <field
+        name="countpageviewyamgood"
+        type="text"
+        label="Хороший день"
+        description="число просмотров = цвету"
+        default=""/>
+      <field
+        name="countpageviewyamnorm"
+        type="text"
+        label="Нормальный день"
+        description="число просмотров = цвету"
+        default=""/>
+      <field
+        name="countpageviewyambad"
+        type="text"
+        label="Плохой день"
+        description="число просмотров = цвету"
+        default=""/>
+      <field
+        name="csshack"
+        type="radio"
+        label="Скрыть ошибки"
+        description=""
+        class="btn-group btn-group-yesno"
+        default="yes">
+        <option value="yes">Да</option>
+        <option value="no">Нет</option>
+      </field>
+      <field
+      name="perpagepopular"
+      type="text"
+      label="Кол-во популярного неделю"
+      description=""
+      default="20"/>
+      <field
+      name="filterpopular"
+      type="text"
+      label="RegExp для популярного"
+      description=""
+      default="/item/"/>
+  </fieldset>
+  <fieldset name="disqus" label="Disqus" addfieldpath="administrator/components/com_myjbzoostat/elements">
+      <field
+      name="disqus_url"
+      type="DisqusUrl"
+      label="Disqus приложение"
+      description="Создать приложение Disqus вы можете тут"
+      default=""/>
+      <field
+      name="disqus_api_key"
+      type="text" default=""
+      label="Disqus API key public"
+      description="DISQUS_API_KEY"
+      size="30" />
+      <field
+      name="disqus_api_secret"
+      type="text"
+      default=""
+      label="Disqus API key secret"
+      description="DISQUS_API_SECRET"
+      size="30" />
+      <field
+      name="disqus_access_token"
+      type="text" default=""
+      label="Disqus API access token"
+      description="DISQUS_ACCESS_TOKEN"
+      size="30" />
+      <field name="disqus_api_short_name"
+      type="text"
+      default=""
+      label="Disqus short name"
+      description="DISQUS_API_SHORT_NAME"
+      size="30" />
+      <field name="disqus_api_app"
+      type="text"
+      default=""
+      label="Disqus application"
+      description="DISQUS_API_APP"
+      size="30" />
+  </fieldset>
+  <fieldset name="jbzoo" label="JBZoo">
+      <field
+      name="appidzoo"
+      type="text"
+      label="AppID JBZoo"
+      description="Введите нужное AppID"
+      default="1"/>
+      <field
+      name="typeauthors"
+      type="text"
+      label="Тип авторов"
+      description="Введите тип Авторов (type)"
+      default=""/>
+      <field
+      name="taghorizont"
+      type="radio"
+      label="Колонки графика во вкладке теги"
+      description=""
+      class="btn-group btn-group-yesno"
+      default="hor">
+      <option value="hor">Горизонтально</option>
+      <option value="ver">Вертикально</option>
+    </field>
+  </fieldset>
+  <fieldset      name="permissions"      label="JCONFIG_PERMISSIONS_LABEL"      description="JCONFIG_PERMISSIONS_DESC">
+    <field
+      name="rules"
+      type="rules"
+      label="JCONFIG_PERMISSIONS_LABEL"
+      class="inputbox"
+      validate="rules"
+      filter="rules"
+      component="com_myjbzoostat"
+      section="component"/>
+  </fieldset>
 </config>

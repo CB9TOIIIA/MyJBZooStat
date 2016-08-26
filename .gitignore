@@ -2,3 +2,4 @@
 # Игнорирование по типу файла, будут игнорироваться в АБСОЛЮТНО всех директориях
 # Например /files/data.zip, /server.log, /uploads/users/data/info.xls
 /vendor/*
+*.tar
