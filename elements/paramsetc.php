@@ -4,8 +4,15 @@ defined( '_JEXEC' ) or die; // No direct access
 ?>
 <?php
 
+// check installed Zoo
+
+if (JFolder::exists(JPATH_ROOT . '/components/com_zoo')) {
+
 require_once JPATH_ADMINISTRATOR . '/components/com_zoo/config.php';
 require_once JPATH_ROOT . '/media/zoo/applications/jbuniversal/framework/jbzoo.php';
+$app = App::getInstance('zoo');
+
+}
 
 $document = JFactory::getDocument();
 $input = JFactory::getApplication()->input;
