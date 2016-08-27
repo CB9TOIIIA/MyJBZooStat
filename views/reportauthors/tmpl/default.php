@@ -52,7 +52,6 @@ jQuery(document).ready(function($) {
     <?php
     if (!empty($TypeAuthors)) :
 
-
     function rdate($param, $time=0) {
       if(intval($time)==0)$time=time();
       $MonthNames=array("январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь");

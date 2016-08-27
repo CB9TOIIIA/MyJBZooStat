@@ -954,12 +954,14 @@ hr {clear: both !important}
 .bigmonthdata  { padding: 30px 15px; text-align: center; margin-top: 10px; margin-bottom: 15px; color: #fff; font-size: 1.6em;}
 .bigmonthdata img {margin-top: -3px;     margin-left: 15px; }
 .bigmonthdata.todaystats, .myspan25.bigmonthdata, .myspan3.bigmonthdata {background-color: #2D9B11}
+.clrboth + .center.bigmonthdata {background-color: #2D9B11 !important;}
 .center.bigmonthdata {background-color: #7E57C2}
 .center.bigmonthdata + div {background-color: #EF5350}
 .center.bigmonthdata + div + div {background-color: #EC407A}
 .center.bigmonthdata + div + div + div {background-color:  #536DFE}
 .center.bigmonthdata + div + div + div + div  {background-color:  #bb9b18}
 .center.bigmonthdata + div + div + div + div  + div  {background-color:  #B9466B}
+.clrboth {clear:both;}
 .red span.articlesinthisday {    text-shadow: none !important;    color: #fff; }
 .nameotch {display: inline-block; width: 100%; margin-top: 15px; margin-bottom: -15px;  text-transform: uppercase;   font-size: 0.8em;  font-family: Trebuchet MS;  color: #fff; font-weight: bold;  text-shadow: 0px 0px 0px #000;}
 .center {text-align: center;}

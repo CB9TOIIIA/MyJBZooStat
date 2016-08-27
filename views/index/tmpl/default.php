@@ -1302,7 +1302,7 @@ echo "<span class='allinfo span12 center'> <span class='span4'> <b> <img src='{$
 
 </div>
 
-<div style="clear:both"></div>
+<div class='clrboth'></div>
 
 <?php
 
@@ -1581,7 +1581,7 @@ if ($valuesvodka->name == 'Переходы по ссылкам на сайта�
 
 
 
-echo "<div style='clear:both'></div>";
+echo "<div class='clrboth'></div>";
 
 
 
@@ -1771,7 +1771,7 @@ if ($datavchera) {
 
 
 
-echo "<div style='clear:both'></div>";
+echo "<div class='clrboth'></div>";
 
 
 
@@ -1966,7 +1966,7 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozavcheradate
 
 
 
-echo "<div style='clear:both'></div>";
+echo "<div class='clrboth'></div>";
 
 
 
@@ -2168,7 +2168,7 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozapozavchera
 
 
 
-echo "<div style='clear:both'></div>";
+echo "<div class='clrboth'></div>";
 
 
 

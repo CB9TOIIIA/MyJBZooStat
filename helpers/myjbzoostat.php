@@ -5,18 +5,7 @@ defined( '_JEXEC' ) or die;
 class MyjbzoostatHelper
 {
 
-	public static function getActions()
-	{
-		$user = JFactory::getUser();
-		$result = new JObject;
-		$assetName = 'com_myjbzoostat';
-		$actions = JAccess::getActions( $assetName );
-		foreach ( $actions as $action ) {
-			$result->set( $action->name, $user->authorise( $action->name, $assetName ) );
-		}
-		return $result;
-	}
-
+//	public static function getActions()
 
 	 	public static function open_http($url, $method = 'curl')
 	 	{

@@ -8,8 +8,6 @@ require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/vendor/autoload.
 // require_once '/../../../vendor/autoload.php'; // composer autoload.php
 // for API disqus more 100 - https://disqus.com/api/docs/cursors/
 
-// HACK: need https://embed.disqus.com/ to this form
-
 // dump($_POST,0,'post');
 
 use JBZoo\HttpClient\HttpClient;
@@ -96,8 +94,7 @@ function disqusRequest($url, $params = [], $ttl = DISQUS_TTL, $debugurl = 0)
   $valuusageapp = $resusageapp[1];
 
 
-  echo "<div class='righappuse'><a style='color:#000' href='https://disqus.com/api/applications/{$disqusApplication}/usage/' target='_blank'>API: {$valuusageapp}</a></div>";
-
+  echo "<div class='righappuse'><a style='color:#000' href='https://disqus.com/api/applications/{$disqusApplication}/usage/' target='_blank'>API: {$valuusageapp}</a> / <a style='color:#000; text-decoration:underline;' href='https://embed.disqus.com/' target='_blank'>Встроить комментарий</a></div>";
 
 
   echo "<h3>Получить информацию о комментариях в Disqus: </h3>";
@@ -110,15 +107,12 @@ function disqusRequest($url, $params = [], $ttl = DISQUS_TTL, $debugurl = 0)
     $lpdisqusidcommentdislike = $input->get('lpdisqusidcommentdislike', null, 'string');
     $lpdisqusidcommentremove = $input->get('lpdisqusidcommentremove', null, 'string');
     $lpdisqusidcommentreport = $input->get('lpdisqusidcommentreport', null, 'string');
+    $lpdisqusidcommentspam = $input->get('lpdisqusidcommentspam', null, 'string');
+    $lpdisqusidcommentapprove = $input->get('lpdisqusidcommentapprove', null, 'string');
     $idcheckbl = $input->get('idcheckbl', null, 'string');
 
   echo '<input type="hidden"  name="urllistPosts" placeholder="Введите url" value="">';
   echo '<input type="text" name="userdisqusform" placeholder="Введите url / username / id" value="">';
-  echo '<input type="hidden" name="lpdisqusidcommentapprove" placeholder="approved" value="">';
-  echo '<input type="hidden" name="lpdisqusidcommentspam" placeholder="remove" value="">';
-  echo '<input type="hidden" name="lpdisqusidcommentremove" placeholder="flagged" value="">';
-  echo '<input type="hidden" name="lpdisqusidcommentreport" placeholder="report" value="">';
-
   echo '<input type="submit" value="Отправить"></form>';
   echo '</div>';
 
@@ -147,14 +141,23 @@ if ($lpdisqusidcommentdislike) {
     // dump($dislikeAr,0,'$dislikeAr');
 }
 
-// if ($lpdisqusidcommentspam) {
-//   $spamAr = $httpClient->request('https://disqus.com/api/3.0/posts/spam.json?', [
-//     'api_key' => $disqusApiPublic,
-//     'access_token' => $disqusApiToken,
-//     'post' => $lpdisqusidcommentspam,
-//   ], 'post');
-//     dump($spamAr,0,'$spamAr');
-// }
+if ($lpdisqusidcommentapprove) {
+  $approveAr = $httpClient->request('https://disqus.com/api/3.0/posts/approve.json?', [
+    'api_key' => $disqusApiPublic,
+    'access_token' => $disqusApiToken,
+    'post' => $lpdisqusidcommentapprove,
+  ], 'post');
+    // dump($approveAr,0,'$approveAr');
+}
+
+if ($lpdisqusidcommentspam) {
+  $spamAr = $httpClient->request('https://disqus.com/api/3.0/posts/spam.json?', [
+    'api_key' => $disqusApiPublic,
+    'access_token' => $disqusApiToken,
+    'post' => $lpdisqusidcommentspam,
+  ], 'post');
+    // dump($spamAr,0,'$spamAr');
+}
 
 if ($lpdisqusidcommentreport) {
   $reportAr = $httpClient->request('https://disqus.com/api/3.0/posts/report.json?', [
@@ -340,11 +343,11 @@ if ($lpdisqusidcommentremove) {
               echo "<div class='avamesinfo'><a title='Перейти в профиль Disqus' href='{$lpdisqusprofileUrl}' target='_blank'><img src='{$lpdisqususernameava}'></a></div>";
               echo "<ul>";
               echo "<li class='numbercoma'>#{$numlistPostsrespost}</li>";
-              echo "<li><b>Дата:</b> {$lpdisquscreated}</li>";
+              echo "<li><b>Дата:</b> {$lpdisquscreated}  <small>ID комментария - <b>{$lpdisqusidcomment}</b></small></li>";
               if ($lpdisqusprofileUrl && $lpdisqususername && $lpdisqusisAnonymous == 'Нет') {
                 echo "<li><b>Имя/Псевдоним:</b>    <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' name='form{$lpdisqusid}' method='post' >
                 <input  style='display:none'   type='hidden' name='userdisqusform'  value='{$lpdisqusid}' />
-                <input class='btn btn-small' type='submit' value='{$lpdisqusname} /  {$lpdisqususername}' > </form> <a title='Перейти в профиль Disqus' href='{$lpdisqusprofileUrl}' target='_blank'><em class='icon-out-2'></em> </a> ";     if ($lpdisqusabout) {   echo "<span class='osebe'><b>О себе:</b> {$lpdisqusabout}</span></li>";   }
+                <input class='btn btn-mini' type='submit' value='{$lpdisqusname} /  {$lpdisqususername}' > </form> <a title='Перейти в профиль Disqus' href='{$lpdisqusprofileUrl}' target='_blank'><em class='icon-out-2'></em> </a> ";     if ($lpdisqusabout) {   echo "<span class='osebe'><b>О себе:</b> {$lpdisqusabout}</span></li>";   }
               }
               else {
                 echo "<li><b>Имя/Псевдоним:</b> {$lpdisqusname} ";  if ($lpdisqusisAnonymous != 'Нет') {  echo "{$lpdisqusisAnonymous}"; }
@@ -388,23 +391,34 @@ if ($lpdisqusidcommentremove) {
               <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
               <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
               <input type='hidden' name='lpdisqusidcommentremove'  value='{$lpdisqusidcomment}' />
-              <input class='btn btn-small' type='submit' value='[Удалить]' > </form>
+              <input class='btn btn-mini btn-danger' type='submit' value='Удалить' > </form>
+
+
+              <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
+              <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
+              <input type='hidden' name='lpdisqusidcommentspam'  value='{$lpdisqusidcomment}' />
+              <input class='btn btn-mini btn-inverse' type='submit' value='Спам' > </form>
 
 
               <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
               <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
               <input type='hidden' name='lpdisqusidcommentreport'  value='{$lpdisqusidcomment}' />
-              <input class='btn btn-small' type='submit' value='[Предупреждение]' > </form>
+              <input class='btn btn-mini btn-warning' type='submit' value='Предупреждение' > </form>
+
+              <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
+              <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
+              <input type='hidden' name='lpdisqusidcommentapprove'  value='{$lpdisqusidcomment}' />
+              <input class='btn btn-mini btn-success' type='submit' value='Опубликовать' > </form>
 
               <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
               <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
               <input type='hidden' name='lpdisqusidcommentdislike'  value='{$lpdisqusidcomment}' />
-              <input class='btn btn-small' type='submit' value='[Дизлайк]' > </form>
+              <input class='btn btn-mini btn-danger dislike' type='submit' value='Дизлайк' > </form>
 
               <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
               <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
               <input type='hidden' name='lpdisqusidcommentlike'  value='{$lpdisqusidcomment}' />
-              <input class='btn btn-small' type='submit' value='[Лайк]' > </form>
+              <input class='btn btn-mini btn-primary' type='submit' value='Лайк' > </form>
 
 
              </p>";

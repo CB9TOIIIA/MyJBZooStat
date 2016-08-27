@@ -1,7 +1,7 @@
 .clrred{color:red}
 blockquote.postaclass{margin-bottom:30px}
 li.inforepsmile img:not(:first-child),.messageauthor + img + img,.messageauthorafds + li img:not(:first-child){margin-left:10px}
-.hideinfouser{margin-top:10px;font-weight:700;color:red}
+.hideinfouser{margin-top:10px;font-weight:700;color:red;font-size: 0.85em;}
 .avamesinfo{margin-top:10px;position:absolute}
 .avamesinfo + ul {margin-left:120px}
 .mlplus {margin-left:120px; font-size: 0.9em;}
@@ -27,3 +27,6 @@ form.form-inline select,form.form-inline input{margin-right:1%}
 .flform{display:inline;margin-left:5px}
 form + a > em.icon-out-2{position:absolute;margin-left:10px;margin-top:5px}
 .numbercoma{margin-left:-27px;position:absolute;font-weight:700;text-decoration:underline}
+.btn-danger.dislike {background-color: #D2514A !important;     background-image: -webkit-gradient(linear,0 0,0 100%,from(#D2514A),to(#d83f38)) !important;  }
+b + small {display: inline !important;  }
+blockquote li .btn-mini {    font-size: 12px  !important;  }

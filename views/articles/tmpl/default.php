@@ -249,7 +249,7 @@ jQuery(document).ready(function($) {
                 $genadminurleditor = "/administrator/index.php?option=com_zoo&controller=item&changeapp=1&task=edit&cid".$leftcarret.$rightcarret."=".$idnottag;
                 $idadd++;
 
-                if ($typenottag == 'news') {
+                if ($typenottag == $TypeArticleorProduct) {
                   # code...
 
                   echo "<tr>";
@@ -265,7 +265,6 @@ jQuery(document).ready(function($) {
                   echo "</tr>";
                 }
 
-
                 //dump($Arrayauthorsscount,0,'Кол-во статей в месяц');
 
               }
@@ -280,27 +279,6 @@ jQuery(document).ready(function($) {
 
 
           ?>
-
-          <!-- <script type="text/javascript">
-          document.addEventListener('DOMContentLoaded',function(){
-          new Chartist.Line('.ct-chartad', {
-          labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          series: [
-          [12, 9, 7, 8, 5],
-          [2, 1, 3.5, 7, 3],
-          [1, 3, 4, 5, 6]
-          ]
-        }, {
-        fullWidth: true,
-        chartPadding: {
-        right: 40
-      }
-    });
-  });
-</script> -->
-
-
-
 
 <?php
 

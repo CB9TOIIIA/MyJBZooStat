@@ -102,7 +102,6 @@ jQuery(document).ready(function($) {
   echo "</div>";
 
 
-
   //jbdump($itemIdsResult,0,'Массив');
 
   $querys = $db->getQuery(true);
