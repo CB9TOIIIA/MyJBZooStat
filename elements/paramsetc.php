@@ -30,6 +30,7 @@ $app_id = $AppidZoo;
 $TypeAuthors = $params->typeauthors;
 $TypeArticleorProduct = $params->typearticleorproduct;
 $method = $params->method;
+$taghorizont = $params->taghorizont;
 $app_password =  $params->app_password;
 $app_token =  $params->app_token;
 $counter_id =  $params->counter_id;

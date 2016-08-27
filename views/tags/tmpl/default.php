@@ -61,7 +61,7 @@ $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/asse
    $MaxYearJBZoo = date('Y', strtotime($ResYDm->created));
  }
 
- 
+
  $month = $input->get('month', date('m'), 'string');
  $year = $input->get('year', date('Y'), 'string');
 
@@ -186,9 +186,11 @@ if ($coutgra != 0) {
             seriesBarDistance: 100,
             reverseData: true,
             scaleMinSpace: 80,";
-
 if ($taghorizont == 'hor') {
   echo 'horizontalBars: true,';
+}
+else {
+  echo 'horizontalBars: false,';
 }
 
       echo "        axisY: {

@@ -386,7 +386,7 @@ if ($lpdisqusidcommentremove) {
 
 
 
-              echo "<p class='mlplus'>
+              echo "<div class='mlplus'>
 
               <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
               <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
@@ -421,7 +421,7 @@ if ($lpdisqusidcommentremove) {
               <input class='btn btn-mini btn-primary' type='submit' value='Лайк' > </form>
 
 
-             </p>";
+             </div>";
 
 
               // echo "<p class='mlplus'><a id='delete-$lpdisqusidcomment' href='#'>[Удалить]</a> <a id='spam-$lpdisqusidcomment' target='_blank' href='{$spam}'>[Спам]</a> <a id='report-$lpdisqusidcomment' href='#'>[Предупреждение]</a> <a id='approve-$lpdisqusidcomment' target='_blank' href='{$approve}'>[Опубликовать]</a> </p>";
