@@ -7,7 +7,7 @@
 .month {width: 90px;}
 .formnameatu {float: left; margin-right: 25px; }
  tr.upper.tablesorter-headerRow { background: white !important;}
- 
+
 .tablesorter-pager{padding:5px}
 td.tablesorter-pager{background-color:#e6eeee;margin:0}
 .tablesorter-pager img{vertical-align:middle;margin-right:2px;cursor:pointer}
@@ -17,4 +17,4 @@ td.tablesorter-pager{background-color:#e6eeee;margin:0}
 .tablesorter-pager .disabled{opacity:.5;filter:alpha(opacity=50);cursor:default}
 tr.upper td img{margin-left:1%;opacity:.2}
 tr.upper:hover{cursor:pointer}
- 
+.tagsstat.tags .zebra { height: 700px;}

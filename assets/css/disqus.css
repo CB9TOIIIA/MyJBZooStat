@@ -12,7 +12,7 @@ li.inforepsmile img:not(:first-child),.messageauthor + img + img,.messageauthora
 .avamesinfo img{border-radius:50%}
 .messageauthor,.messageauthorafds{display:inline-block;width:100%;padding:5px 10px;margin:10px 0;border:1px dashed rgba(204,204,204,0.7);border-radius:5px}
 .messageauthorafds{text-indent:0}
-.nameames{color:#000}
+.nameames{color:#000; word-wrap: break-word;}
 .osebe{margin-left:40px}
 .scrollbar-inner-left{width:30%;float:left;display:inline-block}
 .scrollbar-inner{width:65%;display:inline-block;padding:0 20px}
