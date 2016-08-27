@@ -13,13 +13,66 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
 <div class="item-page">
 
   <?php
+  if (empty($TypeAuthors)):
+    
+    if ($csshack == 'yes') {
+    echo "<style>div#system-message-container {display:none;}</style>";
+    }
+
+    $queryauthors = "SELECT created_by"
+    ." FROM " . ZOO_TABLE_ITEM;
+
+      $AuthorsNoType = count(array_unique($app->table->tag->database->queryResultArray($queryauthors)));
+      $Arrayauthors = array_unique($app->table->tag->database->queryResultArray($queryauthors));
+      ksort($Arrayauthors);
+
+      echo '<big><big>Всего авторов: <b>'.$AuthorsNoType.'</b></big></big>';
+
+        echo "<br>";
+
+        $querynameauth = $db->getQuery(true);
+
+
+          $querynameauth = "SELECT created_by"
+          ." FROM " . ZOO_TABLE_ITEM;
+
+        $db->setQuery($querynameauth);
+        //dump($itemIdsResultnameauth,1,'tagsArrayauthors');
+        $itemIdsResultnameauth = array_unique($app->table->tag->database->queryResultArray($querynameauth));
+
+        echo "<div class='tagsstat'>";
+        echo "<ul class='zebra'>";
+        foreach ($itemIdsResultnameauth as $created_byas  ) {
+          // dump($created_byas,1,'tagsArrayauthors');
+
+          $created_bycreated = $created_byas;
+
+          $user = JFactory::getUser($created_bycreated);
+          $valueid = $created_bycreated;
+          $bignamau = $user->name;
+
+          $monthdate = date("Y-m");
+          echo '<li><form style="display:none"  action="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" name="a'.$created_bycreated.'" method="post" >';
+          echo  $authcreatedx[] = '
+          <input  type="hidden" name="authorids"  value="'.$created_bycreated.'" />
+          <input  type="hidden" name="monthdate"  value="'.$monthdate.'" />
+
+          </form> <a class="test-submit" href="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" OnClick="a'.$created_bycreated.'.submit();return false;">'.$bignamau.'</a> </li>';
+          //   echo  $itemIdsResultnameauth[] = '<option value="'.$created_by.'">'.$name.'</option>';
+
+        }
+        echo "</ul>";
+        echo "</div>";
+
+
+endif;
+
   if (!empty($TypeAuthors)):
 
 
     $queryauthors = "SELECT created_by"
     ." FROM " . ZOO_TABLE_ITEM
     ." WHERE type = '".$TypeAuthors."'";
-
 
   $Arrayauthorscount = count($app->table->tag->database->queryResultArray($queryauthors));
   $Arrayauthors = array_unique($app->table->tag->database->queryResultArray($queryauthors));
@@ -51,6 +104,7 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
     // dump($created_byas,1,'tagsArrayauthors');
     $created_bycreated = $created_byas->created_by;
     $created_byname = $created_byas->name;
+
     $monthdate = date("Y-m");
     echo '<li><form style="display:none"  action="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" name="a'.$created_bycreated.'" method="post" >';
     echo  $authcreatedx[] = '
@@ -65,10 +119,6 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
   echo "</ul>";
   echo "</div>";
 
-endif;
-
-if (empty($TypeAuthors)) :
-echo "<h1 class='center'>Заполните тип авторов в настройках компонента</h1>";
 endif;
 
   ?>

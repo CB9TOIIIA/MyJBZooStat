@@ -7,21 +7,27 @@
     <copyright></copyright>
     <license></license>
     <version>1.0</version>
-    <description>COM_MYJBZOOSTAT_DESC</description>
+    <description>Компонент статистики: 1) Яндекс.Метрика  2) JBZoo 3) Стандартных материалов (com_conent). А также менеджер комментариев системы комментирования - Disqus.</description>
     <creationDate>28 June 2016</creationDate>
     <administration>
         <menu>COM_MYJBZOOSTAT</menu>
-        <files folder="admin">
+        <files>
             <filename>index.html</filename>
             <filename>myjbzoostat.php</filename>
-            <filename>controller.php</filename>
-            <filename>config.xml</filename>
             <filename>access.xml</filename>
-            <folder>views</folder>
-            <folder>controllers</folder>
+            <filename>config.xml</filename>
+            <filename>composer.json</filename>
+            <filename>composer.lock</filename>
+            <filename>controller.php</filename>
+            <filename>.gitignore</filename>
             <folder>helpers</folder>
+            <folder>controllers</folder>
+            <folder>views</folder>
+            <folder>vendor</folder>
+            <folder>assets</folder>
+            <folder>elements</folder>
         </files>
-        <languages folder="admin">
+        <languages>
             <language tag="ru-RU">language/ru-RU/ru-RU.com_myjbzoostat.ini</language>
             <language tag="ru-RU">language/ru-RU/ru-RU.com_myjbzoostat.sys.ini</language>
         </languages>

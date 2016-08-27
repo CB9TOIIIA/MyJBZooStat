@@ -82,8 +82,15 @@ function disqusRequest($url, $params = [], $ttl = DISQUS_TTL, $debugurl = 0)
 ?>
 <div class="item-page">
 
-
   <?php
+
+      if (empty($disqusApiShort)) :
+
+        echo "<h1 class='center'>Заполните данные API Disqus в настройках компонента</h1>";
+
+      endif;
+
+    if (!empty($disqusApiShort)) :
 
   $responseApiCountDisqus = disqusRequest(URL_LIST_USAGE, [
     'days' => '0'
@@ -775,6 +782,7 @@ if ($lpdisqusidcommentremove) {
   echo "</table>";
 
 
+endif;
 
 
   ?>

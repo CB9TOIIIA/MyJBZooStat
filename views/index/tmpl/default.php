@@ -10,6 +10,10 @@ echo "<style>div#system-message-container {display:none;}</style>";
 }
 
 
+
+    if (!empty($counter_id)) :
+
+
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/metrika.css');
 
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/metrika.js');
@@ -2292,11 +2296,13 @@ echo "</table>";
 
 }
 
+endif;
 
+      if (empty($counter_id)) :
+      echo "<h1 class='center'>Заполните API Яндекс.Метрика настройках компонента</h1>";
+      endif;
 
  ?>
-
-
 
 
 

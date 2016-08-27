@@ -284,13 +284,18 @@ if ($coutgra > '0') {
   ?>
 
 <div class="item-page">
-<?php echo "<p><big><big>Глобальная статистика тегов: </big></big></p>"; ?>
+<?php
+if (!empty($Arrayarticlesmonth[0])) {
+
+echo "<p><big><big>Глобальная статистика тегов: </big></big></p>"; }
+else {
+  echo "<h1 align='center'>Теги не используются</h1>";
+} ?>
 
 <div class="tagsstat">
 <ul class="zebra">
 <?php
 
-$db = JFactory::getDBO();
 $querycounttagalltags = $db->getQuery(true);
 
 $querycounttagalltags = "SELECT name FROM " . ZOO_TABLE_TAG ." ORDER BY name";

@@ -50,7 +50,6 @@ jQuery(document).ready(function($) {
   <div class="tagsstat">
 
     <?php
-    if (!empty($TypeAuthors)) :
 
     function rdate($param, $time=0) {
       if(intval($time)==0)$time=time();
@@ -98,6 +97,7 @@ jQuery(document).ready(function($) {
 
 
     if (!empty($TypeAuthors)) {
+
       $querys = $db->getQuery(true);
       $querys
       ->select($db->quoteName('created_by'))
@@ -114,20 +114,26 @@ jQuery(document).ready(function($) {
 
 
     $db->setQuery($querys);
-    $itemIdsResultsdate = $db->loadObjectList();
+    // $itemIdsResultsdate = $db->loadObjectList();
+    //
+    //
+    // $itemIds = array();
+    //
+    // foreach ($itemIdsResultsdate as $it) {
+    //   $itemIds[] = $it->created_by;
+    // }
 
 
+    $itemIdsResultsdate = array_unique($app->table->tag->database->queryResultArray($querys));
     $itemIds = array();
-
     foreach ($itemIdsResultsdate as $it) {
-      $itemIds[] = $it->created_by;
+      $itemIds[] = $it;
     }
+
     $idadd = '0';
 
     echo '<h1>Статистика за '.$monthnew.' '.$year.'</h1>';
     echo '<hr>';
-
-
 
     echo "<table id='myTable' class='zebratable'>";
     echo "<thead>";
@@ -184,11 +190,6 @@ jQuery(document).ready(function($) {
     echo "</tbody>";
     echo "</table>";
 
-
-    endif;
-    if (empty($TypeAuthors)) :
-    echo "<h1 class='center'>Заполните тип авторов в настройках компонента</h1>";
-    endif;
 
     ?>
 

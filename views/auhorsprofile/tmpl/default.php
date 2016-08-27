@@ -27,10 +27,14 @@ jQuery(document).ready(function($) {
 <div class="item-page">
 
   <?php
-  if (!empty($TypeAuthors)) :
+
+  if ($csshack == 'yes') {
+  echo "<style>div#system-message-container {display:none;}</style>";
+  }
+
 
   echo "<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script> <script type='text/javascript' src='//yastatic.net/share2/share.js'></script>";
-  echo "<script id='dsq-count-scr' src='//{$disqusApiShort}.disqus.com/count.js' async></script>";
+  if (!empty($disqusApiShort)) :   echo "<script id='dsq-count-scr' src='//{$disqusApiShort}.disqus.com/count.js' async></script>"; endif;
 
   ?>
 
@@ -44,11 +48,69 @@ jQuery(document).ready(function($) {
     else return date(str_replace('M',$MonthNames[date('n',$time)-1],$param), $time);
   }
 
-  if (!empty($TypeAuthors)) {
+
+    if ((empty($TypeAuthors))) :
+
+            $queryauthors = "SELECT created_by"
+            ." FROM " . ZOO_TABLE_ITEM;
+
+              $AuthorsNoType = count(array_unique($app->table->tag->database->queryResultArray($queryauthors)));
+              $Arrayauthors = array_unique($app->table->tag->database->queryResultArray($queryauthors));
+              ksort($Arrayauthors);
+
+              echo '<big><big>Всего авторов: <b>'.$AuthorsNoType.'</b></big></big>';
+
+                echo "<br>";
+
+                $querynameauth = $db->getQuery(true);
+
+
+      $querynameauth = "SELECT created_by"
+      ." FROM " . ZOO_TABLE_ITEM;
+
+    $db->setQuery($querynameauth);
+    //dump($itemIdsResultnameauth,1,'tagsArrayauthors');
+    $itemIdsResultnameauth = array_unique($app->table->tag->database->queryResultArray($querynameauth));
+
+        echo "<div class='formnameatu'>";
+      echo '<form action="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" method="post" class="form-inline">';
+
+      echo "<input type='hidden' name='monthdate' value='".$monthdate."'>";
+      echo '<select class="" name="authorids">';
+
+
+      foreach ($itemIdsResultnameauth as $created_byas  ) {
+
+        $created_bycreated = $created_byas;
+
+        $user = JFactory::getUser($created_bycreated);
+        $valueid = $created_bycreated;
+        $bignameIn = $user->name;
+        if ($created_bycreated == $authorid) {
+          $bigname = $user->name;
+          echo  $authcreatedx[] = '<option selected value="'.$created_bycreated.'">'.$bignameIn.'</option>';
+        }
+        else {
+          echo  $authcreatedx[] = '<option value="'.$created_bycreated.'">'.$bignameIn.'</option>';
+        }
+
+        //   echo  $itemIdsResultnameauth[] = '<option value="'.$created_by.'">'.$name.'</option>';
+      }
+
+      echo '</select> <input type="submit" value="Поиск"></form>';
+      echo '</div>';
+
+
+endif;
+
+
+  if (!empty($TypeAuthors)) :
+
+
     $queryauthors = "SELECT created_by"
     ." FROM " . ZOO_TABLE_ITEM
     ." WHERE type = '".$TypeAuthors."'";
-  }
+
 
   $Arrayauthorscount = count($app->table->tag->database->queryResultArray($queryauthors));
   $Arrayauthors = array_unique($app->table->tag->database->queryResultArray($queryauthors));
@@ -59,12 +121,11 @@ jQuery(document).ready(function($) {
   $querynameauth = $db->getQuery(true);
 
 
-  if (!(empty($TypeAuthors))) {
 
     $querynameauth = "SELECT created_by, name"
     ." FROM " . ZOO_TABLE_ITEM
     ." WHERE type = '".$TypeAuthors."'";
-  }
+
 
   $db->setQuery($querynameauth);
   $itemIdsResultnameauth = $db->loadObjectList();
@@ -101,6 +162,8 @@ jQuery(document).ready(function($) {
   echo "<div class='tagsstat'>";
   echo "</div>";
 
+
+endif;
 
   //jbdump($itemIdsResult,0,'Массив');
 
@@ -340,7 +403,7 @@ jQuery(document).ready(function($) {
       echo "<td>Дата</td>";
       echo "<td>Название</td>";
       echo "<td>Популярность статьи</td>";
-      echo "<td>Комментариев</td>";
+if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; endif;
       echo "</tr>";
       echo "</thead>";
       echo "<tbody>";
@@ -377,7 +440,7 @@ jQuery(document).ready(function($) {
 
           }
 
-          echo "<td><span class='disqus-comment-count' data-disqus-url='{$myurltosite}'></span></td>";
+  if (!empty($disqusApiShort)) :  echo "<td><span class='disqus-comment-count' data-disqus-url='{$myurltosite}'></span></td>"; endif;
           echo "</tr>";
 
         }
@@ -556,13 +619,8 @@ jQuery(document).ready(function($) {
 
     }
 
-  endif;
-
     endif;
 
-if (empty($TypeAuthors)) :
-echo "<h1 class='center'>Заполните тип авторов в настройках компонента</h1>";
-endif;
 
 ?>
 
