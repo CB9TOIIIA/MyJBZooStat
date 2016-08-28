@@ -1,4 +1,5 @@
 .tagsstat .zebra { display: inline-flex;    flex-wrap: wrap;    width: 98%;    height: 200px;    flex-direction: column;  list-style: none;  padding: 0;} .tagsstat .zebra li {  padding: 5px; margin-right: 5px; } .tagsstat .zebra li:nth-child(odd) {  background: #EFEFEF; } .tagsstat .zebra li:nth-child(even) {  background: white; }
+b > big {    text-transform: uppercase; }
  .zebratable {width: 98%; margin: 0 auto;}
  .zebratable td {padding: 5px;}
  .zebratable tr.upper {font-weight: bold;}
@@ -62,7 +63,7 @@
  .alert  {display:none}
  form.form-inline {margin-left: 1%;}
  form.form-inline select {margin-right: 1%;}
- 
+
  .tagsstat .zebra { display: inline-flex;    flex-wrap: wrap;    width: 98%;    height: 200px;    flex-direction: column;  list-style: none;  padding: 0;} .tagsstat .zebra li {  padding: 5px; margin-right: 5px; } .tagsstat .zebra li:nth-child(odd) {  background: #EFEFEF; } .tagsstat .zebra li:nth-child(even) {  background: white; }
  .zebratable {width: 98%; margin: 0 auto;}
  .zebratable td {padding: 5px;}
@@ -127,7 +128,7 @@
  .alert  {display:none}
  form.form-inline {margin-left: 1%;}
  form.form-inline select {margin-right: 1%;}
- 
+
  .tagsstat .zebra { display: inline-flex;    flex-wrap: wrap;    width: 98%;    height: 300px;    flex-direction: column;  list-style: none;  padding: 0;} .tagsstat .zebra li {  padding: 5px; margin-right: 5px; } .tagsstat .zebra li:nth-child(odd) {  background: #EFEFEF; } .tagsstat .zebra li:nth-child(even) {  background: white; }
   .zebratable {width: 98%; margin: 0 auto;}
   .zebratable td {padding: 5px;}

@@ -34,6 +34,7 @@ $appId  = $AppidZoo;
 $app_id = $AppidZoo;
 $TypeAuthors = $params->typeauthors;
 $TypeArticleorProduct = $params->typearticleorproduct;
+$StatOrProduct = $params->statorproduct;
 $method = $params->method;
 $taghorizont = $params->taghorizont;
 $app_password =  $params->app_password;
@@ -49,6 +50,9 @@ $httpClientj = JHttpFactory::getHttp();
 if (empty($fillbad)) { $fillbad = '100'; }
 if (empty($fillgood)) { $fillgood = '200'; }
 if (empty($fillnorm)) { $fillnorm = '300'; }
+
+if ($StatOrProduct == 'stat') { $StatOrProduct = 'статей';}
+if ($StatOrProduct == 'product') { $StatOrProduct = 'товаров';}
 
 $bootstrap_size = '0';
 $date_diapazon = '1';

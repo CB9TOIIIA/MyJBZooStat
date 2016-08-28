@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
               $Arrayauthors = array_unique($app->table->tag->database->queryResultArray($queryauthors));
               ksort($Arrayauthors);
 
-              echo '<big><big>Всего авторов: <b>'.$AuthorsNoType.'</b></big></big>';
+              echo '<big class="mono">Всего авторов: <b>'.$AuthorsNoType.'</b></big>';
 
                 echo "<br>";
 
@@ -85,7 +85,10 @@ jQuery(document).ready(function($) {
 
         $user = JFactory::getUser($created_bycreated);
         $valueid = $created_bycreated;
-        $bignameIn = $user->name;
+        if ($user->name !== NULL) {
+          $bignameIn = $user->name;
+        }
+
         if ($created_bycreated == $authorid) {
           $bigname = $user->name;
           echo  $authcreatedx[] = '<option selected value="'.$created_bycreated.'">'.$bignameIn.'</option>';
@@ -99,7 +102,6 @@ jQuery(document).ready(function($) {
 
       echo '</select> <input type="submit" value="Поиск"></form>';
       echo '</div>';
-
 
 endif;
 
@@ -362,7 +364,7 @@ endif;
     echo "<hr>";
     echo '<h1>'.$bigname.'</h1>';
 
-    echo "<p class='countarticlesauthor'><big><big>Всего статей автора: <b>".$countarticlesauthor."</big></big></b></p>";
+    echo "<p class='countarticlesauthor'><big><big>Всего ".$StatOrProduct." автора: <b>".$countarticlesauthor."</big></big></b></p>";
 
     $querymonth = "SELECT id"
     ." FROM " . ZOO_TABLE_ITEM
@@ -394,15 +396,15 @@ endif;
 
     if (!empty($valuenoth)) :
       echo "<hr>";
-      echo "<p><b><big>Статей за <u>{$alipublish_upformat}</u> ({$keymonthcountv}): </big></b></p>";
+      echo "<p><b><big>".$StatOrProduct." за <u>{$alipublish_upformat}</u> ({$keymonthcountv}): </big></b></p>";
       echo "<table id='myTable' class='zebratable'>";
       echo "<thead>";
       echo "<tr class='upper'>";
-      echo "<td>ID </td>";
-      echo "<td>ID статьи</td>";
+      echo "<td>№ </td>";
+      echo "<td>ID</td>";
       echo "<td>Дата</td>";
       echo "<td>Название</td>";
-      echo "<td>Популярность статьи</td>";
+      echo "<td>Популярность</td>";
 if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; endif;
       echo "</tr>";
       echo "</thead>";
@@ -454,7 +456,7 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
     endif;
     if (empty($valuenoth)) :
       $monthdate = rdate("M", strtotime("+0 seconds", strtotime($monthdate)));
-      echo "<p>Пожалуйста выберите период для отображения статей, т.к. за <u>{$monthdate}</u> статей нет. </p>";
+      echo "<p>Пожалуйста выберите период для отображения ".$StatOrProduct.", т.к. за <u>{$monthdate}</u> ".$StatOrProduct." нет. </p>";
     endif;
 
     // echo "<hr>";
@@ -576,7 +578,7 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
 
     if (!empty($tagsArrayztags )) {
       echo "<hr>";
-      echo "<h3>".$bigname." использует следующие теги в статьях (весь период):</h3>";
+      echo "<h3>".$bigname." использует следующие теги (весь период):</h3>";
 
 
       echo "<div class='tagsstat tags'><ul class='zebra'>";

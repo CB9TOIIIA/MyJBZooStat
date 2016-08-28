@@ -2201,7 +2201,7 @@ if (!empty($datapopular->data)) {
 
 echo "<hr>";
 
-  echo "<p><b><big>Популярные статьи за последнюю неделю:</big></b></p>";
+  echo "<p><b><big>Популярное по данным Я.Метрика:</big></b></p>";
 
   echo "<table id='myTable' class='zebratable'>";
 

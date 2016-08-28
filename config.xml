@@ -197,6 +197,16 @@
       <option value="hor">Горизонтально</option>
       <option value="ver">Вертикально</option>
     </field>
+      <field
+      name="statorproduct"
+      type="radio"
+      label="Статьи или товары"
+      description=""
+      class="btn-group btn-group-yesno"
+      default="stat">
+      <option value="stat">Статьи</option>
+      <option value="product">Товары</option>
+    </field>
   </fieldset>
   <fieldset      name="permissions"      label="JCONFIG_PERMISSIONS_LABEL"      description="JCONFIG_PERMISSIONS_DESC">
     <field
