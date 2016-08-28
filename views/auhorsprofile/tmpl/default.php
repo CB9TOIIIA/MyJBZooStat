@@ -90,7 +90,9 @@ jQuery(document).ready(function($) {
         }
 
         if ($created_bycreated == $authorid) {
-          $bigname = $user->name;
+          if ($user->name !== NULL) {
+                    $bigname = $user->name;
+                  }
           echo  $authcreatedx[] = '<option selected value="'.$created_bycreated.'">'.$bignameIn.'</option>';
         }
         else {

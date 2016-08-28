@@ -14,7 +14,7 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
 
   <?php
   if (empty($TypeAuthors)):
-    
+
     if ($csshack == 'yes') {
     echo "<style>div#system-message-container {display:none;}</style>";
     }
@@ -49,7 +49,12 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
 
           $user = JFactory::getUser($created_bycreated);
           $valueid = $created_bycreated;
-          $bignamau = $user->name;
+
+          if ($user->name !== NULL) {
+
+            $bignamau = $user->name;
+
+          }
 
           $monthdate = date("Y-m");
           echo '<li><form style="display:none"  action="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" name="a'.$created_bycreated.'" method="post" >';

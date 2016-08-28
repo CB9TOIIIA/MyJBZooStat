@@ -860,6 +860,10 @@ if ($CountYaBlocks == '4') {
   $gridmyrow = 'center myspan3 span3';
 }
 
+if ($CountYaBlocks == '3') {
+  $gridmyrow = 'center myspan3 span3';
+}
+
 
       echo '<div class="'.$gridmyrow.' bigmonthdata">';
 
@@ -1371,6 +1375,10 @@ if ($datacurdate) {
     $gridmyrow = 'center myspan25 span2';
   }
 
+if ($CountYaBlocks == '3') {
+  $gridmyrow = 'center myspan3 span3';
+}
+
     echo '<div class="'.$gridmyrow.'  bigmonthdata todaystats" style="'.$cssclasstoblock.'">';
 
       echo ' <img src='.$iconc.' /> ';
@@ -1540,6 +1548,9 @@ if ($valuesvodka->name == 'Переходы по ссылкам на сайта�
     $gridmyrow = 'center myspan25 span2';
   }
 
+if ($CountYaBlocks == '3') {
+  $gridmyrow = 'center myspan3 span3';
+}
 
     echo '<div class="'.$gridmyrow.' bigmonthdata todaystats" style="'.$cssclasstoblock.'">';
 
@@ -1620,6 +1631,10 @@ if ($datavchera) {
 
     if ($CountYaBlocks == '4') {
       $gridmyrow = 'center myspan25 span2';
+    }
+
+    if ($CountYaBlocks == '3') {
+    	$gridmyrow = 'center myspan3 span3';
     }
 
       echo '<div class="'.$gridmyrow.'  bigmonthdata">';
@@ -1731,7 +1746,11 @@ if ($datavchera) {
               $gridmyrow = 'center myspan25 span2';
             }
 
-              echo '<div class="'.$gridmyrow.'  bigmonthdata " style="'.$cssclasstoblock.'">';
+            if ($CountYaBlocks == '3') {
+            	$gridmyrow = 'center myspan3 span3';
+            }
+
+      echo '<div class="'.$gridmyrow.'  bigmonthdata " style="'.$cssclasstoblock.'">';
 
 
 
@@ -1820,6 +1839,10 @@ if ($datapozavchera) {
 
     if ($CountYaBlocks == '4') {
       $gridmyrow = 'center myspan25 span2';
+    }
+
+    if ($CountYaBlocks == '3') {
+    	$gridmyrow = 'center myspan3 span3';
     }
 
       echo '<div class="'.$gridmyrow.'   bigmonthdata">';
@@ -1928,7 +1951,11 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozavcheradate
               $gridmyrow = 'center myspan25 span2';
             }
 
-              echo '<div class="'.$gridmyrow.'  bigmonthdata " style="'.$cssclasstoblock.'">';
+            if ($CountYaBlocks == '3') {
+            	$gridmyrow = 'center myspan3 span3';
+            }
+
+      echo '<div class="'.$gridmyrow.'  bigmonthdata " style="'.$cssclasstoblock.'">';
 
       echo ' <img src='.$iconc.' /> ';
 
@@ -2016,6 +2043,10 @@ if ($datapozapozavchera) {
 
     if ($CountYaBlocks == '4') {
       $gridmyrow = 'center myspan25 span2';
+    }
+
+    if ($CountYaBlocks == '3') {
+    	$gridmyrow = 'center myspan3 span3';
     }
 
       echo '<div class="'.$gridmyrow.'   bigmonthdata">';
@@ -2122,6 +2153,10 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozapozavchera
 
             if ($CountYaBlocks == '4') {
               $gridmyrow = 'center myspan25 span2';
+            }
+
+            if ($CountYaBlocks == '3') {
+            	$gridmyrow = 'center myspan3 span3';
             }
 
               echo '<div class="'.$gridmyrow.' bigmonthdata " style="'.$cssclasstoblock.'">';
