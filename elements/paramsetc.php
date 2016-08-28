@@ -19,7 +19,6 @@ $input = JFactory::getApplication()->input;
 $db     = JFactory::getDBO();
 $domainhttp = JURI::root();
 $user   = JFactory::getUser();
-$app = App::getInstance('zoo');
 $component = JComponentHelper::getComponent('com_myjbzoostat');
 $mainframe = JFactory::getApplication();
 $namecomponent = $mainframe->scope;

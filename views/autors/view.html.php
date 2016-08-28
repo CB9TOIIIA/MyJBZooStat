@@ -21,9 +21,12 @@ class MyjbzoostatViewAutors extends JViewLegacy
         JToolBarHelper::title( JText::_( 'Список авторов' ) );
 				JToolbarHelper::divider();
 
+				$component = JComponentHelper::getComponent('com_myjbzoostat');
+				$params = json_decode($component->params);
+				$StatOrProduct = $params->statorproduct;
 
-					$mainframe = JFactory::getApplication();
-					$namecomponent = $mainframe->scope;
+				if ($StatOrProduct == 'stat') { $StatOrProduct = 'Статьи';}
+				if ($StatOrProduct == 'product') { $StatOrProduct = 'Товары';}
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Панель управления');
@@ -33,7 +36,7 @@ class MyjbzoostatViewAutors extends JViewLegacy
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
-				$title = JText::_('Панель статей');
+				$title = JText::_($StatOrProduct.' JBZoo');
 				$dhtml = "<a href=\"/administrator/index.php?option=com_zoo\" class=\"btn btn-small\"><i class=\"icon-home\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
 
@@ -41,35 +44,35 @@ class MyjbzoostatViewAutors extends JViewLegacy
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Посещаемость');
-				$dhtml = "<a href=\"/administrator/index.php?option={$namecomponent}\" class=\"btn btn-small\"><i class=\"icon-options\" title=\"$title\"></i>$title</a>";
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat\" class=\"btn btn-small\"><i class=\"icon-options\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list'); }
 
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Теги');
-				$dhtml = "<a href=\"/administrator/index.php?option={$namecomponent}&view=tags\" class=\"btn btn-small\"><i class=\"icon-tags\" title=\"$title\"></i>$title</a>";
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=tags\" class=\"btn btn-small\"><i class=\"icon-tags\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
 
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
-				$title = JText::_('Статьи');
-				$dhtml = "<a href=\"/administrator/index.php?option={$namecomponent}&view=articles\" class=\"btn btn-small\"><i class=\"icon-list\" title=\"$title\"></i>$title</a>";
+				$title = JText::_($StatOrProduct);
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=articles\" class=\"btn btn-small\"><i class=\"icon-list\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
 
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Авторы');
-				$dhtml = "<a href=\"/administrator/index.php?option={$namecomponent}&view=autors\" class=\"btn btn-small\"><i class=\"icon-users\" title=\"$title\"></i>$title</a>";
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=autors\" class=\"btn btn-small\"><i class=\"icon-users\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list'); }
 
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Статистика авторов');
-				$dhtml = "<a href=\"/administrator/index.php?option={$namecomponent}&view=reportauthors\" class=\"btn btn-small\"><i class=\"icon-users\" title=\"$title\"></i>$title</a>";
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=reportauthors\" class=\"btn btn-small\"><i class=\"icon-users\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list'); }
 
 
@@ -77,7 +80,7 @@ class MyjbzoostatViewAutors extends JViewLegacy
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Профиль автора');
-				$dhtml = "<a href=\"/administrator/index.php?option={$namecomponent}&view=auhorsprofile\" class=\"btn btn-small\"><i class=\"icon-user\" title=\"$title\"></i>$title</a>";
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile\" class=\"btn btn-small\"><i class=\"icon-user\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
 
 
@@ -85,10 +88,10 @@ class MyjbzoostatViewAutors extends JViewLegacy
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Disqus');
-				$dhtml = "<a href=\"/administrator/index.php?option={$namecomponent}&view=disqus\" class=\"btn btn-small\"><i class=\"icon-eye\" title=\"$title\"></i>$title</a>";
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=disqus\" class=\"btn btn-small\"><i class=\"icon-eye\" title=\"$title\"></i>$title</a>";
 				$bar->appendButton('Custom', $dhtml, 'list');
 
-				JToolBarHelper::preferences($namecomponent);
+				JToolBarHelper::preferences('com_myjbzoostat');
 
     }
 
