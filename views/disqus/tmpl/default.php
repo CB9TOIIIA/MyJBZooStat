@@ -123,7 +123,7 @@ function disqusRequest($url, $params = [], $ttl = DISQUS_TTL, $debugurl = 0)
   echo '<input type="submit" value="Отправить"></form>';
   echo '</div>';
 
-  if (preg_match('/http:/', $userdisqusform)) {
+  if (preg_match('/http.+/', $userdisqusform)) {
     $urllistPosts = $userdisqusform;
     $userdisqusform = '';
   }
@@ -714,6 +714,7 @@ if ($lpdisqusidcommentremove) {
   ?>
 
   <?php
+  	if (JComponentHelper::isEnabled('com_zoo') == '1') {
   if (empty($urllistPosts) && empty($userdisqusform)) {
 
     echo "<table id='myTable' class='zebratable' role='grid'>";
@@ -780,7 +781,7 @@ if ($lpdisqusidcommentremove) {
 
   }
   echo "</table>";
-
+  }
 
 endif;
 

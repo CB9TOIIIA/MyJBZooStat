@@ -164,7 +164,7 @@
       <field name="disqus_api_app"
       type="text"
       default=""
-      label="Disqus application"
+      label="Disqus application ID"
       description="DISQUS_API_APP"
       size="30" />
   </fieldset>
