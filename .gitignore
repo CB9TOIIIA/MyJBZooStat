@@ -3,3 +3,4 @@
 # Например /files/data.zip, /server.log, /uploads/users/data/info.xls
 /vendor/*
 *.tar
+*.zip

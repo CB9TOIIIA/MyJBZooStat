@@ -11,6 +11,31 @@ echo "<style>div#system-message-container {display:none;}</style>";
 
 
 
+$url = 'https://api.github.com/repos/cb9toiiia/myjbzoostat/releases/latest';
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $url);
+  curl_setopt($ch, CURLOPT_POST, false);
+        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2" );
+   curl_setopt($ch, CURLOPT_HEADER, 0);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+  $gitjversion = curl_exec($ch);
+  curl_close($ch);
+
+ if (empty($gitjversion)) { $gitjversion = file_get_contents($url); }
+
+ $content = json_decode($gitjversion, true);
+ $latestjoomla = $content['tag_name'];
+ $datejoomla = $content['published_at'];
+ $daterelease = date('d.m.Y', strtotime($datejoomla));
+ if (empty($latestjoomla)) {
+   $latestjoomla = "Временно невозможно получить версию";
+ }
+
+echo "<div class='vergit'>Версия  - <b>{$latestjoomla}</b> ({$daterelease})</div>";
+
+
     if (!empty($counter_id)) :
 
 

@@ -127,7 +127,7 @@
       type="text"
       label="RegExp для популярного"
       description=""
-      default="/item/"/>
+      default="//"/>
   </fieldset>
   <fieldset name="disqus" label="Disqus" addfieldpath="administrator/components/com_myjbzoostat/elements">
       <field

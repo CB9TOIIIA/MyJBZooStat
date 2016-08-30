@@ -41,6 +41,7 @@ jQuery(document).ready(function($) {
 
   <?php
 
+
   function rdate($param, $time=0) {
     if(intval($time)==0)$time=time();
     $MonthNames=array("январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь");
@@ -170,6 +171,11 @@ endif;
 endif;
 
   //jbdump($itemIdsResult,0,'Массив');
+
+// if (empty($authorid)) {
+//   $user = JFactory::getUser();
+//   $authorid = $user->id;
+// }
 
   $querys = $db->getQuery(true);
   $querys
