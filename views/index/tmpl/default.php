@@ -33,7 +33,7 @@ $url = 'https://api.github.com/repos/cb9toiiia/myjbzoostat/releases/latest';
    $latestjoomla = "Временно невозможно получить версию";
  }
 
-echo "<div class='vergit'>Версия  - <b>{$latestjoomla}</b> ({$daterelease})</div>";
+echo "<div class='vergit'>Версия  - <a href='https://github.com/CB9TOIIIA/MyJBZooStat/releases' target='_blank'><b>{$latestjoomla}</b></a> ({$daterelease})</div>";
 
 
     if (!empty($counter_id)) :
