@@ -4,9 +4,9 @@ defined( '_JEXEC' ) or die; // No direct access
 ?>
 <?php
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
-$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/articles.css');
-$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/jquery.dataTables.min.css');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/jquery.dataTables.min.js');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');
 //JUST DO IT   $this->app   ----> $app
 
@@ -42,7 +42,7 @@ foreach ($ResYDBmaxs as $ResYDm) {
 ?>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
-  $("#myTable").tablesorter({});
+$("#myTable").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
 });
 </script>
 

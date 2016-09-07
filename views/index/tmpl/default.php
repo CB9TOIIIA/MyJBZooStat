@@ -13,15 +13,15 @@ echo "<style>div#system-message-container {display:none;}</style>";
 
 $url = 'https://api.github.com/repos/cb9toiiia/myjbzoostat/releases/latest';
 
-  $ch = curl_init();
-  curl_setopt($ch, CURLOPT_URL, $url);
-  curl_setopt($ch, CURLOPT_POST, false);
-        curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2" );
-   curl_setopt($ch, CURLOPT_HEADER, 0);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-  $gitjversion = curl_exec($ch);
-  curl_close($ch);
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_POST, false);
+curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2" );
+curl_setopt($ch, CURLOPT_HEADER, 0);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+$gitjversion = curl_exec($ch);
+curl_close($ch);
 
  if (empty($gitjversion)) { $gitjversion = file_get_contents($url); }
 
@@ -43,6 +43,9 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
 
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/metrika.js');
 
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/jquery.dataTables.min.css');
+
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/jquery.dataTables.min.js');
 
 $eyed = 'data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNMjU2LDk2QzE0NC4zNDEsOTYsNDcuNTU5LDE2MS4wMjEsMCwyNTZjNDcuNTU5LDk0Ljk3OSwxNDQuMzQxLDE2MCwyNTYsMTYwYzExMS42NTYsMCwyMDguNDM5LTY1LjAyMSwyNTYtMTYwICAgQzQ2NC40NDEsMTYxLjAyMSwzNjcuNjU2LDk2LDI1Niw5NnogTTM4Mi4yMjUsMTgwLjg1MmMzMC4wODIsMTkuMTg3LDU1LjU3Miw0NC44ODcsNzQuNzE5LDc1LjE0OCAgIGMtMTkuMTQ2LDMwLjI2MS00NC42MzksNTUuOTYxLTc0LjcxOSw3NS4xNDhDMzQ0LjQyOCwzNTUuMjU3LDMwMC43NzksMzY4LDI1NiwzNjhjLTQ0Ljc4LDAtODguNDI4LTEyLjc0My0xMjYuMjI1LTM2Ljg1MiAgIGMtMzAuMDgtMTkuMTg4LTU1LjU3LTQ0Ljg4OC03NC43MTctNzUuMTQ4YzE5LjE0Ni0zMC4yNjIsNDQuNjM3LTU1Ljk2Miw3NC43MTctNzUuMTQ4YzEuOTU5LTEuMjUsMy45MzgtMi40NjEsNS45MjktMy42NSAgIEMxMzAuNzI1LDE5MC44NjYsMTI4LDIwNS42MTMsMTI4LDIyMWMwLDcwLjY5MSw1Ny4zMDgsMTI4LDEyOCwxMjhjNzAuNjkxLDAsMTI4LTU3LjMwOSwxMjgtMTI4ICAgYzAtMTUuMzg3LTIuNzI1LTMwLjEzNC03LjcwMy00My43OTlDMzc4LjI4NSwxNzguMzksMzgwLjI2NiwxNzkuNjAyLDM4Mi4yMjUsMTgwLjg1MnogTTI1NiwyMDVjMCwyNi41MS0yMS40OSw0OC00OCw0OCAgIHMtNDgtMjEuNDktNDgtNDhzMjEuNDktNDgsNDgtNDhTMjU2LDE3OC40OSwyNTYsMjA1eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=';
 
@@ -109,6 +112,58 @@ if(!empty($counter_id) && !empty($app_token))
     $date1 = $date->format('Ymd');
 
 
+    $yamonth = $input->get('yamonth', NULL, 'string');
+    $yayear = $input->get('yayear', NULL, 'string');
+    $nowYearglobal = date('Y');
+    $nowMonthglobal = date('m');
+    $minYearleft = $nowYearglobal - 2;
+
+    echo '<div class="monthdate">';
+    echo '<form action="/administrator/index.php?option=com_myjbzoostat&view=index" method="post" class="form-inline">';
+
+    echo '<select class="month" name="yamonth">';
+    for($i = 1; $i < 13; $i++){
+      $i_n = str_pad($i, 2, "0", STR_PAD_LEFT);
+      if ($yamonth == $i_n) {
+        echo '<option selected value="'.$i_n.'">'.$i_n.'</option>';
+      }
+      else {
+        echo '<option value="'.$i_n.'">'.$i_n.'</option>';
+      }
+    }
+    echo '</select>';
+
+
+        echo '<select class="year" name="yayear">';
+        for($i = $nowYearglobal; $i >= $minYearleft; $i--){
+          $i_n = str_pad($i, 2, "0", STR_PAD_LEFT);
+
+          if ($yayear == $i_n) {
+            echo '<option selected value="'.$i_n.'">'.$i_n.'</option>';
+          }
+          else {
+            echo '<option value="'.$i_n.'">'.$i_n.'</option>';
+          }
+        }
+        echo '</select>';
+
+
+    echo '<input type="submit" value="Поиск по месяцам"></form>';
+    echo '</div>';
+
+  if (!empty($yayear) && !empty($yamonth)) {
+
+    $date1 = $yayear . $yamonth . '01';
+    $nextmonth = $yamonth + 1;
+    $dayendmonth =  date('d', mktime(0,0,0,$nextmonth,0,2016));
+    $date2 = $yayear . $yamonth . $dayendmonth;
+    $ModDate1 = $date1;
+    $ModDate2 = $date2;
+
+    // dump($yayear,0,'$yayear');
+    // dump($yamonth,0,'$yamonth');
+
+  }
 
     $url = 'http://api-metrika.yandex.ru/stat/traffic/summary.json?id='.$counter_id;
 
@@ -157,6 +212,19 @@ $ModDate2->modify('-1 day');
 $ModDate2 = $ModDate2->format('Ymd');
 
 
+  if (!empty($yayear) && !empty($yamonth)) {
+
+    $date1 = $yayear . $yamonth . '01';
+    $nextmonth = $yamonth + 1;
+    $dayendmonth =  date('d', mktime(0,0,0,$nextmonth,0,2016));
+    $date2 = $yayear . $yamonth . $dayendmonth;
+    $ModDate1 = $date1;
+    $ModDate2 = $date2;
+    // dump($date1,0,'$date1');
+    // dump($date2,0,'$date2');
+    // dump($ModDate1,0,'$ModDate1');
+    // dump($ModDate2,0,'$ModDate2');
+  }
 
     $urlgeo = 'http://api-metrika.yandex.ru/stat/geo.json?id='.$counter_id;
 
@@ -175,7 +243,23 @@ $ModDate2 = $ModDate2->format('Ymd');
     $datageo = json_decode($responcegeo);
 
 
+    $urlgeotree = 'http://api-metrika.yandex.ru/stat/geo.json?id='.$counter_id;
 
+    $urlgeotree .= '&date1='.$ModDate1;
+
+    $urlgeotree .= '&date2='.$ModDate2;
+
+    $urlgeotree .= '&table_mode=tree';
+
+    $urlgeotree .= '&per_page=12';
+
+    $urlgeotree .= '&oauth_token='.$app_token;
+
+
+
+    $responcegeotree = MetrikaHelper::open_http($urlgeotree, $method);
+
+    $datageotree = json_decode($responcegeotree);
 
 
     $urlsvodka = 'http://api-metrika.yandex.ru/stat/sources/summary.json?id='.$counter_id;
@@ -337,11 +421,17 @@ $responcecurdate = MetrikaHelper::open_http($urlcurdate, $method);
 $datacurdate = json_decode($responcecurdate);
 
 
+$DataErrors = $data->errors;
+foreach ($DataErrors as $DataError) {
+  $DataCode = $DataError->code;
+  $DataText = $DataError->text;
+}
 
-  //  dump($datapopular,0,'Популярные статьи');
-
-//https://tech.yandex.ru/metrika/doc/ref/stat/geo-docpage/
-
+if ($DataCode == 'ERR_NO_DATA' || $DataCode == 'ERR_TEMPORARY_UNAVAILABLE') {
+  echo "<h2 align='center'>Нет данных за выбранный период</h2>";
+  echo "<style>.row-fluid .span12 .item-page {display:none;}</style>";
+}
+// dump($DataCode,0,'$DataCode');
 
     if(!is_null($data) && is_array($data->data) && count($data->data))
 
@@ -795,7 +885,7 @@ echo "<div class='visitors'>";
 
 echo "<span title='{$globalvisits}' class='globvisitors'>{$globalvis}</span>";
 
-echo "<span class='textstat'>Посетителей</span>";
+echo "<span class='textstat'>Визитов (посетителей)</span>";
 
 echo "</div>";
 
@@ -985,9 +1075,6 @@ if ($datageo) {
 echo "</ul>";
 
 echo "</div>";
-
-
-
 
 
 ?>
@@ -1335,7 +1422,343 @@ echo "<span class='allinfo span12 center'> <span class='span4'> <b> <img src='{$
 
 </div>
 
+<?php
+
+if ($datageotree && $georegions == 'yes') {
+
+echo '
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+$("#myTable").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+});
+</script>';
+echo "<div class='clrboth'></div>";
+echo "<h3>Города России</h3>";
+echo "<table id='myTable' class='zebratable'>";
+echo "<thead>";
+echo "<tr class='upper'>";
+echo "<td>ID <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Город <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Визиты <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Просмотры <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "</tr>";
+echo "</thead>";
+
+
+
+
+  $geotree = $datageotree->data;
+
+  $itown = '';
+
+  foreach ($geotree as $key => $valueobjctree) {
+
+    $regions = $valueobjctree->chld;
+
+    foreach ($regions as $region) {
+
+      if ($region->name == $rus) {
+        // dump($region,0,'$region');
+        $globalnameCountryName = $region->name;
+        $globalnameCountryRegion_type = $region->region_type;
+        $globalnameCountryVisits = $region->visits;
+        $globalnameCountryPage_views = $region->page_views;
+
+        $InRegions = $region->chld;
+        // dump($InRegions,0,'$InRegions');
+
+        foreach ($InRegions as $InRegion) {
+
+          $InRegionName = $InRegion->name;
+          $InRegionRegion_type = $InRegion->region_type;
+          $InRegionVisits = $InRegion->visits;
+          $InRegionPage_views = $InRegion->page_views;
+          // dump($InRegionName,0,'$InRegionName');
+          //$InRegionName == 'Украина' ||
+          // if ($InRegionName == 'Центральный федеральный округ' || $InRegionName == 'Северо-Западный федеральный округ' || $InRegionName == ' Южный федеральный округ' || $InRegionName == 'Приволжский федеральный округ' || $InRegionName == 'Крымский федеральный округ' || $InRegionName == 'Сибирский федеральный округ' || $InRegionName == 'Уральский федеральный округ' ||
+          // $InRegionName == 'Дальневосточный федеральный округ' || $InRegionName == 'Северо-Кавказский федеральный округ') {
+
+            $InCountry = $InRegion->chld;
+            // dump($InCountry,0,'$InCountry');
+
+            foreach ($InCountry as $InInCountry) {
+
+              $In2Name = $InInCountry->name;
+              $In2Region_type = $InInCountry->region_type;
+              $In2Visits = $InInCountry->visits;
+              $In2Page_views = $InInCountry->page_views;
+
+              $In2Country = $InInCountry->chld;
+              // dump($In2Country,0,'$In2Country');
+
+              if ($In2Name != 'Прочие' && $In2Region_type == 'city') {
+
+                echo "<tr>";
+                echo "<td>{$InMyTownid}</td>";
+                echo "<td>{$In2Name}</td>";
+                echo "<td>{$In2Visits}</td>";
+                echo "<td>{$In2Page_views}</td>";
+                echo "</tr>";
+              }
+
+              if ($In2Region_type != 'city'){
+
+              foreach ($In2Country as $InTown) {
+
+                $InTownName = $InTown->name;
+                $InTownRegion_type = $InTown->region_type;
+                $InTownVisits = $InTown->visits;
+                $InTownPage_views = $InTown->page_views;
+                $InMyTownid = $InTown->id;
+                $InTownChld = $InTown->chld;
+
+                // dump($InTown,0,'$InTown');
+
+                if ($InTownName != 'Прочие' && $InTownRegion_type == 'city') {
+                  echo "<tr>";
+                  echo "<td>{$InMyTownid}</td>";
+                  echo "<td>{$InTownName}</td>";
+                  echo "<td>{$InTownVisits}</td>";
+                  echo "<td>{$InTownPage_views}</td>";
+                  echo "</tr>";
+                }
+
+                if ($InTownRegion_type != 'city'){
+
+                  foreach ($InTownChld as $InMyTown) {
+
+                    $MyTownid = $InMyTown->id;
+                    $MyTownName = $InMyTown->name;
+                    $MyTownRegion_type = $InMyTown->region_type;
+                    $MyTownVisits = $InMyTown->visits;
+                    $MyTownPage_views = $InMyTown->page_views;
+
+                    if ($MyTownName != 'Прочие' && $MyTownRegion_type  == 'city') {
+                      echo "<tr>";
+                      echo "<td>{$MyTownid}</td>";
+                      echo "<td>{$MyTownName}</td>";
+                      echo "<td>{$MyTownVisits}</td>";
+                      echo "<td>{$MyTownPage_views}</td>";
+                      echo "</tr>";
+                    }
+
+                    if ($MyTownRegion_type  != 'city' ) {
+
+                      $InTownWTFChlds = $MyTownName->chld;
+
+                      foreach ($InTownWTFChlds as $InTownWTFChld) {
+
+                        $MyWTFTownid = $InTownWTFChld->id;
+                        $MyWTFTownName = $InTownWTFChld->name;
+                        $MyWTFTownRegion_type = $InTownWTFChld->region_type;
+                        $MyWTFTownVisits = $InTownWTFChld->visits;
+                        $MyWTFTownPage_views = $InTownWTFChld->page_views;
+
+
+                        if ($MyWTFTownName != 'Прочие' && $MyWTFTownRegion_type == 'city') {
+                          echo "<tr>";
+                          echo "<td>{$MyWTFTownid}</td>";
+                          echo "<td>{$MyWTFTownName}</td>";
+                          echo "<td>{$MyWTFTownVisits}</td>";
+                          echo "<td>{$MyWTFTownPage_views}</td>";
+                          echo "</tr>";
+                        }
+
+
+                      }
+                    }
+
+                  }
+
+                }
+
+
+              }
+
+            }
+
+            }
+
+          // }
+
+
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+
+echo "</table>";
+
+if ($datageotree && $georegions == 'yes' && $sng != NULL) {
+
+echo '
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+$("#myTable2").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+});
+</script>';
+echo "<div class='clrboth'></div>";
+echo "<h3>Города СНГ</h3>";
+echo "<table id='myTable2' class='zebratable'>";
+echo "<thead>";
+echo "<tr class='upper'>";
+echo "<td>ID <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Город <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Визиты <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Просмотры <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "</tr>";
+echo "</thead>";
+
+
+  $geotree = $datageotree->data;
+
+  $itown = '';
+
+  foreach ($geotree as $key => $valueobjctree) {
+
+    $regions = $valueobjctree->chld;
+
+    foreach ($regions as $region) {
+//$region->name == 'СНГ' ||
+      if ($region->name == $sng) {
+        // dump($region,0,'$region');
+        $globalnameCountryName = $region->name;
+        $globalnameCountryRegion_type = $region->region_type;
+        $globalnameCountryVisits = $region->visits;
+        $globalnameCountryPage_views = $region->page_views;
+
+        $InRegions = $region->chld;
+        // dump($InRegions,0,'$InRegions');
+
+        foreach ($InRegions as $InRegion) {
+
+          $InRegionName = $InRegion->name;
+          $InRegionRegion_type = $InRegion->region_type;
+          $InRegionVisits = $InRegion->visits;
+          $InRegionPage_views = $InRegion->page_views;
+          // dump($InRegionName,0,'$InRegionName');
+          if ($InRegionName == $ukr)
+         {
+
+            $InCountry = $InRegion->chld;
+            // dump($InCountry,0,'$InCountry');
+
+            foreach ($InCountry as $InInCountry) {
+
+              $In2Name = $InInCountry->name;
+              $In2Region_type = $InInCountry->region_type;
+              $In2Visits = $InInCountry->visits;
+              $In2Page_views = $InInCountry->page_views;
+
+              $In2Country = $InInCountry->chld;
+              // dump($In2Country,0,'$In2Country');
+
+              if ($In2Region_type != 'city'){
+
+              foreach ($In2Country as $InTown) {
+
+                $InTownName = $InTown->name;
+                $InTownRegion_type = $InTown->region_type;
+                $InTownVisits = $InTown->visits;
+                $InTownPage_views = $InTown->page_views;
+                $InMyTownid = $InTown->id;
+                $InTownChld = $InTown->chld;
+
+                // dump($InTown,0,'$InTown');
+
+                if ($InTownName != 'Прочие' && $InTownRegion_type == 'city') {
+                  echo "<tr>";
+                  echo "<td>{$InMyTownid}</td>";
+                  echo "<td>{$InTownName}</td>";
+                  echo "<td>{$InTownVisits}</td>";
+                  echo "<td>{$InTownPage_views}</td>";
+                  echo "</tr>";
+                }
+
+                if ($InTownRegion_type != 'city'){
+
+                  foreach ($InTownChld as $InMyTown) {
+
+                    $MyTownid = $InMyTown->id;
+                    $MyTownName = $InMyTown->name;
+                    $MyTownRegion_type = $InMyTown->region_type;
+                    $MyTownVisits = $InMyTown->visits;
+                    $MyTownPage_views = $InMyTown->page_views;
+
+                    if ($MyTownName != 'Прочие' && $MyTownRegion_type  == 'city') {
+                      echo "<tr>";
+                      echo "<td>{$MyTownid}</td>";
+                      echo "<td>{$MyTownName}</td>";
+                      echo "<td>{$MyTownVisits}</td>";
+                      echo "<td>{$MyTownPage_views}</td>";
+                      echo "</tr>";
+                    }
+
+                    if ($MyTownRegion_type  != 'city' ) {
+
+                      $InTownWTFChlds = $MyTownName->chld;
+
+                      foreach ($InTownWTFChlds as $InTownWTFChld) {
+
+                        $MyWTFTownid = $InTownWTFChld->id;
+                        $MyWTFTownName = $InTownWTFChld->name;
+                        $MyWTFTownRegion_type = $InTownWTFChld->region_type;
+                        $MyWTFTownVisits = $InTownWTFChld->visits;
+                        $MyWTFTownPage_views = $InTownWTFChld->page_views;
+
+
+                        if ($MyWTFTownName != 'Прочие' && $MyWTFTownRegion_type == 'city') {
+                          echo "<tr>";
+                          echo "<td>{$MyWTFTownid}</td>";
+                          echo "<td>{$MyWTFTownName}</td>";
+                          echo "<td>{$MyWTFTownVisits}</td>";
+                          echo "<td>{$MyWTFTownPage_views}</td>";
+                          echo "</tr>";
+                        }
+
+
+                      }
+                    }
+
+                  }
+
+                }
+
+
+              }
+
+            }
+
+            }
+
+          // }
+
+}
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+
+echo "</table>";
+
+?>
+<h3>Динамика за последние нес-ко дней:</h3>
 <div class='clrboth'></div>
+
 
 <?php
 
@@ -1516,13 +1939,18 @@ if ($CountYaBlocks == '3') {
 
     if (preg_match('/тыс/',$globalzahodi,$matchs) || preg_match('/тыс/',$globalpryamie,$matchs)) {
 
-      $globalzahodi = str_replace('.',' млн. ',$globalzahodi);
 
-      $globalzahodi = $globalzahodi.'.';
+            $globalzahodi = str_replace('.',' млн. ',$globalzahodi);
 
-      $globalpryamie = str_replace('.',' млн. ',$globalpryamie);
+            $globalzahodi = $globalzahodi.'.';
 
-      $globalpryamie = $globalpryamie.'.';
+            $globalzahodi = str_replace('тыc млн. .','тыc.', $globalzahodi);
+
+            $globalpryamie = str_replace('.',' млн. ',$globalpryamie);
+
+            $globalpryamie = $globalpryamie.'.';
+
+            $globalpryamie = str_replace('тыc млн. .','тыc.', $globalpryamie);
 
     }
 
@@ -1716,13 +2144,18 @@ if ($datavchera) {
 
     if (preg_match('/тыс/',$globalzahodi,$matchs) || preg_match('/тыс/',$globalpryamie,$matchs)) {
 
-      $globalzahodi = str_replace('.',' млн. ',$globalzahodi);
 
-      $globalzahodi = $globalzahodi.'.';
+            $globalzahodi = str_replace('.',' млн. ',$globalzahodi);
 
-      $globalpryamie = str_replace('.',' млн. ',$globalpryamie);
+            $globalzahodi = $globalzahodi.'.';
 
-      $globalpryamie = $globalpryamie.'.';
+            $globalzahodi = str_replace('тыc млн. .','тыc.', $globalzahodi);
+
+            $globalpryamie = str_replace('.',' млн. ',$globalpryamie);
+
+            $globalpryamie = $globalpryamie.'.';
+
+            $globalpryamie = str_replace('тыc млн. .','тыc.', $globalpryamie);
 
     }
 
@@ -1922,13 +2355,18 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozavcheradate
 
     if (preg_match('/тыс/',$globalzahodi,$matchs) || preg_match('/тыс/',$globalpryamie,$matchs)) {
 
-      $globalzahodi = str_replace('.',' млн. ',$globalzahodi);
 
-      $globalzahodi = $globalzahodi.'.';
+            $globalzahodi = str_replace('.',' млн. ',$globalzahodi);
 
-      $globalpryamie = str_replace('.',' млн. ',$globalpryamie);
+            $globalzahodi = $globalzahodi.'.';
 
-      $globalpryamie = $globalpryamie.'.';
+            $globalzahodi = str_replace('тыc млн. .','тыc.', $globalzahodi);
+
+            $globalpryamie = str_replace('.',' млн. ',$globalpryamie);
+
+            $globalpryamie = $globalpryamie.'.';
+
+            $globalpryamie = str_replace('тыc млн. .','тыc.', $globalpryamie);
 
     }
 
@@ -2126,13 +2564,18 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozapozavchera
 
     if (preg_match('/тыс/',$globalzahodi,$matchs) || preg_match('/тыс/',$globalpryamie,$matchs)) {
 
-      $globalzahodi = str_replace('.',' млн. ',$globalzahodi);
 
-      $globalzahodi = $globalzahodi.'.';
+            $globalzahodi = str_replace('.',' млн. ',$globalzahodi);
 
-      $globalpryamie = str_replace('.',' млн. ',$globalpryamie);
+            $globalzahodi = $globalzahodi.'.';
 
-      $globalpryamie = $globalpryamie.'.';
+            $globalzahodi = str_replace('тыc млн. .','тыc.', $globalzahodi);
+
+            $globalpryamie = str_replace('.',' млн. ',$globalpryamie);
+
+            $globalpryamie = $globalpryamie.'.';
+
+            $globalpryamie = str_replace('тыc млн. .','тыc.', $globalpryamie);
 
     }
 

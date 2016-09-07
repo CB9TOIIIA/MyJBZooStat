@@ -5,6 +5,10 @@
     font-size: 0.9em;
     font-family: monospace;
 }
+form.form-inline {margin-left: 1%;}
+form.form-inline select {margin-right: 1%;}
+.month {width: 90px;}
+.year {width: 90px;}
 .sweet-overlay {
 background-color: black;
 /* IE8 */
