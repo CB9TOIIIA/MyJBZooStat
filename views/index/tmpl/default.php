@@ -9,7 +9,7 @@ if ($csshack == 'yes') {
 echo "<style>div#system-message-container {display:none;}</style>";
 }
 
-
+// dump($_POST,0,'POST');
 
 $url = 'https://api.github.com/repos/cb9toiiia/myjbzoostat/releases/latest';
 
@@ -114,6 +114,9 @@ if(!empty($counter_id) && !empty($app_token))
 
     $yamonth = $input->get('yamonth', NULL, 'string');
     $yayear = $input->get('yayear', NULL, 'string');
+    $NeedGeo = $input->get('NeedGeo', NULL, 'string');
+    $NeedPop = $input->get('NeedPop', NULL, 'string');
+    $NeedCountry = $input->get('NeedCountry', NULL, 'string');
     $nowYearglobal = date('Y');
     $nowMonthglobal = date('m');
     $minYearleft = $nowYearglobal - 2;
@@ -147,8 +150,29 @@ if(!empty($counter_id) && !empty($app_token))
         }
         echo '</select>';
 
+  if (!empty($NeedCountry) == 'yes') {
+        echo '<label class="checkbox"><input type="checkbox" name="NeedCountry" value="yes" checked> Страны </label>';
+  }
+  else {
+        echo '<label class="checkbox"><input type="checkbox" name="NeedCountry" value="yes"> Страны </label>';
+  }
 
-    echo '<input type="submit" value="Поиск по месяцам"></form>';
+  if (!empty($NeedGeo) == 'yes') {
+        echo '<label class="checkbox"><input type="checkbox" name="NeedGeo" value="yes" checked> GEO </label>';
+  }
+  else {
+        echo '<label class="checkbox"><input type="checkbox" name="NeedGeo" value="yes"> GEO </label>';
+  }
+
+  if (!empty($NeedPop) == 'yes') {
+        echo '<label class="checkbox"><input type="checkbox" name="NeedPop" value="yes" checked> Популярное </label>';
+  }
+  else {
+        echo '<label class="checkbox"><input type="checkbox" name="NeedPop" value="yes"> Популярное </label>';
+  }
+
+
+    echo '<input type="submit"  class="btn" value="Поиск по месяцам"></form>';
     echo '</div>';
 
   if (!empty($yayear) && !empty($yamonth)) {
@@ -1036,17 +1060,11 @@ echo "</div>";
 
 <?php
 
-
+if ($datageo && $NeedCountry == 'yes') {
 
 echo "<div class='tagsstat country'>";
 
 echo "<ul class='zebra country'>";
-
-
-
-
-
-if ($datageo) {
 
 
 
@@ -1070,12 +1088,13 @@ if ($datageo) {
 
 }
 
-}
+
 
 echo "</ul>";
 
 echo "</div>";
 
+}
 
 ?>
 
@@ -1424,7 +1443,7 @@ echo "<span class='allinfo span12 center'> <span class='span4'> <b> <img src='{$
 
 <?php
 
-if ($datageotree && $georegions == 'yes') {
+if ($datageotree && $georegions == 'yes' && $NeedGeo == 'yes') {
 
 echo '
 <script type="text/javascript">
@@ -1596,7 +1615,7 @@ echo "</thead>";
 
 echo "</table>";
 
-if ($datageotree && $georegions == 'yes' && $sng != NULL) {
+if ($datageotree && $georegions == 'yes' && $sng != NULL && $NeedGeo == 'yes') {
 
 echo '
 <script type="text/javascript">
@@ -2698,7 +2717,7 @@ if (!empty($disqusApiShort)) {
 
 <?php
 
-if (!empty($datapopular->data)) {
+if (!empty($datapopular->data) && $NeedPop == 'yes') {
 
 
 

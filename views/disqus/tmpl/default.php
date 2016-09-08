@@ -120,7 +120,7 @@ function disqusRequest($url, $params = [], $ttl = DISQUS_TTL, $debugurl = 0)
 
   echo '<input type="hidden"  name="urllistPosts" placeholder="Введите url" value="">';
   echo '<input type="text" name="userdisqusform" placeholder="Введите url / username / id" value="">';
-  echo '<input type="submit" value="Отправить"></form>';
+  echo '<input type="submit"  class="btn" value="Отправить"></form>';
   echo '</div>';
 
   if (preg_match('/http.+/', $userdisqusform)) {

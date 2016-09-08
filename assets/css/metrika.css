@@ -1021,3 +1021,12 @@ span.articlesinthisday {
     width: 45px !important;
     display: inline-block;
 }
+
+.monthdate label.checkbox {
+    line-height: 1.7;
+    margin: 0px 5px;
+}
+
+.monthdate input[type="submit"] {
+    margin-left: 15px;
+}

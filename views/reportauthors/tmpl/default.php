@@ -90,7 +90,7 @@ $("#myTable").DataTable({language:{url:"/administrator/components/com_myjbzoosta
     echo '</select>';
 
 
-    echo '<input type="submit" value="Поиск по месяцам"></form>';
+    echo '<input type="submit"  class="btn" value="Поиск по месяцам"></form>';
     echo '</div>';
     echo '<hr>';
     $monthnew = rdate('M', mktime(0, 0, 0, intval($month), 10));

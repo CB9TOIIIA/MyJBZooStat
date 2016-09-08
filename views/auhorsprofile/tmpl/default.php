@@ -103,7 +103,7 @@ jQuery(document).ready(function($) {
         //   echo  $itemIdsResultnameauth[] = '<option value="'.$created_by.'">'.$name.'</option>';
       }
 
-      echo '</select> <input type="submit" value="Поиск"></form>';
+      echo '</select> <input type="submit"  class="btn" value="Поиск"></form>';
       echo '</div>';
 
 endif;
@@ -156,7 +156,7 @@ endif;
 
     //   echo  $itemIdsResultnameauth[] = '<option value="'.$created_by.'">'.$name.'</option>';
   }
-  echo '</select> <input type="submit" value="Поиск"></form>';
+  echo '</select> <input type="submit"  class="btn" value="Поиск"></form>';
   echo '</div>';
   echo '</div>';
 
@@ -365,7 +365,7 @@ endif;
 
     }
 
-    echo '</select> <input type="submit" value="Поиск по месяцам"></form>';
+    echo '</select> <input type="submit"  class="btn" value="Поиск по месяцам"></form>';
     echo '</div>';
 
 

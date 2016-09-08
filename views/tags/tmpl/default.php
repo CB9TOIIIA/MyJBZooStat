@@ -97,7 +97,7 @@ $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/asse
 
 
 
- echo '<input type="submit" value="Поиск по месяцам"></form>';
+ echo '<input type="submit"  class="btn"  value="Поиск по месяцам"></form>';
  echo '</div>';
  echo '<hr>';
 
