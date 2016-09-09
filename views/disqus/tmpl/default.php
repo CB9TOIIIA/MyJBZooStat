@@ -15,7 +15,9 @@ use JBZoo\HttpClient\Response;
 
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/disqus.css');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sweetalert.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/disqus.js');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/metrika.js');
 
 echo "<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script> <script type='text/javascript' src='//yastatic.net/share2/share.js'></script>";
 echo "<script id='dsq-count-scr' src='//{$disqusApiShort}.disqus.com/count.js' async></script>";
@@ -116,6 +118,9 @@ function disqusRequest($url, $params = [], $ttl = DISQUS_TTL, $debugurl = 0)
     $lpdisqusidcommentreport = $input->get('lpdisqusidcommentreport', null, 'string');
     $lpdisqusidcommentspam = $input->get('lpdisqusidcommentspam', null, 'string');
     $lpdisqusidcommentapprove = $input->get('lpdisqusidcommentapprove', null, 'string');
+    $lpdisqusidcommentedit = $input->get('lpdisqusidcommentedit', null, 'string');
+    $lpdisqusidcomment = $input->get('lpdisqusidcomment', null, 'string');
+    $lpdisqusidcommentupdate = $input->get('lpdisqusidcommentupdate', null, 'string');
     $idcheckbl = $input->get('idcheckbl', null, 'string');
 
   echo '<input type="hidden"  name="urllistPosts" placeholder="Введите url" value="">';
@@ -135,7 +140,9 @@ if ($lpdisqusidcommentlike) {
     'post' => $lpdisqusidcommentlike,
     'vote' => '1',
   ], 'post');
-    // dump($likeAr,0,'$likeAr');
+
+    sleep(5);
+
 }
 
 if ($lpdisqusidcommentdislike) {
@@ -145,7 +152,9 @@ if ($lpdisqusidcommentdislike) {
     'post' => $lpdisqusidcommentdislike,
     'vote' => '-1',
   ], 'post');
-    // dump($dislikeAr,0,'$dislikeAr');
+
+    sleep(5);
+
 }
 
 if ($lpdisqusidcommentapprove) {
@@ -154,7 +163,9 @@ if ($lpdisqusidcommentapprove) {
     'access_token' => $disqusApiToken,
     'post' => $lpdisqusidcommentapprove,
   ], 'post');
-    // dump($approveAr,0,'$approveAr');
+
+    sleep(5);
+
 }
 
 if ($lpdisqusidcommentspam) {
@@ -163,7 +174,9 @@ if ($lpdisqusidcommentspam) {
     'access_token' => $disqusApiToken,
     'post' => $lpdisqusidcommentspam,
   ], 'post');
-    // dump($spamAr,0,'$spamAr');
+
+    sleep(5);
+
 }
 
 if ($lpdisqusidcommentreport) {
@@ -172,7 +185,9 @@ if ($lpdisqusidcommentreport) {
     'access_token' => $disqusApiToken,
     'post' => $lpdisqusidcommentreport,
   ], 'post');
-  // dump($reportAr,0,'$reportAr');
+
+    sleep(5);
+
 }
 
 if ($lpdisqusidcommentremove) {
@@ -181,9 +196,26 @@ if ($lpdisqusidcommentremove) {
     'access_token' => $disqusApiToken,
     'post' => $lpdisqusidcommentremove,
   ], 'post');
-    // dump($removeAr,0,'$removeAr');
+
+    sleep(5);
+
 }
 
+if ($lpdisqusidcommentupdate) {
+  $updateAr = $httpClient->request('https://disqus.com/api/3.0/posts/update.json?', [
+    'api_key' => $disqusApiPublic,
+    'access_token' => $disqusApiToken,
+    'post' => $lpdisqusidcomment,
+    'message' => $lpdisqusidcommentupdate,
+  ], 'post');
+
+if ($updateAr->code == 200) {
+  echo '<script>swal("Успешно!", "Комментарий был успешно отредактирован", "success")</script>';
+}
+
+  sleep(5);
+
+}
 
   ?>
 
@@ -268,9 +300,37 @@ if ($lpdisqusidcommentremove) {
       // $url = 'https://disqus.com/api/3.0/threads/listPosts.json?'. http_build_query($datalistPosts,null,'&').'&'.$mylistdisalldata;
       $url = 'https://disqus.com/api/3.0/posts/list.json?'. http_build_query($datalistPosts,null,'&').'&'.$mylistdisalldata;
 
-      echo "<div class='scrollbar-inner'>";
+      if (!empty($lpdisqusidcommentedit) && !empty($lpdisqusidcomment)) {
 
-      if (!empty($urllistPosts)) {
+        echo "<div class='editcommentplace'>
+                      <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
+                      <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
+                      <input type='hidden' name='lpdisqusidcomment' value='{$lpdisqusidcomment}'>
+                      <textarea  type='text' name='lpdisqusidcommentupdate'>{$lpdisqusidcommentedit}</textarea>
+                      <input class='btn  btn-primary lpdisqusidcommentupdate' type='submit' value='Обновить комментарий' > </form>";
+
+      echo  '<script>jQuery(document).ready(function($) {
+        $("body").on("click","form.flform input.lpdisqusidcommentupdate",function () {
+                      swal({
+                          title: "Обновление комментария",
+                          text: "Пожалуйста подождите 5 секунд",
+                          type: "warning",
+                          showCancelButton: false,
+                          showConfirmButton: false,
+                          closeOnCancel: false
+                      },
+                      function (isConfirm) {
+
+                      });
+                  });
+       });</script></div>';
+
+      }
+
+
+      echo "<div class='scrollbar-inner hideedit'>";
+
+      if (!empty($urllistPosts) && empty($lpdisqusidcommentedit)) {
 
         $responce = $httpClientj->get($url, null , null);
         $responce = $responce->body;
@@ -297,7 +357,7 @@ if ($lpdisqusidcommentremove) {
               }
             }
 
-            $lpdisqusraw_message = $listPostsrespost['raw_message'];
+            $lpdisqusraw_message = htmlspecialchars($listPostsrespost['raw_message']);
             $lpdisqusidcomment = $listPostsrespost['id'];
             $lpdisquscreated = $listPostsrespost['createdAt'];
             $lpdisqusthread = $listPostsrespost['thread'];
@@ -349,7 +409,7 @@ if ($lpdisqusidcommentremove) {
               echo "<blockquote class='postaclass'>";
               echo "<div class='avamesinfo'><a title='Перейти в профиль Disqus' href='{$lpdisqusprofileUrl}' target='_blank'><img src='{$lpdisqususernameava}'></a></div>";
               echo "<ul>";
-              echo "<li class='numbercoma'>#{$numlistPostsrespost}</li>";
+              echo "<li class='numbercoma'>#{$numlistPostsrespost}<a name='comment-{$numlistPostsrespost}'></a></li>";
               echo "<li><b>Дата:</b> {$lpdisquscreated}  <small>ID комментария - <b>{$lpdisqusidcomment}</b></small></li>";
               if ($lpdisqusprofileUrl && $lpdisqususername && $lpdisqusisAnonymous == 'Нет') {
                 echo "<li><b>Имя/Псевдоним:</b>    <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' name='form{$lpdisqusid}' method='post' >
@@ -364,6 +424,7 @@ if ($lpdisqusidcommentremove) {
                 echo "<br><br><a href='{$lpdisqusthumbnailURLimgUrl}' target='_blank'><img style='height:150px !important;' src='{$lpdisqusthumbnailURLimg}'></a>  <a href='{$disquslinkd}#comment-{$lpdisqusidcomment}' target='_blank'><em class='icon-out-2'></em></a></li>";
               }
               else {echo " <a href='{$disquslinkd}#comment-{$lpdisqusidcomment}' target='_blank'><em class='icon-out-2'></em></a> </li>";}
+
               if ($lpdisqusprofileUrl) {
                 if ($lpdisqusrep > '0') {      echo "<li class='inforepsmile'> <img title='Репутация' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEwAACxMBAJqcGAAAAe1JREFUOI2VU79rFFEQ/mb2CEljQAk27s6+3Zc0ksJCK+0shCuMYiAcKUQQEvwjBMFWBa0E0UpS2J2pgn+BNjaCZuPLRZugKdKYnHc7YyFvuZyFyXTz/XjzzcAjjJVzbg6qbQKVpJgCAGMcsPKmGa1vfd+qRvU02vjMLRvpnNbcTSaT7aqqfgCA936mPqxzYrtuZJ9Cr/d6fDDcOXevkOLmP8RY+czdKlJZGQeXj2Nu9M4tOpFOs3Mp8uC45lhFlj/0aVoyVNtaczcSs1lWlJLvOZE7EXMiq07yn0VRZBFjsq5S0mYClclksh0JZZ4HcJqNrjRipcsMnLHhcD5iNXMgspJJMRWvDQC/+v0Ngz2rGU+avKSPFPZUid5FKISwC7NplGn+4qT7xyqz7BUb48B7P3NSs3PuLIj2mZU368M6j0SR5fe9yIVxg/f+VCFyI/Yts5yNqpYZrRPrbQDvAYAnWo+1P1zN03wWCT4PBoO9yWTimg4Glwh4GR9QxUICfU4A4EQ6ifHvaie8aSJm7iqTXoQCCv4QvoWNJqXIEgB87fXWmohFKiveucX/7V6ILJVZdjf2Rz6TE+mQ0Xkm69bMIYSwGw/WMstVsWBkH0cnH3kAAHyalkpJm8hKmE3/VdE+G1UEfftlZyeM6v8AePS5OjufevcAAAAASUVORK5CYII='> {$lpdisqusrep}";   }
                 else {
@@ -419,6 +480,13 @@ if ($lpdisqusidcommentremove) {
 
               <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
               <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
+              <input type='hidden' name='lpdisqusidcomment' value='{$lpdisqusidcomment}'>
+              <textarea class='dn' name='lpdisqusidcommentedit'>{$lpdisqusraw_message}</textarea>
+              <input class='btn btn-mini ' type='submit' value='Редактировать' > </form>
+
+
+              <form  class='flform' action='/administrator/index.php?option=com_myjbzoostat&view=disqus' method='post' >
+              <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
               <input type='hidden' name='lpdisqusidcommentdislike'  value='{$lpdisqusidcomment}' />
               <input class='btn btn-mini btn-danger dislike' type='submit' value='Дизлайк' > </form>
 
@@ -426,6 +494,8 @@ if ($lpdisqusidcommentremove) {
               <input type='hidden' name='userdisqusform' placeholder='Введите url' value='{$urllistPosts}'>
               <input type='hidden' name='lpdisqusidcommentlike'  value='{$lpdisqusidcomment}' />
               <input class='btn btn-mini btn-primary' type='submit' value='Лайк' > </form>
+
+
 
 
              </div>";

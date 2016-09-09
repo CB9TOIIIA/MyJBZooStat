@@ -9,6 +9,7 @@ li.inforepsmile img:not(:first-child),.messageauthor + img + img,.messageauthora
 .mlplus a:not(:last-child) {margin-right: 30px;}
 .mlplus form.flform {opacity: 0.3;}
 .mlplus form.flform:hover {opacity: 1;}
+.mlplus.edit {}
 .avamesinfo img{border-radius:50%}
 .messageauthor,.messageauthorafds{display:inline-block;width:100%;padding:5px 10px;margin:10px 0;border:1px dashed rgba(204,204,204,0.7);border-radius:5px}
 .messageauthorafds{text-indent:0}
@@ -33,3 +34,24 @@ form + a > em.icon-out-2{position:absolute;margin-left:10px;margin-top:5px}
 .btn-danger.dislike {background-color: #D2514A !important;     background-image: -webkit-gradient(linear,0 0,0 100%,from(#D2514A),to(#d83f38)) !important;  }
 b + small {display: inline !important;  }
 blockquote li .btn-mini {    font-size: 12px  !important;  }
+.editcommentplace {
+    margin: 10px 40px 50px;
+    width: 65%;
+    margin-left: 32%;
+    border-radius: 15px;
+    background-color: #FFE4E1;
+    height: 320px;
+}
+
+div.editcommentplace > form > textarea {
+    width: 93%;
+    border-radius: 5px;
+    height: 200px;
+    clear: both;
+    float: none;
+    margin: 50px 25px 10px 25px;
+}
+
+input.btn.btn-primary.lpdisqusidcommentupdate {
+    margin-left: 30px;
+}
