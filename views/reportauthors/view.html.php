@@ -60,6 +60,13 @@ class MyjbzoostatViewReportauthors extends JViewLegacy
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
+				$title = JText::_('Заказы');
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=orders\" class=\"btn btn-small\"><i class=\"icon-basket\" title=\"$title\"></i>$title</a>";
+				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
+
+				JToolBarHelper::divider();
+
+				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_($StatOrProduct);
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=articles\" class=\"btn btn-small\"><i class=\"icon-list\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }

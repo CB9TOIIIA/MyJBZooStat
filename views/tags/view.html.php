@@ -23,7 +23,7 @@ class MyjbzoostatViewTags extends JViewLegacy
     {
         JToolBarHelper::title( JText::_( 'Статистика тегов' ) );
 				JToolbarHelper::divider();
-				
+
 				$component = JComponentHelper::getComponent('com_myjbzoostat');
 				$params = json_decode($component->params);
 				$StatOrProduct = $params->statorproduct;
@@ -55,6 +55,13 @@ class MyjbzoostatViewTags extends JViewLegacy
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Теги');
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=tags\" class=\"btn btn-small\"><i class=\"icon-tags\" title=\"$title\"></i>$title</a>";
+				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
+
+				JToolBarHelper::divider();
+
+				$bar = JToolBar::getInstance('toolbar');
+				$title = JText::_('Заказы');
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=orders\" class=\"btn btn-small\"><i class=\"icon-basket\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
 
 				JToolBarHelper::divider();

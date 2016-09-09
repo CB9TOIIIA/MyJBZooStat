@@ -24,7 +24,7 @@
     <field
       name="threshold"
       type="text"
-      label="Минимальное кол-во статей в сутки"
+      label="Минимальное кол-во статей/заказов в сутки"
       description=""
       default=""/>
     </fieldset>

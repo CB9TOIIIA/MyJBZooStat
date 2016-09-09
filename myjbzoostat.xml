@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
-<extension type="component" version="1.7.0" method="upgrade">
+<extension type="component" version="1.8.0" method="upgrade">
     <name>com_myjbzoostat</name>
     <author>CB9TOIIIA</author>
     <authorEmail>cb9toiiia@gmail.com</authorEmail>
     <authorUrl>http://cb9t.ru</authorUrl>
     <copyright></copyright>
     <license></license>
-    <version>1.5</version>
+    <version>1.8</version>
     <description>MyJBZooStat - это компонент статистики и менеджер системы комментирования Disqus.</description>
     <creationDate>28 June 2016</creationDate>
     <administration>

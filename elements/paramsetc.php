@@ -87,6 +87,7 @@ define('DISQUS_API_APP', $disqusApplication);
 define('DISQUS_ACCESS_TOKEN', $disqusApiToken);
 define('DISQUS_TTL', 60);
 define('DEBUG_URL', 0);
+define('ZOO_TABLE_MY_ORDERS', '#__zoo_jbzoo_orders');
 
 define('URL_LIST_USAGE', 'https://disqus.com/api/3.0/applications/listUsage.json');
 define('URL_FORUMS_LISTTHREADS', 'https://disqus.com/api/3.0/forums/listThreads.json');

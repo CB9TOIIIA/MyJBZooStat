@@ -1,13 +1,14 @@
 <?php
 defined( '_JEXEC' ) or die; // No direct access
 
-
-
 /**
  * View for  current element
  * @author CB9TOIIIA
  */
-class MyjbzoostatViewIndex extends JViewLegacy
+
+
+
+class MyjbzoostatViewOrders extends JViewLegacy
 {
 
 	public function display( $tpl = null )
@@ -20,7 +21,7 @@ class MyjbzoostatViewIndex extends JViewLegacy
      */
     protected function _setToolBar()
     {
-        JToolBarHelper::title( JText::_( 'Статистика сайта' ) );
+        JToolBarHelper::title( JText::_( 'Статистика заказов' ) );
 				JToolbarHelper::divider();
 
 				$component = JComponentHelper::getComponent('com_myjbzoostat');
@@ -47,7 +48,7 @@ class MyjbzoostatViewIndex extends JViewLegacy
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Посещаемость');
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat\" class=\"btn btn-small\"><i class=\"icon-options\" title=\"$title\"></i>$title</a>";
-				$bar->appendButton('Custom', $dhtml, 'list');
+				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list'); }
 
 				JToolBarHelper::divider();
 
