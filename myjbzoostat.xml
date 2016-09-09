@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<extension type="component" version="1.6.0" method="upgrade">
+<extension type="component" version="1.7.0" method="upgrade">
     <name>com_myjbzoostat</name>
     <author>CB9TOIIIA</author>
     <authorEmail>cb9toiiia@gmail.com</authorEmail>
