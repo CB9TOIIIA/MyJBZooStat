@@ -27,7 +27,9 @@ class MyjbzoostatViewOrders extends JViewLegacy
 				$component = JComponentHelper::getComponent('com_myjbzoostat');
 				$params = json_decode($component->params);
 				$StatOrProduct = $params->statorproduct;
+				$enablecommerce = $params->enablecommerce;
 
+				
 				if ($StatOrProduct == 'stat') { $StatOrProduct = 'Статьи';}
 				if ($StatOrProduct == 'product') { $StatOrProduct = 'Товары';}
 
@@ -62,7 +64,7 @@ class MyjbzoostatViewOrders extends JViewLegacy
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Заказы');
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=orders\" class=\"btn btn-small\"><i class=\"icon-basket\" title=\"$title\"></i>$title</a>";
-				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
+				if (JComponentHelper::isEnabled('com_zoo') == '1' && $enablecommerce == 'yes') {  $bar->appendButton('Custom', $dhtml, 'list'); }
 
 				JToolBarHelper::divider();
 

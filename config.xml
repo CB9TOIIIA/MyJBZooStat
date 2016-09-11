@@ -22,6 +22,16 @@
       <option value="no">Нет</option>
     </field>
     <field
+      name="enablecommerce"
+      type="radio"
+      label="Это интернет-магазин?"
+      description="Нужны вкладки магазина?"
+      class="btn-group btn-group-yesno"
+      default="yes">
+      <option value="yes">Да</option>
+      <option value="no">Нет</option>
+    </field>
+    <field
       name="threshold"
       type="text"
       label="Минимальное кол-во статей/заказов в сутки"

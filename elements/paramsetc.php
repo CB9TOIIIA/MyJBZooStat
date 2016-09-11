@@ -24,6 +24,7 @@ $mainframe = JFactory::getApplication();
 $namecomponent = $mainframe->scope;
 $params = json_decode($component->params);
 $comcontent = $params->comcontent;
+$enablecommerce = $params->enablecommerce;
 $csshack = $params->csshack;
 $georegions = $params->georegions;
 $rus = $params->rus;
