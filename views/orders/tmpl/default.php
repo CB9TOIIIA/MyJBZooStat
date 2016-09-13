@@ -145,7 +145,7 @@ jQuery(document).ready(function($) {
 
   $articlesmonth = "SELECT id"
   ." FROM " . ZOO_TABLE_MY_ORDERS
-  ." WHERE created BETWEEN '".$year."-".$month."-01' AND '".$year."-".$month."-31'";
+  ." WHERE created BETWEEN '".$year."-".$month."-01 00:00:00' AND '".$year."-".$month."-31 23:59:59'";
 
 
   $Arrayarticlesmonthcount  = count($app->table->tag->database->queryResultArray($articlesmonth));
@@ -158,7 +158,7 @@ jQuery(document).ready(function($) {
   $querysmonth
   ->select($db->quoteName('created'))
   ->from($db->quoteName(ZOO_TABLE_MY_ORDERS))
-  ->where($db->quoteName('created') . ' BETWEEN "' .$monthdatetwo.'-01' . '" AND "' .$monthdatetwo.'-31"');
+  ->where($db->quoteName('created') . ' BETWEEN "' .$monthdatetwo.'-01 00:00:00' . '" AND "' .$monthdatetwo.'-31 23:59:59"');
 
 
   $db->setQuery($querysmonth);
@@ -314,7 +314,7 @@ echo "<div class='clrboth'></div>";
 
            $totalsuminMymonthsql = "SELECT total"
            ." FROM " . ZOO_TABLE_MY_ORDERS
-           ." WHERE created BETWEEN '".$year."-".$month."-01' AND '".$year."-".$month."-31'";
+           ." WHERE created BETWEEN '".$year."-".$month."-01 00:00:00' AND '".$year."-".$month."-31 23:59:59'";
 
 
            $totalsuminMymonths  = $app->table->tag->database->queryResultArray($totalsuminMymonthsql);

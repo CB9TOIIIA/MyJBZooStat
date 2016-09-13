@@ -152,7 +152,7 @@ $("#myTable").DataTable({language:{url:"/administrator/components/com_myjbzoosta
 
       $queryauthorss = "SELECT COUNT(id)"
       ." FROM " . ZOO_TABLE_ITEM
-      ." WHERE created_by = '".$valueid."' AND publish_up BETWEEN '".$year."-".$month."-01' AND '".$year."-".$month."-31'";
+      ." WHERE created_by = '".$valueid."' AND publish_up BETWEEN '".$year."-".$month."-01 00:00:00' AND '".$year."-".$month."-31 23:59:59'";
 
       $idadd++;
       $Arrayauthorsscount = array($app->table->tag->database->queryResultArray($queryauthorss));

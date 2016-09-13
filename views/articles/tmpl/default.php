@@ -106,7 +106,7 @@ jQuery(document).ready(function($) {
 
   $articlesmonth = "SELECT COUNT(id)"
   ." FROM " . ZOO_TABLE_ITEM
-  ." WHERE publish_up BETWEEN '".$year."-".$month."-01' AND '".$year."-".$month."-31'";
+  ." WHERE publish_up BETWEEN '".$year."-".$month."-01 00:00:00' AND '".$year."-".$month."-31 23:59:59'";
 
 
   $Arrayarticlesmonth  = $app->table->tag->database->queryResultArray($articlesmonth);
@@ -119,7 +119,7 @@ jQuery(document).ready(function($) {
   $querysmonth
   ->select($db->quoteName('publish_up'))
   ->from($db->quoteName(ZOO_TABLE_ITEM))
-  ->where($db->quoteName('publish_up') . ' BETWEEN "' .$monthdatetwo.'-01' . '" AND "' .$monthdatetwo.'-31"');
+  ->where($db->quoteName('publish_up') . ' BETWEEN "' .$monthdatetwo.'-01 00:00:00' . '" AND "' .$monthdatetwo.'-31 23:59:59"');
 
 
   $db->setQuery($querysmonth);
@@ -186,7 +186,7 @@ jQuery(document).ready(function($) {
 
           $articlesmonthtag = "SELECT id"
           ." FROM " . ZOO_TABLE_ITEM
-          ." WHERE type = '".$TypeArticleorProduct."' AND publish_up BETWEEN '".$year."-".$month."-01' AND '".$year."-".$month."-31'";
+          ." WHERE type = '".$TypeArticleorProduct."' AND publish_up BETWEEN '".$year."-".$month."-01 00:00:00' AND '".$year."-".$month."-31 23:59:59'";
 
           $Arrayarticlesmonthtag  = array($app->table->tag->database->queryResultArray($articlesmonthtag));
           //

@@ -104,7 +104,7 @@ $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/asse
 
  $querymonthids = "SELECT id"
      ." FROM " . ZOO_TABLE_ITEM
-     ." WHERE publish_up BETWEEN '".$year."-".$month."-01' AND '".$year."-".$month."-31'";
+     ." WHERE publish_up BETWEEN '".$year."-".$month."-01 00:00:00' AND '".$year."-".$month."-31 23:59:59'";
 
 $alipublish_upformat = rdate("M", strtotime("+0 seconds", strtotime($month)));
 $Arrayarticlesmonth = array($app->table->tag->database->queryResultArray($querymonthids));

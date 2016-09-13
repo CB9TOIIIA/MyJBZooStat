@@ -236,7 +236,7 @@ endif;
   $querystatmonth
   ->select($db->quoteName('id'))
   ->from($db->quoteName(ZOO_TABLE_ITEM))
-  ->where($db->quoteName('publish_up') . ' BETWEEN "' .$monthdate.'-01' . '" AND "' .$monthdate.'-31"')
+  ->where($db->quoteName('publish_up') . ' BETWEEN "' .$monthdate.'-01 00:00:00' . '" AND "' .$monthdate.'-31 23:59:59"')
   ->where($db->quoteName('created_by') . ' = ' . $db->quote($authorid));
 
   $db->setQuery($querystatmonth);
@@ -373,20 +373,19 @@ endif;
     echo '<h1>'.$bigname.'</h1>';
 
     echo "<p class='countarticlesauthor'><big><big>Всего ".$StatOrProduct." автора: <b>".$countarticlesauthor."</big></big></b></p>";
-
+//fix last day month
     $querymonth = "SELECT id"
     ." FROM " . ZOO_TABLE_ITEM
-    ." WHERE type = '".$TypeArticleorProduct."'  AND  publish_up BETWEEN '".$monthdate."-01' AND  '".$monthdate."-31'
+    ." WHERE type = '".$TypeArticleorProduct."'  AND  publish_up BETWEEN '".$monthdate."-01 00:00:00' AND  '".$monthdate."-31 23:59:59'
     AND created_by = '".$authorid."'";
 
     $querymonthcount = "SELECT COUNT(id)"
     ." FROM " . ZOO_TABLE_ITEM
-    ." WHERE publish_up BETWEEN '".$monthdate."-01' AND  '".$monthdate."-31'
+    ." WHERE publish_up BETWEEN '".$monthdate."-01 00:00:00' AND  '".$monthdate."-31 23:59:59'
     AND created_by = '".$authorid."'";
 
     $Arrayquerymonth = array($app->table->tag->database->queryResultArray($querymonth));
     $Arrayquerymonthcccooount = array_count_values($app->table->tag->database->queryResultArray($querymonthcount));
-
     $Arrayquerymonthcountv = array_count_values($app->table->tag->database->queryResultArray($querymonth));
 
     foreach ($Arrayquerymonthcccooount as $keymonthcountv => $novamcount) {
