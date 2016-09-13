@@ -444,18 +444,21 @@ $responcecurdate = MetrikaHelper::open_http($urlcurdate, $method);
 
 $datacurdate = json_decode($responcecurdate);
 
+if (NULL !== $data->errors) {
+  $DataErrors = $data->errors;
 
-$DataErrors = $data->errors;
-foreach ($DataErrors as $DataError) {
-  $DataCode = $DataError->code;
-  $DataText = $DataError->text;
+  foreach ($DataErrors as $DataError) {
+    $DataCode = $DataError->code;
+    $DataText = $DataError->text;
+  }
+
+  if ($DataCode == 'ERR_NO_DATA' || $DataCode == 'ERR_TEMPORARY_UNAVAILABLE') {
+    echo "<h2 align='center'>Нет данных за выбранный период</h2>";
+    echo "<style>.row-fluid .span12 .item-page {display:none;}</style>";
+  }
 }
 
-if ($DataCode == 'ERR_NO_DATA' || $DataCode == 'ERR_TEMPORARY_UNAVAILABLE') {
-  echo "<h2 align='center'>Нет данных за выбранный период</h2>";
-  echo "<style>.row-fluid .span12 .item-page {display:none;}</style>";
-}
-// dump($DataCode,0,'$DataCode');
+
 
     if(!is_null($data) && is_array($data->data) && count($data->data))
 
@@ -999,7 +1002,7 @@ if ($CountYaBlocks == '4') {
   $gridmyrow = 'center myspan3 span3';
 }
 
-if ($CountYaBlocks == '3') {
+if ($CountYaBlocks <= '3') {
   $gridmyrow = 'center myspan3 span3';
 }
 
@@ -1842,7 +1845,7 @@ if ($datacurdate) {
     $gridmyrow = 'center myspan25 span2';
   }
 
-if ($CountYaBlocks == '3') {
+if ($CountYaBlocks <= '3') {
   $gridmyrow = 'center myspan3 span3';
 }
 
@@ -2020,7 +2023,7 @@ if ($valuesvodka->name == 'Переходы по ссылкам на сайта�
     $gridmyrow = 'center myspan25 span2';
   }
 
-if ($CountYaBlocks == '3') {
+if ($CountYaBlocks <= '3') {
   $gridmyrow = 'center myspan3 span3';
 }
 
@@ -2105,7 +2108,7 @@ if ($datavchera) {
       $gridmyrow = 'center myspan25 span2';
     }
 
-    if ($CountYaBlocks == '3') {
+    if ($CountYaBlocks <= '3') {
     	$gridmyrow = 'center myspan3 span3';
     }
 
@@ -2223,7 +2226,7 @@ if ($datavchera) {
               $gridmyrow = 'center myspan25 span2';
             }
 
-            if ($CountYaBlocks == '3') {
+            if ($CountYaBlocks <= '3') {
             	$gridmyrow = 'center myspan3 span3';
             }
 
@@ -2318,7 +2321,7 @@ if ($datapozavchera) {
       $gridmyrow = 'center myspan25 span2';
     }
 
-    if ($CountYaBlocks == '3') {
+    if ($CountYaBlocks <= '3') {
     	$gridmyrow = 'center myspan3 span3';
     }
 
@@ -2433,7 +2436,7 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozavcheradate
               $gridmyrow = 'center myspan25 span2';
             }
 
-            if ($CountYaBlocks == '3') {
+            if ($CountYaBlocks <= '3') {
             	$gridmyrow = 'center myspan3 span3';
             }
 
@@ -2527,7 +2530,7 @@ if ($datapozapozavchera) {
       $gridmyrow = 'center myspan25 span2';
     }
 
-    if ($CountYaBlocks == '3') {
+    if ($CountYaBlocks <= '3') {
     	$gridmyrow = 'center myspan3 span3';
     }
 
@@ -2642,7 +2645,7 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozapozavchera
               $gridmyrow = 'center myspan25 span2';
             }
 
-            if ($CountYaBlocks == '3') {
+            if ($CountYaBlocks <= '3') {
             	$gridmyrow = 'center myspan3 span3';
             }
 

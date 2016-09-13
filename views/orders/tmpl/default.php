@@ -34,6 +34,20 @@ jQuery(document).ready(function($) {
 });
 </script>';
 
+echo '
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  $("#myTable3").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+});
+</script>';
+
+echo '
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  $("#myTable4").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+});
+</script>';
+
 ?>
 
 
@@ -81,6 +95,10 @@ jQuery(document).ready(function($) {
   $month = $input->get('month', date('m'), 'string');
   $year = $input->get('year', date('Y'), 'string');
 
+  $Needzakazistat = $input->get('zakazistat', NULL, 'string');
+
+
+
   echo '<div class="monthdate">';
   echo '<form action="/administrator/index.php?option=com_myjbzoostat&view=orders" method="post" class="form-inline">';
 
@@ -111,6 +129,12 @@ jQuery(document).ready(function($) {
       echo '</select>';
 
 
+          if (!empty($Needzakazistat) == 'yes') {
+                echo '<label class="checkbox"><input type="checkbox" name="zakazistat" value="yes" checked> Подробная статистика </label>';
+          }
+          else {
+                echo '<label class="checkbox"><input type="checkbox" name="zakazistat" value="yes"> Подробная статистика  </label>';
+          }
 
 
   echo '<input type="submit" class="btn"  value="Поиск по месяцам"></form>';
@@ -179,7 +203,7 @@ jQuery(document).ready(function($) {
           echo "  plugins: [
             Chartist.plugins.tooltip(),
             Chartist.plugins.ctThreshold({
-              threshold: {$threshold}
+              threshold: {$Min_Zakazov}
             })
             ] ";
             echo "     }); ";
@@ -195,6 +219,117 @@ jQuery(document).ready(function($) {
 
 echo "</div>";
 
+
+
+echo "<div class='clrboth'></div>";
+echo "<h2>Детальная выручка: </h2>";
+
+
+echo "<div class='clrboth'></div>";
+echo "<table id='myTable4' class='zebratable'>";
+
+echo "<thead>";
+echo "<tr class='upper'>";
+echo "<td>№ <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>День заказа<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Заказов<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Выручка<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "</tr>";
+echo "</thead>";
+
+$Myplusa = '';
+
+if (!empty($datearraydatemonth)) :
+
+  foreach ($datearraydatemonth as $datenum => $valuearticles) {
+
+    $datenumD = date('d',strtotime($datenum));
+    $datenumDarr[] = date('d',strtotime($datenum));
+    $datenumM = date('m',strtotime($datenum));
+    $datenumY = date('Y',strtotime($datenum));
+    $datenumfullrev = date('Y-m-d',strtotime($datenum));
+    $datenumnorm = date('d.m.y',strtotime($datenum));
+    $Myplusa++;
+
+    $totalsuminMymonthsqlred = "SELECT total"
+    ." FROM " . ZOO_TABLE_MY_ORDERS
+    ." WHERE created BETWEEN '".$datenumfullrev." 00:00:00' AND '".$datenumfullrev." 23:59:59'";
+
+    $totalsuminMymonthsDaya  = $app->table->tag->database->queryResultArray($totalsuminMymonthsqlred);
+
+    $totalsuminMymonthzeroDay = 0;
+    $totalsuminMymonthzeroDayarr = 0;
+    foreach ($totalsuminMymonthsDaya as $totalsuminMymonthsDay) {
+        $totalsuminMymonthzeroDay += $totalsuminMymonthsDay;
+        $totalsuminMymonthzeroDayarr += $totalsuminMymonthsDay;
+    }
+
+    $totalsuminMymonthzeroDayard[] = $totalsuminMymonthzeroDayarr;
+
+    echo "<tr>";
+    echo "<td>{$Myplusa}</td>";
+    echo "<td>{$datenum}</td>";
+    echo "<td>{$valuearticles}</td>";
+    echo "<td>{$totalsuminMymonthzeroDay}</td>";
+    echo "</tr>";
+
+  }
+
+
+
+echo "</table>";
+
+
+echo "<div class='clrboth'></div>";
+
+
+ $itemmonth1datenumDarr = implode(', ',$datenumDarr);
+ $itemmonth2totalsuminMymonthzeroDayarr = implode(', ',$totalsuminMymonthzeroDayard);
+
+ if (!empty($valuearticles)) {
+
+   echo " <script type='text/javascript'>";
+   echo " document.addEventListener('DOMContentLoaded',function(){";
+     echo 'new Chartist.Line(".ct-chart2", { ';
+       echo "labels: [".$itemmonth1datenumDarr."],";
+       echo "series: [   [".$itemmonth2totalsuminMymonthzeroDayarr."]  ]";
+       echo "     }, { ";
+         echo "      low: 0, ";
+         echo "       showArea: true, ";
+         echo "  plugins: [
+           Chartist.plugins.tooltip(),
+           Chartist.plugins.ctThreshold({
+             threshold: {$Min_Money}
+           })
+           ] ";
+           echo "     }); ";
+           echo "     }); ";
+           echo "     </script> ";
+
+         }
+
+
+         echo "<h1>График продаж за {$monthnew} {$year}</h1>";
+         echo "<div class='ct-chart2'></div>";
+
+           $totalsuminMymonthsql = "SELECT total"
+           ." FROM " . ZOO_TABLE_MY_ORDERS
+           ." WHERE created BETWEEN '".$year."-".$month."-01' AND '".$year."-".$month."-31'";
+
+
+           $totalsuminMymonths  = $app->table->tag->database->queryResultArray($totalsuminMymonthsql);
+           $totalsuminMymonthzero = 0;
+           foreach ($totalsuminMymonths as $totalsuminMymonth) {
+               $totalsuminMymonthzero += $totalsuminMymonth;
+           }
+           echo "<div class='clrboth'></div>";
+           echo "<h3 align='right'>Итого: {$countarticleinmonth} шт. заказов на сумму {$totalsuminMymonthzero} руб. </h3>";
+endif;
+
+if ($Needzakazistat == 'yes') :
+
+echo "<h2>Подробная статистика заказов: </h2>";
+
   $Myplus = '';
   $Arrayarticlesmonth  = $app->table->tag->database->queryResultArray($articlesmonth);
   // dump($Arrayarticlesmonth,0,'$Arrayarticlesmonth');
@@ -206,14 +341,23 @@ echo "</div>";
     echo "<td>№ <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "<td>Дата заказа <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "<td>ID заказа<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+    echo "<td>Телефон клиента <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+    echo "<td>Имя клиента <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "<td>Кол-во товаров <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "<td>Сумма <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "</tr>";
     echo "</thead>";
 
+if (!empty($Arrayarticlesmonth)) :
 
 
+
+    $TopOrderClientName = array();
+    $Telnumberarray = array();
     $nameitemorder = array();
+    $OrderClientNamearray = array();
+    $TelregBanoo = array();
+
     foreach ($Arrayarticlesmonth as $idOrderinMonth) {
       $Myplus++;
 
@@ -231,38 +375,120 @@ echo "</div>";
       $orderItemas = $orderItem->getItems(true); // материал заказа
       $OrderSku = $orderItem->getTotalCountSku(); // кол-во товаров
       $OrderURL = $orderItem->getUrl(); // url to order
+      $OrderClientNamearray[] = $orderItem->getShippingFields()->get($ElementName)->value;
+      $OrderClientName = $orderItem->getShippingFields()->get($ElementName)->value;
+      $TopOrderClientName[] = $orderItem->getShippingFields()->get($ElementName)->value;
+      if (!empty($TopTelVal)) {
+            $TopTelVal[] = $orderItem->getShippingFields()->get($ElementTel)->value;
+      }
+
+      else {
+        $TopTelVal[] = 'Номер не указан';
+      }
+
+      $TelregBadsg = preg_match('/^(\+7|8)(\(\d{3}\)|\d{3})\d{7}$/', $orderItem->getShippingFields()->get($ElementTel)->value, $matchtelbra);
+      if (!empty($matchtelbra)) {
+        $TelregBa[] = $matchtelbra[0];
+        $TelregBanoo[] = $matchtelbra[0];
+      }
+      else {
+        $TelregBa[] = 'Номер не указан';
+      }
+
+      $ordertelstatggg = $orderItem->getShippingFields();
+      foreach ($ordertelstatggg as $key => $value) {
+        if (!empty($value)) {
+          $tel = $value->get('value');
+          if (!empty($tel)) {
+            $telreg = preg_match('/^(\+7|8)(\(\d{3}\)|\d{3})\d{7}$/', $tel, $matchtel);
+            if (!empty($matchtel[0])) {
+              $Telnumber = $matchtel[0];
+              $Telnumberarray[] = $matchtel[0];
+            }
+          }
+        }
+      }
+
+      if (!isset($OrderClientName)) {
+          $OrderClientName = 'Имя не указано';
+      }
+
+      if (!isset($Telnumber) || empty($Telnumber)) {
+        $Telnumber = 'Номер не указан';
+        $Telnumberarray[] = 'Номер не указан';
+      }
 
       foreach ($orderItemas as $orderITEM) {
         $nameitemorder[] = $orderITEM->get('item_name');
       }
 
+
+// dump($TopTelnumberarray,0,'$TopTelnumberarray');
     echo "<tr>";
     echo "<td>{$Myplus}</td>";
     echo "<td>{$myCreatedorder}</td>";
     echo "<td><a target='_blank' href='{$OrderURL}'>{$MyDataorder}</a></td>";
+    echo "<td>{$Telnumber}</td>";
+    echo "<td>{$OrderClientName}</td>";
     echo "<td>{$OrderSku}</td>";
     echo "<td>{$MyOrderTotal}</td>";
     echo "</tr>";
 
+
   }
 
-echo "</table>";
 
-  $totalsuminMymonthsql = "SELECT total"
-  ." FROM " . ZOO_TABLE_MY_ORDERS
-  ." WHERE created BETWEEN '".$year."-".$month."-01' AND '".$year."-".$month."-31'";
+  echo "</table>";
 
 
-  $totalsuminMymonths  = $app->table->tag->database->queryResultArray($totalsuminMymonthsql);
-  $totalsuminMymonthzero = 0;
-  foreach ($totalsuminMymonths as $totalsuminMymonth) {
-      $totalsuminMymonthzero += $totalsuminMymonth;
-  }
-  echo "<div class='clrboth'></div>";
-  echo "<h3 align='right'>Итого: {$countarticleinmonth} шт. заказов на сумму {$totalsuminMymonthzero} руб. </h3>";
 
 
 $toptovarodMonth = array_count_values($nameitemorder);
+$TopTelnumberarray = array_count_values($Telnumberarray);
+// $TopOrderClientNamecount = array_count_values($TopOrderClientName);
+
+
+echo "<h2>ТОП клиентов за месяц: </h2>";
+
+
+echo "<div class='clrboth'></div>";
+echo "<table id='myTable3' class='zebratable'>";
+
+echo "<thead>";
+echo "<tr class='upper'>";
+echo "<td>№ <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Номер клиента<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "<td>Кол-во заказов<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+// echo "<td>Написать смс<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+echo "</tr>";
+echo "</thead>";
+
+$Myplusa = '';
+
+$TelregBaasnooo = array_count_values($TelregBanoo);
+
+$BigTestarray = array_unique(array_combine($TopOrderClientName, $TopTelVal));
+//$BigTestarraygsd = array_combine($BigTestarray, $TopMobileC);
+
+$Telclienglobal = array();
+$KolvozakazovClienta = array();
+$TopOrderClientNameasd = array();
+$TopOrderClientNameasdffff = array();
+$smsto = '';
+foreach ($TelregBaasnooo as $keytel => $valuemonth) {
+  $Myplusa++;
+echo "<tr>";
+echo "<td>{$Myplusa}</td>";
+echo "<td>{$keytel}</td>";
+echo "<td>{$valuemonth}</td>";
+// echo "<td>Написать sms {$smsto}</td>";
+echo "</tr>";
+}
+
+
+echo "</table>";
+
+echo "<div class='clrboth'></div>";
 
 echo "<h2>Популярные товары в этом месяце: </h2>";
 
@@ -293,6 +519,12 @@ foreach ($toptovarodMonth as $keyitemname => $valuecount) {
 
 echo "</table>";
 
+
+echo "<div class='clrboth'></div>";
+
+endif;
+
+endif;
 ?>
 
 

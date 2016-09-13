@@ -167,6 +167,32 @@
         description="Например - Украина"
         default=""/>
   </fieldset>
+  <fieldset name="zakazi" label="Заказы">
+      <field
+      name="element_name"
+      type="text"
+      label="ELEMENT_ID - ИМЯ - в ShippingFields"
+      description=""
+      default=""/>
+      <field
+      name="element_tel"
+      type="text"
+      label="ELEMENT_ID - ТЕЛЕФОН - в ShippingFields"
+      description=""
+      default=""/>
+      <field
+      name="min_zakazov"
+      type="text"
+      label="Минимум заказов"
+      description="Для графика"
+      default=""/>
+      <field
+      name="min_money"
+      type="text"
+      label="Минимум выручка"
+      description="Для графика"
+      default=""/>
+  </fieldset>
   <fieldset name="disqus" label="Disqus" addfieldpath="administrator/components/com_myjbzoostat/elements">
       <field
       name="disqus_url"
