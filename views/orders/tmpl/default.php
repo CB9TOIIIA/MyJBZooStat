@@ -341,8 +341,9 @@ echo "<h2>Подробная статистика заказов: </h2>";
     echo "<td>№ <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "<td>Дата заказа <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "<td>ID заказа<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
-    echo "<td>Телефон клиента <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "<td>Имя клиента <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+    echo "<td>Телефон клиента <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+    echo "<td>Почта клиента <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "<td>Кол-во товаров <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "<td>Сумма <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "</tr>";
@@ -357,6 +358,7 @@ if (!empty($Arrayarticlesmonth)) :
     $nameitemorder = array();
     $OrderClientNamearray = array();
     $TelregBanoo = array();
+    $OrderClientTelVal = array();
 
     foreach ($Arrayarticlesmonth as $idOrderinMonth) {
       $Myplus++;
@@ -366,6 +368,7 @@ if (!empty($Arrayarticlesmonth)) :
       $myCreatedorder = $order->created;
       $myCreatedorder = date('d.m.y - H:i',strtotime($myCreatedorder));
       $MyOrderTotal = $order->getTotalSum()->val();
+      $MyOrderTotal = round($MyOrderTotal,2);
       $MyDataorder = $idOrderinMonth;
 
 
@@ -376,46 +379,50 @@ if (!empty($Arrayarticlesmonth)) :
       $OrderSku = $orderItem->getTotalCountSku(); // кол-во товаров
       $OrderURL = $orderItem->getUrl(); // url to order
       $OrderClientNamearray[] = $orderItem->getShippingFields()->get($ElementName)->value;
-      $OrderClientName = $orderItem->getShippingFields()->get($ElementName)->value;
-      $TopOrderClientName[] = $orderItem->getShippingFields()->get($ElementName)->value;
-      if (!empty($TopTelVal)) {
-            $TopTelVal[] = $orderItem->getShippingFields()->get($ElementTel)->value;
-      }
 
-      else {
-        $TopTelVal[] = 'Номер не указан';
-      }
-
-      $TelregBadsg = preg_match('/^(\+7|8)(\(\d{3}\)|\d{3})\d{7}$/', $orderItem->getShippingFields()->get($ElementTel)->value, $matchtelbra);
-      if (!empty($matchtelbra)) {
-        $TelregBa[] = $matchtelbra[0];
-        $TelregBanoo[] = $matchtelbra[0];
+      if (!empty($ElementNameUser)) {
+        $OrderClientName = $orderItem->getFields()->get($ElementNameUser)->value;
       }
       else {
+        $OrderClientName = $orderItem->getShippingFields()->get($ElementName)->value;
+      }
+
+      if (!empty($ElementTelUser)) {
+        $OrderClientTelVal[] = $orderItem->getFields()->get($ElementTelUser)->value;
+        $OrderClientTel = $orderItem->getFields()->get($ElementTelUser)->value;
+      }
+
+      if (empty($ElementTelUser)) {
+        $OrderClientTel = 'Номер не указан';
         $TelregBa[] = 'Номер не указан';
-      }
 
-      $ordertelstatggg = $orderItem->getShippingFields();
-      foreach ($ordertelstatggg as $key => $value) {
-        if (!empty($value)) {
-          $tel = $value->get('value');
-          if (!empty($tel)) {
-            $telreg = preg_match('/^(\+7|8)(\(\d{3}\)|\d{3})\d{7}$/', $tel, $matchtel);
-            if (!empty($matchtel[0])) {
-              $Telnumber = $matchtel[0];
-              $Telnumberarray[] = $matchtel[0];
+
+        $ordertelstatggg = $orderItem->getShippingFields();
+        foreach ($ordertelstatggg as $key => $value) {
+          if (!empty($value)) {
+            $tel = $value->get('value');
+            if (!empty($tel)) {
+              $telreg = preg_match('/^(\+7|8)(\(\d{3}\)|\d{3})\d{7}$/', $tel, $matchtel);
+              if (!empty($matchtel[0])) {
+                $Telnumber = $matchtel[0];
+                $Telnumberarray[] = $matchtel[0];
+              }
             }
           }
         }
+        // $TopTelVal[] = 'Номер не указан 2';
+        // $Telnumber = 'Номер не указан 3';
+        // $Telnumberarray[] = 'Номер не указан 4';
       }
+
+      if (!empty($ElementMail)) {
+        $OrderClientMail = $orderItem->getFields()->get($ElementMail)->value;
+      }
+
+      $TopOrderClientName[] = $orderItem->getShippingFields()->get($ElementName)->value;
 
       if (!isset($OrderClientName)) {
           $OrderClientName = 'Имя не указано';
-      }
-
-      if (!isset($Telnumber) || empty($Telnumber)) {
-        $Telnumber = 'Номер не указан';
-        $Telnumberarray[] = 'Номер не указан';
       }
 
       foreach ($orderItemas as $orderITEM) {
@@ -428,8 +435,9 @@ if (!empty($Arrayarticlesmonth)) :
     echo "<td>{$Myplus}</td>";
     echo "<td>{$myCreatedorder}</td>";
     echo "<td><a target='_blank' href='{$OrderURL}'>{$MyDataorder}</a></td>";
-    echo "<td>{$Telnumber}</td>";
     echo "<td>{$OrderClientName}</td>";
+    echo "<td>{$OrderClientTel}</td>";
+    echo "<td>{$OrderClientMail}</td>";
     echo "<td>{$OrderSku}</td>";
     echo "<td>{$MyOrderTotal}</td>";
     echo "</tr>";
@@ -439,7 +447,6 @@ if (!empty($Arrayarticlesmonth)) :
 
 
   echo "</table>";
-
 
 
 
@@ -465,9 +472,9 @@ echo "</thead>";
 
 $Myplusa = '';
 
-$TelregBaasnooo = array_count_values($TelregBanoo);
+$TelregBaasnooo = array_count_values($OrderClientTelVal);
 
-$BigTestarray = array_unique(array_combine($TopOrderClientName, $TopTelVal));
+$BigTestarray = array_unique(array_combine($TopOrderClientName, $OrderClientTelVal));
 //$BigTestarraygsd = array_combine($BigTestarray, $TopMobileC);
 
 $Telclienglobal = array();
