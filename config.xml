@@ -181,6 +181,24 @@
       description=""
       default=""/>
       <field
+      name="element_name_user"
+      type="text"
+      label="ELEMENT_ID - ИМЯ - в Fields"
+      description=""
+      default=""/>
+      <field
+      name="element_tel_user"
+      type="text"
+      label="ELEMENT_ID - ТЕЛЕФОН - в Fields"
+      description=""
+      default=""/>
+      <field
+      name="element_tel_mail"
+      type="text"
+      label="ELEMENT_ID - ПОЧТА - в Fields"
+      description=""
+      default=""/>
+      <field
       name="min_zakazov"
       type="text"
       label="Минимум заказов"

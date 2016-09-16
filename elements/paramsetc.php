@@ -6,6 +6,7 @@ defined( '_JEXEC' ) or die; // No direct access
 
 // check installed Zoo
 
+jimport( 'joomla.filesystem.folder' );
 if (JFolder::exists(JPATH_ROOT . '/components/com_zoo')) {
 
 require_once JPATH_ADMINISTRATOR . '/components/com_zoo/config.php';
@@ -32,6 +33,9 @@ $sng = $params->sng;
 $ukr = $params->ukr;
 $ElementName = $params->element_name;
 $ElementTel = $params->element_tel;
+$ElementNameUser = $params->element_name_user;
+$ElementTelUser = $params->element_tel_user;
+$ElementMail = $params->element_tel_mail;
 $Min_Zakazov = $params->min_zakazov;
 $Min_Money = $params->min_money;
 $filterpopular = $params->filterpopular;

@@ -141,7 +141,11 @@ if ($lpdisqusidcommentlike) {
     'vote' => '1',
   ], 'post');
 
-    sleep(5);
+  if ($likeAr->code == 200) {
+    echo '<script>swal("Успешно!", " ", "success")</script>';
+  }
+
+    sleep(6);
 
 }
 
@@ -153,7 +157,11 @@ if ($lpdisqusidcommentdislike) {
     'vote' => '-1',
   ], 'post');
 
-    sleep(5);
+  if ($dislikeAr->code == 200) {
+    echo '<script>swal("Успешно!", " ", "success")</script>';
+  }
+
+    sleep(6);
 
 }
 
@@ -164,7 +172,11 @@ if ($lpdisqusidcommentapprove) {
     'post' => $lpdisqusidcommentapprove,
   ], 'post');
 
-    sleep(5);
+    if ($approveAr->code == 200) {
+      echo '<script>swal("Успешно!", "Комментарий был опубликован", "success")</script>';
+    }
+
+    sleep(6);
 
 }
 
@@ -175,7 +187,10 @@ if ($lpdisqusidcommentspam) {
     'post' => $lpdisqusidcommentspam,
   ], 'post');
 
-    sleep(5);
+  if ($spamAr->code == 200) {
+    echo '<script>swal("Успешно!", "Комментарий отправлен в спам", "success")</script>';
+  }
+    sleep(6);
 
 }
 
@@ -186,7 +201,11 @@ if ($lpdisqusidcommentreport) {
     'post' => $lpdisqusidcommentreport,
   ], 'post');
 
-    sleep(5);
+    if ($reportAr->code == 200) {
+      echo '<script>swal("Успешно!", " ", "success")</script>';
+    }
+
+    sleep(6);
 
 }
 
@@ -197,7 +216,11 @@ if ($lpdisqusidcommentremove) {
     'post' => $lpdisqusidcommentremove,
   ], 'post');
 
-    sleep(5);
+  if ($removeAr->code == 200) {
+    echo '<script>swal("Успешно!", "Комментарий был успешно удален", "success")</script>';
+  }
+
+    sleep(6);
 
 }
 
@@ -213,7 +236,7 @@ if ($updateAr->code == 200) {
   echo '<script>swal("Успешно!", "Комментарий был успешно отредактирован", "success")</script>';
 }
 
-  sleep(5);
+  sleep(6);
 
 }
 

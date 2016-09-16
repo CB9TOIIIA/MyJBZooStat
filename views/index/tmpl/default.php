@@ -207,6 +207,10 @@ if(!empty($counter_id) && !empty($app_token))
 
     $data = json_decode($responce);
 
+if ($data->errors[0]->code == 'ERR_PARAM_REQUIRED') {
+echo "<h1 align='center'>Неверно указан диапазон</h1>";
+echo "<style>.item-page {display:none}</style>";
+}
 
     $urlpopular = 'http://api-metrika.yandex.ru/stat/content/popular.json?id='.$counter_id;
 
@@ -798,6 +802,9 @@ SCRIPT;
 <?php
 
 
+if ($data->errors->code == 'ERR_PARAM_REQUIRED') {
+echo "<h1>Неверно указан диапазон</h1>";
+}
 
     function bd_nice_number($n) {
 
@@ -2826,6 +2833,8 @@ endif;
       if (empty($counter_id)) :
       echo "<h1 class='center'>Заполните API Яндекс.Метрика настройках компонента</h1>";
       endif;
+
+
 
  ?>
 
