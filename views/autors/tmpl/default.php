@@ -5,10 +5,21 @@ defined( '_JEXEC' ) or die; // No direct access
 <?php
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/autors.css');
+
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/jquery.dataTables.min.css');
+
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/jquery.dataTables.min.js');
 //JUST DO IT   $this->app   ----> $app
+
+echo '
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+$("#myTable").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+});
+</script>';
+
 ?>
-<style>
-</style>
+
 
 <div class="item-page">
 
@@ -103,26 +114,34 @@ endif;
 
   //dump($itemIdsResultnameauth,1,'tagsArrayauthors');
 
-  echo "<div class='tagsstat'>";
-  echo "<ul class='zebra'>";
+  echo "<table id='myTable' class='zebratable'>";
+  echo "<thead>";
+  echo "<tr class='upper'>";
+  echo "<td>ID <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+  echo "<td>Имя автора <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+  echo "</tr>";
+  echo "</thead>";
+  echo "<tbody>";
+  $myautp = 0;
   foreach ($itemIdsResultnameauth as $created_byas  ) {
     // dump($created_byas,1,'tagsArrayauthors');
     $created_bycreated = $created_byas->created_by;
     $created_byname = $created_byas->name;
-
+    $myautp++;
     $monthdate = date("Y-m");
-    echo '<li><form style="display:none"  action="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" name="a'.$created_bycreated.'" method="post" >';
+    echo '<tr><td>'.$myautp.'</td><td>
+    <form style="display:none"  action="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" name="a'.$created_bycreated.'" method="post" >';
     echo  $authcreatedx[] = '
     <input  type="hidden" name="authorids"  value="'.$created_bycreated.'" />
     <input  type="hidden" name="monthdate"  value="'.$monthdate.'" />
 
 
-    </form> <a class="test-submit" href="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" OnClick="a'.$created_bycreated.'.submit();return false;">'.$created_byname.'</a> </li>';
+    </form><a class="test-submit" href="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" OnClick="a'.$created_bycreated.'.submit();return false;">'.$created_byname.'</a></td></tr>';
     //   echo  $itemIdsResultnameauth[] = '<option value="'.$created_by.'">'.$name.'</option>';
 
   }
-  echo "</ul>";
-  echo "</div>";
+  echo "</tbody>";
+echo "</table>";
 
 endif;
 

@@ -271,6 +271,23 @@ $ModDate2 = $ModDate2->format('Ymd');
     $datageo = json_decode($responcegeo);
 
 
+    $urlexfree = 'http://api-metrika.yandex.ru/stat/traffic/summary.json?id='.$counter_id;
+
+    $urlexfree .= '&date1='.$ModDate1;
+
+    $urlexfree .= '&date2='.$ModDate2;
+
+    // $urlexfree .= '&group='.$date_group;
+
+    $urlexfree .= '&per_page=500';
+
+    $urlexfree .= '&oauth_token='.$app_token;
+
+    $responceurlfree = MetrikaHelper::open_http($urlexfree, $method);
+
+    $dataurlfree = json_decode($responceurlfree);
+
+
     $urlgeotree = 'http://api-metrika.yandex.ru/stat/geo.json?id='.$counter_id;
 
     $urlgeotree .= '&date1='.$ModDate1;
@@ -832,23 +849,25 @@ echo "<h1>Неверно указан диапазон</h1>";
 
 
 
-if ($datageo) {
+if ($dataurlfree) {
 
 
 
-  $datebegin = $datageo->date1;
+  $datebegin = $dataurlfree->date1;
 
   $datebegin = date("d.m.Y", strtotime($datebegin));
 
-  $dateend = $datageo->date2;
+  $dateend = $dataurlfree->date2;
 
   $dateend = date("d.m.Y", strtotime($dateend));
 
   //total
 
-  $globalpageviews = $datageo->totals->page_views;
+  $globalpageviews = $dataurlfree->totals->page_views;
 
-  $globalvisits = $datageo->totals->visits;
+  $globalvisits = $dataurlfree->totals->visits;
+
+  $globalvisitors = $dataurlfree->totals->visitors;
 
 
 
@@ -870,18 +889,13 @@ echo "<h2 align='center'>Статистика: с {$datebegin} по {$dateend}</
 $daytosql = date('Ymd');
 
 
-
-echo "<span class='span6'>";
-
-
-
-echo "<div class='pageview'>";
-
 $globalgv = bd_nice_number($globalpageviews);
 
 $globalvis = bd_nice_number($globalvisits);
 
-if (preg_match('/тыс/',$globalgv,$matchs) || preg_match('/тыс/',$globalvis,$matchs) ) {
+$globalvisitor = bd_nice_number($globalvisitors);
+
+if (preg_match('/тыс/',$globalgv,$matchs) || preg_match('/тыс/',$globalvis,$matchs) || preg_match('/тыс/',$globalvisitor,$matchs) ) {
 
   $globalgv = str_replace('.',' млн. ',$globalgv);
 
@@ -891,15 +905,40 @@ if (preg_match('/тыс/',$globalgv,$matchs) || preg_match('/тыс/',$globalvis
 
   $globalvis = $globalvis.'.';
 
+  $globalvisitor = str_replace('.',' млн. ',$globalvisitor);
+
+  $globalvisitor = $globalvisitor.'.';
+
+  $globalvisitor = str_replace('тыc млн. .','тыc.', $globalvisitor);
 
 
 }
 
+echo "<span class='span4'>";
+
+
+
+echo "<div class='pageview'>";
+
 echo "<span title='{$globalpageviews}' class='countview'>{$globalgv}</span>";
 
-
-
 echo "<span class='textstat'>Просмотров страниц</span>";
+
+echo "</div>";
+
+echo "</span>";
+
+
+
+
+echo "<span class='span4'>";
+
+
+echo "<div class='visitors'>";
+
+echo "<span title='{$globalvisits}' class='globvisitors'>{$globalvis}</span>";
+
+echo "<span class='textstat'>Визитов</span>";
 
 echo "</div>";
 
@@ -908,18 +947,14 @@ echo "</div>";
 echo "</span>";
 
 
+echo "<span class='span4'>";
 
 
+echo "<div class='visitorsvis'>";
 
-echo "<span class='span6'>";
+echo "<span title='{$globalvisitors}' class='globvisitors'>{$globalvisitor}</span>";
 
-
-
-echo "<div class='visitors'>";
-
-echo "<span title='{$globalvisits}' class='globvisitors'>{$globalvis}</span>";
-
-echo "<span class='textstat'>Визитов (посетителей)</span>";
+echo "<span class='textstat'>Посетителей</span>";
 
 echo "</div>";
 
@@ -1441,7 +1476,7 @@ if ($comcontent == 'yes') {
 
 echo "</ul>";
 
-echo "<span class='allinfo span12 center'> <span class='span4'> <b> <img src='{$eyed}' />  Визиты:</b> Суммарное количество визитов.  </span>  <span class='span4'><b>   <img src='{$usersd}' />  Посетители:</b> Количество уникальных посетителей. </span> <span class='span4'><b> <img src='{$oneuserd}' /> Просмотры:</b> Число просмотров страниц на сайте за отчетный период. </span></span>";
+echo "<span class='allinfo span12 center'> <span class='span4'> <b> <img src='{$eyed}' /> Просмотры :</b> Число просмотров страниц на сайте за отчетный период. </span>  <span class='span4'><b>   <img src='{$usersd}' />  Визиты:</b> Суммарное количество визитов. </span> <span class='span4'><b> <img src='{$oneuserd}' /> Посетители:</b> Количество уникальных посетителей.</span></span>";
 
 
 

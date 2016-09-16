@@ -945,7 +945,7 @@ margin: 12px; }
 .sweet-alert p ul li:nth-child(odd) {  background: #EFEFEF; }
 .sweet-alert p ul li:nth-child(even) {  background: white; }
 .tagsstat .zebra { display: inline-flex;    flex-wrap: wrap;    width: 98%;    height: 250px;    flex-direction: column;  list-style: none;  padding: 0;}
-.tagsstat.country .zebra { height: 100px !important; } .tagsstat .zebra li {     max-width: 430px;  padding: 5px; margin-right: 5px; } .tagsstat .zebra li:nth-child(odd) {  background: #EFEFEF; } .tagsstat .zebra li:nth-child(even) {  background: white; }
+.tagsstat.country .zebra { height: 100px !important; } .tagsstat .zebra li { width: 390px;  padding: 5px; margin-right: 5px; } .tagsstat .zebra li:nth-child(odd) {  background: #EFEFEF; } .tagsstat .zebra li:nth-child(even) {  background: white; }
 .zebratable {width: 98%; margin: 0 auto;}
 .zebratable td {padding: 5px;}
 .zebratable tr.upper {font-weight: bold;}
@@ -996,8 +996,16 @@ hr {clear: both !important}
     border-radius: 2px;
     box-shadow: 0px 0px 3px #ccc; color: #fff;
 }
+
+.visitorsvis {
+    background-color: #FE6161;
+    padding: 50px; text-align: center;
+    border-radius: 2px;
+    box-shadow: 0px 0px 3px #ccc; color: #fff;
+}
+
 .countview,.globvisitors {
-  font-size: 5em;
+  font-size: 4em;
   font-weight: bold;
 }
 .textstat {
