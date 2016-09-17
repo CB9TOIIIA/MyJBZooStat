@@ -823,29 +823,43 @@ if ($data->errors->code == 'ERR_PARAM_REQUIRED') {
 echo "<h1>Неверно указан диапазон</h1>";
 }
 
-    function bd_nice_number($n) {
+
+if ($bd_nice == 'yes') {
+
+  function bd_nice_number($n) {
 
 
 
-        $n = (0+str_replace(",","",$n));
+      $n = (0+str_replace(",","",$n));
 
 
 
-        if(!is_numeric($n)) return false;
+      if(!is_numeric($n)) return false;
 
 
 
-        if($n>1000000) return round(($n/1000000),3).' тыс';
+      if($n>1000000) return round(($n/1000000),3).' тыс';
 
-        else if($n>1000) return round(($n/1000),0).'+ тыc.';
-
-
-
-        return number_format($n);
-
-    }
+      else if($n>1000) return round(($n/1000),0).'+ тыc.';
 
 
+      return number_format($n);
+
+  }
+
+}
+
+else {
+
+  function bd_nice_number($n) {
+
+      $n = number_format( $n ,  0  , ',' , ' '  );
+
+      return $n;
+
+  }
+
+}
 
 
 

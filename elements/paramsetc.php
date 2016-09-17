@@ -27,6 +27,7 @@ $params = json_decode($component->params);
 $comcontent = $params->comcontent;
 $enablecommerce = $params->enablecommerce;
 $csshack = $params->csshack;
+$bd_nice = $params->bd_nice_number;
 $georegions = $params->georegions;
 $rus = $params->rus;
 $sng = $params->sng;

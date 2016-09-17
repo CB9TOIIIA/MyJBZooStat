@@ -127,6 +127,16 @@
         <option value="no">Нет</option>
       </field>
       <field
+        name="bd_nice_number"
+        type="radio"
+        label="Округлять значения данных"
+        description=""
+        class="btn-group btn-group-yesno"
+        default="no">
+        <option value="yes">Да</option>
+        <option value="no">Нет</option>
+      </field>
+      <field
       name="perpagepopular"
       type="text"
       label="Кол-во популярного неделю"
