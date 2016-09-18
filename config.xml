@@ -32,6 +32,16 @@
       <option value="no">Нет</option>
     </field>
     <field
+      name="more100social"
+      type="radio"
+      label="Скрывать счетчики >100 на стр."
+      description=""
+      class="btn-group btn-group-yesno"
+      default="no">
+      <option value="yes">Да</option>
+      <option value="no">Нет</option>
+    </field>
+    <field
       name="threshold"
       type="text"
       label="Минимальное кол-во статей/заказов в сутки"

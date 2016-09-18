@@ -441,7 +441,7 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
           echo "<td>".$alipublish_upformat."</td>";
           echo "<td><a target='_blank' href='{$myurltosite}'>".$aliname."</a></td>";
 
-          if ($keymonthcountv > '100') {
+          if ($keymonthcountv > '100' && $more100social == 'yes') {
             echo "<td>Счетчики отключены (>100)</td>";
           }
           else {
