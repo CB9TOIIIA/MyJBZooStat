@@ -24,10 +24,10 @@ require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramse
 
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/auhorsprofile.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');
-$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/datepick.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/datepicker.min.js');
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/jquery.dataTables.min.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/jquery.dataTables.min.js');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/datepick.css');
 //JUST DO IT   $this->app   ----> $app
 ?>
 
@@ -458,7 +458,7 @@ echo '<input type="checkbox" name="needcalend" value="yes" id="togglecalend"> <l
       echo "<td>ID</td>";
       echo "<td>Дата</td>";
       echo "<td>Название</td>";
-      echo "<td>Популярность</td>";
+      echo "<td>Популярность (основана на данных share соц. сетей)</td>";
 if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; endif;
       echo "</tr>";
       echo "</thead>";

@@ -10,7 +10,6 @@ if (empty($threshold)) {
 
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/articles.css');
-$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');
 
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/jquery.dataTables.min.css');
@@ -21,18 +20,19 @@ $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/asse
 echo '
 <script type="text/javascript">
 jQuery(document).ready(function($) {
+$("#myTable").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+});
+</script>';
+
+echo '
+<script type="text/javascript">
+jQuery(document).ready(function($) {
 $("#myTable2").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
 });
 </script>';
 
 //JUST DO IT 😹 $this->app   ----> $app
 ?>
-
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-  $("#myTable").tablesorter({});
-});
-</script>
 
 
 <div class="item-page">
