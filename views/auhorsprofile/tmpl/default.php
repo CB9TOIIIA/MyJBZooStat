@@ -1,27 +1,35 @@
 <?php
 /** @var $this MyjbzoostatViewAutors */
 defined( '_JEXEC' ) or die; // No direct access
+// dump($_POST,0,'post');
 ?>
+
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  jQuery('#mask-date-calendarstart').datepicker({
+      language: 'ru',
+      autoClose: true,
+      keyboardNav: true
+  });
+  jQuery('#mask-date-calendarend').datepicker({
+      language: 'ru',
+      autoClose: true,
+      keyboardNav: true
+  });
+});
+</script>
+
 <?php
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/auhorsprofile.css');
-$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/sort.js');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/datepick.css');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/datepicker.min.js');
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/jquery.dataTables.min.css');
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/jquery.dataTables.min.js');
 //JUST DO IT   $this->app   ----> $app
 ?>
-
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-  $("#myTable").tablesorter({});
-});
-</script>
-
-<script type="text/javascript">
-jQuery(document).ready(function($) {
-  $("#myTable2").tablesorter({});
-});
-</script>
 
 
 <div class="item-page">
@@ -103,7 +111,8 @@ jQuery(document).ready(function($) {
         //   echo  $itemIdsResultnameauth[] = '<option value="'.$created_by.'">'.$name.'</option>';
       }
 
-      echo '</select> <input type="submit"  class="btn" value="Поиск"></form>';
+      echo '</select>';
+      echo '<input type="submit"  class="btn" value="Поиск"></form>';
       echo '</div>';
 
 endif;
@@ -343,12 +352,16 @@ endif;
     //jbdump($datearraydatemonthas,0,'$datearraydatemonthas');
 
 
+    $calendstart = $input->get('calendstart', NULL, 'string');
+    $calendend = $input->get('calendend', NULL, 'string');
+    $needcalend = $input->get('needcalend', NULL, 'string');
+
     echo '<div class="monthdate">';
     echo '<form action="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" method="post" class="form-inline">';
 
     echo "<input type='hidden' name='authorids' value='".$authorid."'>";
 
-    echo '<select class="month" name="monthdate">';
+    echo '<select class="month widdiapo" name="monthdate">';
 
 
 
@@ -365,15 +378,31 @@ endif;
 
     }
 
-    echo '</select> <input type="submit"  class="btn" value="Поиск по месяцам"></form>';
+    echo '</select>';
+
+echo '<input type="checkbox" name="needcalend" value="yes" id="togglecalend"> <label for="togglecalend" class="checkbox" >Произвольный диапазон </label>';
+
+  echo "<div class='calendfixauhorsprofile'>";
+  echo '<input id="mask-date-calendarstart" type="text" name="calendstart" >';
+  echo '<input id="mask-date-calendarend" type="text" name="calendend" >';
+  echo '</div>';
+
+    echo '<input type="submit"  class="btn" value="Поиск по месяцам"></form>';
     echo '</div>';
 
+    if (!empty($calendstart) && !empty($calendend)) {
+      $date1calend = date('Y-m-d',strtotime($calendstart));
+      $date2calend = date('Y-m-d',strtotime($calendend));
+    }
 
     echo "<hr>";
     echo '<h1>'.$bigname.'</h1>';
 
     echo "<p class='countarticlesauthor'><big><big>Всего ".$StatOrProduct." автора: <b>".$countarticlesauthor."</big></big></b></p>";
 //fix last day month
+
+  if (empty($calendstart) && empty($calendend)) {
+
     $querymonth = "SELECT id"
     ." FROM " . ZOO_TABLE_ITEM
     ." WHERE type = '".$TypeArticleorProduct."'  AND  publish_up BETWEEN '".$monthdate."-01 00:00:00' AND  '".$monthdate."-31 23:59:59'
@@ -383,6 +412,22 @@ endif;
     ." FROM " . ZOO_TABLE_ITEM
     ." WHERE publish_up BETWEEN '".$monthdate."-01 00:00:00' AND  '".$monthdate."-31 23:59:59'
     AND created_by = '".$authorid."'";
+
+}
+
+  if (!empty($calendstart) && !empty($calendend)) {
+
+    $querymonth = "SELECT id"
+    ." FROM " . ZOO_TABLE_ITEM
+    ." WHERE type = '".$TypeArticleorProduct."'  AND  publish_up BETWEEN '".$date1calend." 00:00:00' AND  '".$date2calend." 23:59:59'
+    AND created_by = '".$authorid."'";
+
+    $querymonthcount = "SELECT COUNT(id)"
+    ." FROM " . ZOO_TABLE_ITEM
+    ." WHERE publish_up BETWEEN '".$date1calend." 00:00:00' AND  '".$date2calend." 23:59:59'
+    AND created_by = '".$authorid."'";
+
+}
 
     $Arrayquerymonth = array($app->table->tag->database->queryResultArray($querymonth));
     $Arrayquerymonthcccooount = array_count_values($app->table->tag->database->queryResultArray($querymonthcount));
@@ -403,7 +448,9 @@ endif;
 
     if (!empty($valuenoth)) :
       echo "<hr>";
-      echo "<p><b><big>".$StatOrProduct." за <u>{$alipublish_upformat}</u> ({$keymonthcountv}): </big></b></p>";
+      if (empty($calendstart) && empty($calendend)) {
+        echo "<p><b><big>".$StatOrProduct." за <u>{$alipublish_upformat}</u> ({$keymonthcountv}): </big></b></p>";
+      }
       echo "<table id='myTable' class='zebratable'>";
       echo "<thead>";
       echo "<tr class='upper'>";
@@ -505,7 +552,7 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
     echo "<hr>";
 
 
-    if (!empty($tagsArrayztagsquerymonthtag )) {
+    if (!empty($tagsArrayztagsquerymonthtag) && empty($calendstart) && empty($calendend)) {
 
       echo "<h3>Теги за месяц: </h3>";
 
@@ -564,17 +611,59 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
 
     }
 
+    echo '
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+    $("#myTable").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+    });
+    </script>';
+
+    echo '
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+    $("#myTable2").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+    });
+    </script>';
+
+    echo '
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+    $("#myTable321").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+    });
+    </script>';
+
+    echo '
+    <script type="text/javascript">
+    jQuery(document).ready(function($) {
+    $("#myTable322").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+    });
+    </script>';
+
     echo "<div class='allinfoabout'>";
 
     echo "<p><b><big>Статистика публикаций:</big></b> </p>";
-    echo "<div class='tagsstat mounth'><ul class='zebra'>";
+
+    echo "<table id='myTable321' class='zebratable'>";
+    echo "<thead>";
+    echo "<tr class='upper'>";
+    echo "<td>Дата <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+    echo "<td>Количество публикаций <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+    echo "</tr>";
+    echo "</thead>";
 
     foreach ($datearraydate as $valtagdate => $valuecount )  {
 
-      echo  $datearraydate[] = '<li>'.$valtagdate. ' ('. $valuecount.')</li>';
+      $datearraydate[] = '<li>'.$valtagdate. ' ('. $valuecount.')</li>';
 
+                      echo "<tr>";
+                      echo "<td>{$valtagdate}</td>";
+                      echo "<td>{$valuecount}</td>";
+                      echo "</tr>";
     }
-    echo "</ul></div>";
+
+echo "</table>";
+
+    echo "</div>";
 
     // ksort($tagsArraycounttagsmonthtag);
     // asort($tagsArrayztagsquerymonthtag);
@@ -588,8 +677,18 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
       echo "<h3>".$bigname." использует следующие теги (весь период):</h3>";
 
 
-      echo "<div class='tagsstat tags'><ul class='zebra'>";
+          echo "<table id='myTable322' class='zebratable'>";
+          echo "<thead>";
+          echo "<tr class='upper'>";
+          echo "<td>ID <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+          echo "<td>Тег <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+          echo "<td>Сколько раз употреблялся <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
+          echo "</tr>";
+          echo "</thead>";
 
+
+
+$idcount = 0;
 
       foreach ($tagsArraycounttags as $valtag => $value )  {
 
@@ -597,7 +696,7 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
 
         //echo  $valtags[] = '<li>'.$valtag. ' - '. $value.'</li>';
 
-
+$idcount++;
         $urlParams = [
           'e'          => [
             '_itemtag'    => $valtag,
@@ -617,14 +716,18 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
         ];
 
         $url = $app->jbrouter->addParamsToUrl('/', $urlParams);
-        echo $valtags[] = "<li><a target='_blank' href=\"{$url}\">{$valtag}</a>   ({$value})</li>";
+        $valtags[] = "<li><a target='_blank' href=\"{$url}\">{$valtag}</a>   ({$value})</li>";
 
+        echo "<tr>";
+        echo "<td>{$idcount}</td>";
+        echo "<td><a target='_blank' href=\"{$url}\">{$valtag}</a></td>";
+        echo "<td>{$value}</td>";
+        echo "</tr>";
         // echo  $valtags[] = '<li><a target="_blank" href="/?e[_itemtag]='.$valtag.'&amp;e[_itemauthor]='.$authorid.'&amp;order[field]=corepublish_up&amp;order[reverse]=1&order[mode]=s&logic=and&amp;send-form=Искать&amp;exact=1&amp;controller=searchjbuniversal&amp;task=filter&amp;type=news&amp;app_id=1">'.$valtag. '</a>   ('. $value.')</li>';
 
       }
-      echo "</ul></div>";
+      echo "</table>";
 
-      echo "</div>";
 
     }
 

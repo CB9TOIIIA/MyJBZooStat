@@ -1,4 +1,14 @@
 #mask-date-calendarstart, #mask-date-calendarend {width: 90px; margin-left: 5px; margin-right: 5px}
+
+input#togglecalend {
+    margin-left: 150px;
+}
+
+.widdiapo {width: 100px;}
+
+#togglecalend + label.checkbox {
+    margin-right: 25px;
+}
 .calendfix {
   position: absolute;
   margin-top: 0px;
@@ -6,8 +16,19 @@
   margin-left: -15px;
   display: none;
 }
+.calendfixauhorsprofile {
+  position: absolute;
+  margin-top: 0px;
+  left: 340px;
+  margin-left: -15px;
+  display: none;
+}
 
 input#togglecalend[type=checkbox]:checked ~ .calendfix {
+	display: inline !important;
+}
+
+input#togglecalend[type=checkbox]:checked ~ .calendfixauhorsprofile {
 	display: inline !important;
 }
 .datepicker--cell-day.-other-month-,.datepicker--cell-year.-other-decade- {
