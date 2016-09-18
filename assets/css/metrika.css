@@ -983,7 +983,7 @@ hr {clear: both !important}
 }
 .myspan25 {    width: 18.8%  !important; font-size: 1.3em !important;    padding: 10px 0px !important; }
 .sweet-alert fieldset {display: none;}
-.svgpul {position: absolute !important; }
+.svgpul {position: absolute !important;     margin-left: -15px;    margin-top: -2px;} 
 .pageview {
     background-color: #337AB7;
     padding: 50px;

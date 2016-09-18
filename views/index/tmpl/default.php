@@ -4,11 +4,27 @@ defined( '_JEXEC' ) or die;
 jimport('joomla.html.html.bootstrap');
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 
-
 if ($csshack == 'yes') {
 echo "<style>div#system-message-container {display:none;}</style>";
 }
+?>
 
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  jQuery('#mask-date-calendarstart').datepicker({
+      language: 'ru',
+      autoClose: true,
+      keyboardNav: true
+  });
+  jQuery('#mask-date-calendarend').datepicker({
+      language: 'ru',
+      autoClose: true,
+      keyboardNav: true
+  });
+});
+</script>
+
+<?php
 // dump($_POST,0,'POST');
 
 $url = 'https://api.github.com/repos/cb9toiiia/myjbzoostat/releases/latest';
@@ -41,11 +57,15 @@ echo "<div class='vergit'>Версия  - <a href='https://github.com/CB9TOIIIA/
 
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/metrika.css');
 
+$document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/datepick.css');
+
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/metrika.js');
 
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/jquery.dataTables.min.css');
 
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/jquery.dataTables.min.js');
+
+$document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/datepicker.min.js');
 
 $eyed = 'data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8cGF0aCBkPSJNMjU2LDk2QzE0NC4zNDEsOTYsNDcuNTU5LDE2MS4wMjEsMCwyNTZjNDcuNTU5LDk0Ljk3OSwxNDQuMzQxLDE2MCwyNTYsMTYwYzExMS42NTYsMCwyMDguNDM5LTY1LjAyMSwyNTYtMTYwICAgQzQ2NC40NDEsMTYxLjAyMSwzNjcuNjU2LDk2LDI1Niw5NnogTTM4Mi4yMjUsMTgwLjg1MmMzMC4wODIsMTkuMTg3LDU1LjU3Miw0NC44ODcsNzQuNzE5LDc1LjE0OCAgIGMtMTkuMTQ2LDMwLjI2MS00NC42MzksNTUuOTYxLTc0LjcxOSw3NS4xNDhDMzQ0LjQyOCwzNTUuMjU3LDMwMC43NzksMzY4LDI1NiwzNjhjLTQ0Ljc4LDAtODguNDI4LTEyLjc0My0xMjYuMjI1LTM2Ljg1MiAgIGMtMzAuMDgtMTkuMTg4LTU1LjU3LTQ0Ljg4OC03NC43MTctNzUuMTQ4YzE5LjE0Ni0zMC4yNjIsNDQuNjM3LTU1Ljk2Miw3NC43MTctNzUuMTQ4YzEuOTU5LTEuMjUsMy45MzgtMi40NjEsNS45MjktMy42NSAgIEMxMzAuNzI1LDE5MC44NjYsMTI4LDIwNS42MTMsMTI4LDIyMWMwLDcwLjY5MSw1Ny4zMDgsMTI4LDEyOCwxMjhjNzAuNjkxLDAsMTI4LTU3LjMwOSwxMjgtMTI4ICAgYzAtMTUuMzg3LTIuNzI1LTMwLjEzNC03LjcwMy00My43OTlDMzc4LjI4NSwxNzguMzksMzgwLjI2NiwxNzkuNjAyLDM4Mi4yMjUsMTgwLjg1MnogTTI1NiwyMDVjMCwyNi41MS0yMS40OSw0OC00OCw0OCAgIHMtNDgtMjEuNDktNDgtNDhzMjEuNDktNDgsNDgtNDhTMjU2LDE3OC40OSwyNTYsMjA1eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=';
 
@@ -120,6 +140,9 @@ if(!empty($counter_id) && !empty($app_token))
     $nowYearglobal = date('Y');
     $nowMonthglobal = date('m');
     $minYearleft = $nowYearglobal - 2;
+    $calendstart = $input->get('calendstart', NULL, 'string');
+    $calendend = $input->get('calendend', NULL, 'string');
+    $needcalend = $input->get('needcalend', NULL, 'string');
 
     echo '<div class="monthdate">';
     echo '<form action="/administrator/index.php?option=com_myjbzoostat&view=index" method="post" class="form-inline">';
@@ -150,6 +173,8 @@ if(!empty($counter_id) && !empty($app_token))
         }
         echo '</select>';
 
+    echo '<input type="checkbox" name="needcalend" value="yes" id="togglecalend"> <label for="togglecalend" class="checkbox" >Произвольный диапазон </label>';
+
   if (!empty($NeedCountry) == 'yes') {
         echo '<label class="checkbox"><input type="checkbox" name="NeedCountry" value="yes" checked> Страны </label>';
   }
@@ -168,14 +193,18 @@ if(!empty($counter_id) && !empty($app_token))
         echo '<label class="checkbox"><input type="checkbox" name="NeedPop" value="yes" checked> Популярное </label>';
   }
   else {
-        echo '<label class="checkbox"><input type="checkbox" name="NeedPop" value="yes"> Популярное </label>';
+    echo '<label class="checkbox"><input type="checkbox" name="NeedPop" value="yes"> Популярное </label>';
   }
 
 
-    echo '<input type="submit"  class="btn" value="Поиск по месяцам"></form>';
-    echo '</div>';
+  echo "<div class='calendfix'>";
+  echo '<input id="mask-date-calendarstart" type="text" name="calendstart" >';
+  echo '<input id="mask-date-calendarend" type="text" name="calendend" >';
+  echo '</div>';
+  echo '<input type="submit"  class="btn" value="Поиск по месяцам"></form>';
+  echo '</div>';
 
-  if (!empty($yayear) && !empty($yamonth)) {
+  if (!empty($yayear) && !empty($yamonth) && empty($calendstart) && empty($calendend)) {
 
     $date1 = $yayear . $yamonth . '01';
     $nextmonth = $yamonth + 1;
@@ -184,7 +213,15 @@ if(!empty($counter_id) && !empty($app_token))
     $ModDate1 = $date1;
     $ModDate2 = $date2;
 
-    // dump($yayear,0,'$yayear');
+    // dump($yamonth,0,'$yamonth');
+
+  }
+
+  if (!empty($calendstart) && !empty($calendend)) {
+    $date1 = date('Ymd',strtotime($calendstart));
+    $date2 = date('Ymd',strtotime($calendend));
+    $ModDate1 = $date1;
+    $ModDate2 = $date2;
     // dump($yamonth,0,'$yamonth');
 
   }
@@ -239,20 +276,25 @@ $ModDate2 = new DateTime($date2);
 $ModDate2->modify('-1 day');
 $ModDate2 = $ModDate2->format('Ymd');
 
+    if (!empty($yayear) && !empty($yamonth) && empty($calendstart) && empty($calendend)) {
 
-  if (!empty($yayear) && !empty($yamonth)) {
+      $date1 = $yayear . $yamonth . '01';
+      $nextmonth = $yamonth + 1;
+      $dayendmonth =  date('d', mktime(0,0,0,$nextmonth,0,2016));
+      $date2 = $yayear . $yamonth . $dayendmonth;
+      $ModDate1 = $date1;
+      $ModDate2 = $date2;
 
-    $date1 = $yayear . $yamonth . '01';
-    $nextmonth = $yamonth + 1;
-    $dayendmonth =  date('d', mktime(0,0,0,$nextmonth,0,2016));
-    $date2 = $yayear . $yamonth . $dayendmonth;
-    $ModDate1 = $date1;
-    $ModDate2 = $date2;
-    // dump($date1,0,'$date1');
-    // dump($date2,0,'$date2');
-    // dump($ModDate1,0,'$ModDate1');
-    // dump($ModDate2,0,'$ModDate2');
-  }
+    }
+
+    if (!empty($calendstart) && !empty($calendend)) {
+      $date1 = date('Ymd',strtotime($calendstart));
+      $date2 = date('Ymd',strtotime($calendend));
+      $ModDate1 = $date1;
+      $ModDate2 = $date2;
+
+      // dump($yamonth,0,'$yamonth');
+    }
 
     $urlgeo = 'http://api-metrika.yandex.ru/stat/geo.json?id='.$counter_id;
 
@@ -861,7 +903,13 @@ else {
 
 }
 
+function nice_num($n) {
 
+    $n = number_format( $n ,  0  , ',' , ' '  );
+
+    return $n;
+
+}
 
 if ($dataurlfree) {
 
@@ -1137,9 +1185,9 @@ echo "<ul class='zebra country'>";
 
       $namecountry = $valueobjgeo->name;
 
-      $countrypw = $valueobjgeo->page_views;
+      $countrypw = nice_num($valueobjgeo->page_views);
 
-      $countyvis = $valueobjgeo->visits;
+      $countyvis = nice_num($valueobjgeo->visits);
 
 
 
@@ -1482,6 +1530,9 @@ if ($comcontent == 'yes') {
 
     }
 
+$page_views = nice_num($page_views);
+$visits = nice_num($visits);
+$visitors = nice_num($visitors);
 
 
     echo "<li {$classbest} ><span>{$newdateformat}</span> <span> <img src='{$eyed}' /> {$page_views} </span> <span>   <img src='{$usersd}' />  {$visits} </span>  <span> <img src='{$oneuserd}' />  {$visitors} </span> {$valdatestat}  {$svgpulse}  </li>";
@@ -1858,7 +1909,13 @@ if ($datacurdate) {
 
   $datacurdatetotalvis = $datacurdatetotals->visits;
 
+  $datacurdatetotalpv = nice_num($datacurdatetotalpv);
+  $datacurdatetotalvis = nice_num($datacurdatetotalvis);
+
+
+
   $datacurdate = $datacurdate->data;
+
 
   $datavcheratotals1 = $datavchera->totals;
 
@@ -2001,11 +2058,9 @@ if ($CountYaBlocks <= '3') {
 
 
 
+  $pryamiezahodi = nice_num($valuesvodka->page_views);
 
-
-  $pryamiezahodi = $valuesvodka->page_views;
-
-  $visitspryamie = $valuesvodka->visits;
+  $visitspryamie = nice_num($valuesvodka->visits);
 
 
 
@@ -2156,6 +2211,10 @@ if ($datavchera) {
   $checkdynamick = ($datavcheratalpv > $daytotalpv1) ? '<img src='.$icond.' />' : '<img src='.$iconf.' />' ;
 
 
+
+          $datavcheratalpv = nice_num($datavcheratalpv);
+          $datavcheratalvis = nice_num($datavcheratalvis);
+
     if ($CountYaBlocks == '5') {
       $gridmyrow = 'center myspan2 span2';
     }
@@ -2175,7 +2234,6 @@ if ($datavchera) {
     echo $datavcheratalpv;
 
         echo ' <img src="'.$icong.'" /> ';
-
 
 
   echo $datavcheratalvis;
@@ -2288,7 +2346,8 @@ if ($datavchera) {
 
       echo '<div class="'.$gridmyrow.'  bigmonthdata " style="'.$cssclasstoblock.'">';
 
-
+      $pryamiezahodi = nice_num($pryamiezahodi);
+      $visitspryamie = nice_num($visitspryamie);
 
       echo ' <img src='.$iconc.' /> ';
 
@@ -2369,6 +2428,10 @@ if ($datapozavchera) {
   $checkdynamick = ($daytotalpv > $datapozapozapv1) ? '<img src='.$icond.' />' : '<img src='.$iconf.' />' ;
 
 
+
+            $daytotalpv = nice_num($daytotalpv);
+            $daytotalvis = nice_num($daytotalvis);
+
     if ($CountYaBlocks == '5') {
       $gridmyrow = 'center myspan2 span2';
     }
@@ -2424,6 +2487,8 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozavcheradate
   $visitspryamie = $valuesvodka->visits;
 
 
+              $pryamiezahodi = nice_num($pryamiezahodi);
+              $visitspryamie = nice_num($visitspryamie);
 
   $globalzahodi = bd_nice_number($pryamiezahodi);
 
@@ -2576,7 +2641,8 @@ if ($datapozapozavchera) {
 
   $checkdynamick = ($daytotalpv > $datapozapozapv12) ? '<img src='.$icond.' />' : '<img src='.$iconf.' />' ;
 
-
+  $daytotalpv = nice_num($daytotalpv);
+  $daytotalvis = nice_num($daytotalvis);
 
     if ($CountYaBlocks == '5') {
       $gridmyrow = 'center myspan2 span2';
@@ -2632,7 +2698,8 @@ echo '<div class="nameotch">Посещаемость за: '.$datapozapozavchera
 
   $visitspryamie = $valuesvodka->visits;
 
-
+  $pryamiezahodi = nice_num($pryamiezahodi);
+  $visitspryamie = nice_num($visitspryamie);
 
   $globalzahodi = bd_nice_number($pryamiezahodi);
 
