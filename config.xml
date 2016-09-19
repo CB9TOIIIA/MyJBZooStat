@@ -47,6 +47,12 @@
       label="Минимальное кол-во статей/заказов в сутки"
       description=""
       default=""/>
+    <field
+        name="fb_app_token"
+        type="text"
+        label="access token для счетчика FB"
+        description=""
+        default=""/>
     </fieldset>
   <fieldset name="yandex" label="Яндекс.Метрика" addfieldpath="administrator/components/com_myjbzoostat/elements">
       <field

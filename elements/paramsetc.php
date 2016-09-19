@@ -29,6 +29,7 @@ $more100social = $params->more100social;
 $enablecommerce = $params->enablecommerce;
 $csshack = $params->csshack;
 $bd_nice = $params->bd_nice_number;
+$fb_app_token = $params->fb_app_token;
 $georegions = $params->georegions;
 $rus = $params->rus;
 $sng = $params->sng;

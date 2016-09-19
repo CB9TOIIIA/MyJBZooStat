@@ -19,3 +19,6 @@ tr.upper td img{margin-left:1%;opacity:.2}
 tr.upper:hover{cursor:pointer}
 .mono {    font-family: monospace;    position: absolute;    margin-top: -5px; }
 .tagsstat.tags .zebra { height: 1000px;}
+.ml15 {margin-left: 15px;}
+img.fbimgmini {margin-top: -3px; margin-right: 5px; }
+.fbminidiv {float: left; margin-right: 25px;}

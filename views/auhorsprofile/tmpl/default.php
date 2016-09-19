@@ -2,6 +2,7 @@
 /** @var $this MyjbzoostatViewAutors */
 defined( '_JEXEC' ) or die; // No direct access
 // dump($_POST,0,'post');
+
 ?>
 
 <script type="text/javascript">
@@ -355,6 +356,7 @@ endif;
     $calendstart = $input->get('calendstart', NULL, 'string');
     $calendend = $input->get('calendend', NULL, 'string');
     $needcalend = $input->get('needcalend', NULL, 'string');
+    $fb_fgc = $input->get('fb_fgc', NULL, 'string');
 
     echo '<div class="monthdate">';
     echo '<form action="/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile" method="post" class="form-inline">';
@@ -381,13 +383,14 @@ endif;
     echo '</select>';
 
 echo '<input type="checkbox" name="needcalend" value="yes" id="togglecalend"> <label for="togglecalend" class="checkbox" >Произвольный диапазон </label>';
+echo '<label  class="checkbox" >Попробовать получить FB счетчики <input type="checkbox" name="fb_fgc" value="yes" id="fb_fgc">  </label>';
 
   echo "<div class='calendfixauhorsprofile'>";
   echo '<input id="mask-date-calendarstart" type="text" name="calendstart" >';
   echo '<input id="mask-date-calendarend" type="text" name="calendend" >';
   echo '</div>';
 
-    echo '<input type="submit"  class="btn" value="Поиск по месяцам"></form>';
+    echo '<input type="submit"  class="btn ml15" value="Поиск по месяцам"></form>';
     echo '</div>';
 
     if (!empty($calendstart) && !empty($calendend)) {
@@ -486,13 +489,67 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
           echo "<td>".$tablecount."</td>";
           echo "<td>".$aliid."</td>";
           echo "<td>".$alipublish_upformat."</td>";
+
+
+
+
           echo "<td><a target='_blank' href='{$myurltosite}'>".$aliname."</a></td>";
 
           if ($keymonthcountv > '100' && $more100social == 'yes') {
             echo "<td>Счетчики отключены (>100)</td>";
           }
           else {
-            echo "<td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$myurltosite}'  data-size='m' data-counter=''></div></td>";
+
+
+            if ($fb_fgc == 'yes' && !empty($fb_app_token)) {
+
+              #dev
+              #$myurltosite = str_replace('site.local','site.com',$myurltosite);
+              #enddev
+
+              echo "<td>";
+
+              $app_fb_token = 'access_token='.$fb_app_token;;
+              $fb_app_url = $myurltosite.'&'.$app_fb_token;
+              $fb_app_url = urldecode($fb_app_url);
+
+              $myfbcountrezerv = "https://graph.facebook.com/?id={$fb_app_url}";
+
+//todofix
+
+              $ch = curl_init();
+              curl_setopt($ch, CURLOPT_URL, $myfbcountrezerv);
+              curl_setopt($ch, CURLOPT_POST, false);
+              curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2" );
+              curl_setopt($ch, CURLOPT_HEADER, 0);
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+              curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+              $fbsharegetapi = curl_exec($ch);
+              curl_close($ch);
+
+               if (empty($fbsharegetapi)) { $fbsharegetapi = file_get_contents($myfbcountrezerv); }
+
+               $myfbcountrezervdec = json_decode($fbsharegetapi, true);
+               $myfbcount = $myfbcountrezervdec['share']['share_count'];
+              //  dump($myfbcountrezervdec,0,'$myfbcountrezervdec');
+               if (!empty($myfbcount)) {
+                 echo "<div class='fbminidiv'>";
+                 echo '<img class=="fbimgmini"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAM1BMVEU7V5Y7V5g7WZc7WZg9WplOaaJnfq9sg7J1ird7j7qBlL2Wpsicq8udrMzAyt7P1ub///8xwDQLAAAAA3RSTlPGycoO3WmFAAAAR0lEQVQoz6XOORaAMAwDUYcYzCaY+5+WDuy0qPzFPNnUy5r1YR/4dioyXIASBAMcsHtuCDxFQzdIywsCgHWEuTbqsT/QKtgD7m8Fvl8KS70AAAAASUVORK5CYII="> ';
+                 echo $myfbcount;
+                 //usleep(10000); //need?
+                 echo "</div>";
+                echo " <div class='ya-share2' data-services='vkontakte,odnoklassniki,moimir,gplus' data-url='{$myurltosite}'  data-size='m'  data-counter=''></div>";
+               }
+               else {
+                 $fbcountget = "Временно невозможно получить версию";
+               }
+
+              echo "</td>";
+            }
+            else {
+              echo "<td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$myurltosite}'  data-size='m' data-counter=''></div></td>";
+            }
+
 
           }
 
