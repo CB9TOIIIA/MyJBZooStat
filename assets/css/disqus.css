@@ -30,7 +30,7 @@ form.form-inline select,form.form-inline input{margin-right:1%}
 .threepx{margin:3px}
 .flform{display:inline;margin-left:5px}
 form + a > em.icon-out-2{position:absolute;margin-left:10px;margin-top:5px}
-.numbercoma{margin-left:-27px;position:absolute;font-weight:700;text-decoration:underline}
+.numbercoma{margin-left:-45px;position:absolute;font-weight:700;text-decoration:underline}
 .btn-danger.dislike {background-color: #D2514A !important;     background-image: -webkit-gradient(linear,0 0,0 100%,from(#D2514A),to(#d83f38)) !important;  }
 b + small {display: inline !important;  }
 blockquote li .btn-mini {    font-size: 12px  !important;  }
@@ -55,3 +55,13 @@ div.editcommentplace > form > textarea {
 input.btn.btn-primary.lpdisqusidcommentupdate {
     margin-left: 30px;
 }
+
+.calendfix {
+    background-color: #fff;
+    width: 260px;
+}
+input#togglecalend {
+    margin-left: 25px !important;;
+}
+
+.checkbox + label {margin-right: 20px;}
