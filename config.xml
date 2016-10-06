@@ -237,6 +237,49 @@
       description="Для графика"
       default=""/>
   </fieldset>
+  <fieldset name="socialblock" label="Социальные сети">
+      <field
+      name="vksocialname"
+      type="text"
+      label="Адрес группы в VK"
+      description=""
+      default=""/>
+      <field
+      name="vk_ID_uids"
+      type="text"
+      label="ID группы в VK"
+      description=""
+      default=""/>
+      <field
+      name="fbsocialname"
+      type="text"
+      label="Адрес группы в FB"
+      description=""
+      default=""/>
+      <field
+      name="gplussocialname"
+      type="text"
+      label="Адрес группы в G+"
+      description=""
+      default=""/>
+      <field
+      name="oksocialname"
+      type="text"
+      label="Адрес страницы в OK"
+      description=""
+      default=""/>
+      <field
+      name="twittersocialname"
+      type="text"
+      label="Имя пользователя в twitter"
+      description="Для графика"
+      default=""/>
+      <field
+      name="youtubesocialname"
+      type="text"
+      label="Полная ссылка на ютуб канал"
+      default=""/>
+  </fieldset>
   <fieldset name="disqus" label="Disqus" addfieldpath="administrator/components/com_myjbzoostat/elements">
       <field
       name="disqus_url"

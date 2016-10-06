@@ -58,6 +58,13 @@ $counter_id =  $params->counter_id;
 $fillbad =  $params->countpageviewyambad;
 $fillgood =  $params->countpageviewyamgood;
 $fillnorm =  $params->countpageviewyamnorm;
+$vksocialname=  $params->vksocialname;
+$vk_ID_uids=  $params->vk_ID_uids;
+$fbsocialname=  $params->fbsocialname;
+$gplussocialname=  $params->gplussocialname;
+$oksocialname=  $params->oksocialname;
+$twittersocialname=  $params->twittersocialname;
+$youtubesocialname=  $params->youtubesocialname;
 
 $httpClientj = JHttpFactory::getHttp();
 

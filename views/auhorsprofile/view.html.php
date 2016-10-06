@@ -29,7 +29,7 @@ class MyjbzoostatViewAuhorsprofile extends JViewLegacy
 				$StatOrProduct = $params->statorproduct;
 				$enablecommerce = $params->enablecommerce;
 
-				
+
 				if ($StatOrProduct == 'stat') { $StatOrProduct = 'Статьи';}
 				if ($StatOrProduct == 'product') { $StatOrProduct = 'Товары';}
 
@@ -96,14 +96,25 @@ class MyjbzoostatViewAuhorsprofile extends JViewLegacy
 				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
 
 
+
+
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Disqus');
-				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=disqus\" class=\"btn btn-small\"><i class=\"icon-eye\" title=\"$title\"></i>$title</a>";
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=disqus\" class=\"btn btn-small\"><i class=\"icon-comments-2\" title=\"$title\"></i>$title</a>";
+				$bar->appendButton('Custom', $dhtml, 'list');
+
+				JToolBarHelper::divider();
+
+				$bar = JToolBar::getInstance('toolbar');
+				$title = JText::_('Социальные сети');
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=social\" class=\"btn btn-small\"><i class=\"icon-tree\" title=\"$title\"></i>$title</a>";
 				$bar->appendButton('Custom', $dhtml, 'list');
 
 				JToolBarHelper::preferences('com_myjbzoostat');
+
+
 
     }
 

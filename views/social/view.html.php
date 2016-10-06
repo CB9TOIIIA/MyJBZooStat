@@ -5,7 +5,10 @@ defined( '_JEXEC' ) or die; // No direct access
  * View for  current element
  * @author CB9TOIIIA
  */
-class MyjbzoostatViewAutors extends JViewLegacy
+
+
+
+class MyjbzoostatViewSocial extends JViewLegacy
 {
 
 	public function display( $tpl = null )
@@ -18,7 +21,7 @@ class MyjbzoostatViewAutors extends JViewLegacy
      */
     protected function _setToolBar()
     {
-        JToolBarHelper::title( JText::_( 'Список авторов' ) );
+        JToolBarHelper::title( JText::_( 'Статистика социальных сетей' ) );
 				JToolbarHelper::divider();
 
 				$component = JComponentHelper::getComponent('com_myjbzoostat');
@@ -93,7 +96,6 @@ class MyjbzoostatViewAutors extends JViewLegacy
 				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
 
 
-
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
@@ -109,7 +111,6 @@ class MyjbzoostatViewAutors extends JViewLegacy
 				$bar->appendButton('Custom', $dhtml, 'list');
 
 				JToolBarHelper::preferences('com_myjbzoostat');
-
 
 
     }
