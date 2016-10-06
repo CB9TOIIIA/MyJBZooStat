@@ -43,7 +43,8 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
    'timeout' => 10,        // Wait in seconds
    'allow_redirects' => true,
    'max_redirects'   => 10,
-   'user_agent'  => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2', // Custom UA
+   'user_agent'  => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.2 (KHTML, like Gecko) Chrome/22.0.1216.0 Safari/537.2',
+   'accept-language' => 'ru-RU',
    'verify'  => false,     // Check cert for SSL
  ]);
 
@@ -135,19 +136,41 @@ else {
 
    if ($code == 200) {
      $body = $response->body;
-     if (preg_match('/подписчик/', $body, $matchgplustest)) {
+    //  echo "<pre>";
+    //  var_dump($body);
+    //  echo "</pre>";
+     if (preg_match('/подписчик/', $body, $matchgplustest) || preg_match('/послідовник/', $body, $matchgplustest) || preg_match('/користувач/', $body, $matchgplustest)) {
        preg_match_all('/\<span class\=\"BOfSxb\"\>.+\<span class\=\"DtDbDb\"\>/', $body, $matchgplus);
        foreach ($matchgplus as $matchgplusone) {
          $matchgplusone = strip_tags($matchgplusone['0']);
          $matchgplusone = preg_replace('/&.*/', '', $matchgplusone);
          $matchgplusone = str_replace(' подписчика','',$matchgplusone);
          $matchgplusone = str_replace(' подписчик','',$matchgplusone);
+         $matchgplusone = str_replace(' послідовник','',$matchgplusone);
+         $matchgplusone = str_replace(' послідовників','',$matchgplusone);
+         $matchgplusone = str_replace(' користувач','',$matchgplusone);
+         $matchgplusone = preg_replace('/і.*/', '', $matchgplusone);
+         $matchgplusone = preg_replace('/в.*/', '', $matchgplusone);
+         $matchgplusone = str_replace('і','',$matchgplusone);
+         $matchgplusone = str_replace('в','',$matchgplusone);
+        //  $matchgplusone = str_replace(' і підписалися','',$matchgplusone);
+        //  $matchgplusone = str_replace(' підписалися','',$matchgplusone);
+        //  $matchgplusone = str_replace('підписалися','',$matchgplusone);
+        //  $matchgplusone = str_replace(' пдписалося','',$matchgplusone);
+        //  $matchgplusone = str_replace('пдписалося','',$matchgplusone);
+        //  $matchgplusone = str_replace('і','',$matchgplusone);
+        //  $matchgplusone = str_replace('в','',$matchgplusone);
        }
 
        //dump($body,0,'$body');
        //dump($matchgplus,0,'$matchgplus');
      }
+     else {
+       $matchgplusone = '-';
+     }
+
    }
+
  }
  else {
    $matchgplusone = '-';
@@ -196,6 +219,16 @@ else {
       $matchtwitreadusers = strip_tags($matchtwiter['1']);
       $matchtwitusers = strip_tags($matchtwiter['2']);
       $matchtwitlike = strip_tags($matchtwiter['3']);
+
+      if (empty($matchtwitreadusers)) {
+        $matchtwitreadusers = 0;
+      }
+      if (empty($matchtwitusers)) {
+        $matchtwitusers = 0;
+      }
+      if (empty($matchtwitlike)) {
+        $matchtwitlike = 0;
+      }
 
     }
 
@@ -264,7 +297,7 @@ if (!empty($twittersocialname)) {
 <?php  if (!empty($gplussocialname)) : ?>
 
 <div class="gplusblock">
-  <a target="_blank"  href="https://plus.google.com/+<?php echo $gplussocialname;?>"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUwIDUwIiBpZD0iTGF5ZXJfMSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTAgNTAiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik00NSwxSDVDMi44LDEsMSwyLjgsMSw1djQwYzAsMi4yLDEuOCw0LDQsNGg0MGMyLjIsMCw0LTEuOCw0LTRWNUM0OSwyLjgsNDcuMiwxLDQ1LDF6IiBmaWxsPSIjRTEzNzE5Ii8+PGcgaWQ9IkdfeDJCXyI+PHBvbHlnb24gZmlsbD0iI0ZGRkZGRiIgaWQ9Il94MkJfXzFfIiBwb2ludHM9IjQwLDIzIDM2LDIzIDM2LDE5IDM0LDE5IDM0LDIzIDMwLDIzIDMwLDI1IDM0LDI1IDM0LDI5IDM2LDI5IDM2LDI1IDQwLDI1ICAiLz48cGF0aCBkPSJNMjUsMjdjMCwwLTItMS4yLTItMmMwLDAtMC41LTEuOCwxLTNjMS41LTEuMiwzLTMsMy01YzAtMi4zLTEtNS0zLTZoM2wyLjQtMWMwLDAtNy4xLDAtOS40LDAgICBjLTQuMiwwLTgsMy4zLTgsN2MwLDMuNywyLjgsNi42LDcuMSw2LjZjMC4zLDAsMC42LDAsMC45LDBjLTAuMywwLjUtMC41LDEuMS0wLjUsMS43YzAsMSwwLjgsMiwxLjUsMi43Yy0wLjUsMC0xLjQsMC0yLDAgICBjLTUuMiwwLTksMi42LTksNmMwLDMuNCw0LjksNiwxMCw2YzUuOSwwLDEwLTMsMTAtN0MzMCwzMC4zLDI3LjUsMjguNywyNSwyN3ogTTIxLDIzYy0yLjQsMC01LjYtMi45LTYtNmMtMC40LTMuMSwxLjYtNi4xLDQtNiAgIHM0LjYsMi45LDUsNi4xQzI0LjQsMjAuMiwyMywyMywyMSwyM3ogTTIwLDM4Yy0zLjYsMC03LTEuMy03LTRjMC0yLjcsMy40LTUsNy01YzAuOCwwLDIsMCwyLDBjMSwwLDIuOSwwLjksNCwyYzEsMSwxLDIuNywxLDMgICBDMjcsMzcsMjUsMzgsMjAsMzh6IiBmaWxsPSIjRkZGRkZGIiBpZD0iZ18xXyIvPjwvZz48L3N2Zz4="></a>
+  <a target="_blank"  href="https://plus.google.com/<?php echo $gplussocialname;?>"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUwIDUwIiBpZD0iTGF5ZXJfMSIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNTAgNTAiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik00NSwxSDVDMi44LDEsMSwyLjgsMSw1djQwYzAsMi4yLDEuOCw0LDQsNGg0MGMyLjIsMCw0LTEuOCw0LTRWNUM0OSwyLjgsNDcuMiwxLDQ1LDF6IiBmaWxsPSIjRTEzNzE5Ii8+PGcgaWQ9IkdfeDJCXyI+PHBvbHlnb24gZmlsbD0iI0ZGRkZGRiIgaWQ9Il94MkJfXzFfIiBwb2ludHM9IjQwLDIzIDM2LDIzIDM2LDE5IDM0LDE5IDM0LDIzIDMwLDIzIDMwLDI1IDM0LDI1IDM0LDI5IDM2LDI5IDM2LDI1IDQwLDI1ICAiLz48cGF0aCBkPSJNMjUsMjdjMCwwLTItMS4yLTItMmMwLDAtMC41LTEuOCwxLTNjMS41LTEuMiwzLTMsMy01YzAtMi4zLTEtNS0zLTZoM2wyLjQtMWMwLDAtNy4xLDAtOS40LDAgICBjLTQuMiwwLTgsMy4zLTgsN2MwLDMuNywyLjgsNi42LDcuMSw2LjZjMC4zLDAsMC42LDAsMC45LDBjLTAuMywwLjUtMC41LDEuMS0wLjUsMS43YzAsMSwwLjgsMiwxLjUsMi43Yy0wLjUsMC0xLjQsMC0yLDAgICBjLTUuMiwwLTksMi42LTksNmMwLDMuNCw0LjksNiwxMCw2YzUuOSwwLDEwLTMsMTAtN0MzMCwzMC4zLDI3LjUsMjguNywyNSwyN3ogTTIxLDIzYy0yLjQsMC01LjYtMi45LTYtNmMtMC40LTMuMSwxLjYtNi4xLDQtNiAgIHM0LjYsMi45LDUsNi4xQzI0LjQsMjAuMiwyMywyMywyMSwyM3ogTTIwLDM4Yy0zLjYsMC03LTEuMy03LTRjMC0yLjcsMy40LTUsNy01YzAuOCwwLDIsMCwyLDBjMSwwLDIuOSwwLjksNCwyYzEsMSwxLDIuNywxLDMgICBDMjcsMzcsMjUsMzgsMjAsMzh6IiBmaWxsPSIjRkZGRkZGIiBpZD0iZ18xXyIvPjwvZz48L3N2Zz4="></a>
   <div class="gpluscount"><?php   echo $matchgplusone;  ?> </div>
   <div class="gplusinfo">Кол-во подписчиков</div>
   <div class="gpluscountplus"><?php   echo $matchgplusbtn;  ?> </div>
