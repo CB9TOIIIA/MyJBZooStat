@@ -888,7 +888,7 @@ if ($updateAr->code == 200) {
 
           <td><span class='disqus-comment-count' data-disqus-url='{$myurltosite}'></span></td>
 
-          <td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$myurltosite}'  data-size='m' data-counter=''></div></td></tr>";
+          <td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-access-token:facebook='{$fb_app_token}'  data-url='{$myurltosite}'  data-size='m' data-counter=''></div></td></tr>";
 
         }
       } $datearraydatemonth = count($Disid);

@@ -533,23 +533,23 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
                 echo '<img class=="fbimgmini"  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAM1BMVEU7V5Y7V5g7WZc7WZg9WplOaaJnfq9sg7J1ird7j7qBlL2Wpsicq8udrMzAyt7P1ub///8xwDQLAAAAA3RSTlPGycoO3WmFAAAAR0lEQVQoz6XOORaAMAwDUYcYzCaY+5+WDuy0qPzFPNnUy5r1YR/4dioyXIASBAMcsHtuCDxFQzdIywsCgHWEuTbqsT/QKtgD7m8Fvl8KS70AAAAASUVORK5CYII="> ';
                 echo $myfbcount;
                 echo "</div>";
-                echo " <div class='ya-share2' data-services='vkontakte,odnoklassniki,moimir,gplus' data-url='{$myurltosite}'  data-size='m'  data-counter=''></div>";
+                echo " <div class='ya-share2' data-services='vkontakte,odnoklassniki,moimir,gplus' data-url='{$myurltosite}' data-access-token:facebook='{$fb_app_token}' data-size='m'  data-counter=''></div>";
 
               }
               if (empty($myfbcount)) {
-                echo $myfbcount = "<div class='fbminidiv'><a href='http://graph.facebook.com/?id={$myurltosite}' target='_blank'> Нет данных - FB <em class='icon-out-2'></em> </a> </div> <div class='ya-share2' data-services='vkontakte,odnoklassniki,moimir,gplus' data-url='{$myurltosite}'  data-size='m'  data-counter=''></div>";
+                echo $myfbcount = "<div class='fbminidiv'><a href='http://graph.facebook.com/?id={$myurltosite}' target='_blank'> Нет данных - FB <em class='icon-out-2'></em> </a> </div> <div class='ya-share2' data-services='vkontakte,odnoklassniki,moimir,gplus' data-url='{$myurltosite}' data-access-token:facebook='{$fb_app_token}' data-size='m'  data-counter=''></div>";
               }
               //usleep(10000); //need?
               echo "</td>";
             }
 
 
-            if ($keymonthcountv > '100' || $more100social == 'yes') {
+            if ($more100social == 'yes') {
               echo "<td>Счетчики отключены (>100)</td>";
             }
 
             if ($fb_fgc != 'yes' && $more100social != 'yes') {
-              echo "<td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$myurltosite}'  data-size='m' data-counter=''></div></td>";
+              echo "<td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$myurltosite}' data-access-token:facebook='{$fb_app_token}'  data-size='m' data-counter=''></div></td>";
             }
 
 

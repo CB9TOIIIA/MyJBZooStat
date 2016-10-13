@@ -58,17 +58,18 @@ $counter_id =  $params->counter_id;
 $fillbad =  $params->countpageviewyambad;
 $fillgood =  $params->countpageviewyamgood;
 $fillnorm =  $params->countpageviewyamnorm;
-$vksocialname=  $params->vksocialname;
-$vk_ID_uids=  $params->vk_ID_uids;
-$fbsocialname=  $params->fbsocialname;
-$gplussocialname=  $params->gplussocialname;
-$oksocialname=  $params->oksocialname;
-$twittersocialname=  $params->twittersocialname;
-$youtubesocialname=  $params->youtubesocialname;
+$vksocialname =  $params->vksocialname;
+$vk_ID_uids =  $params->vk_ID_uids;
+$fbsocialname =  $params->fbsocialname;
+$gplussocialname =  $params->gplussocialname;
+$oksocialname =  $params->oksocialname;
+$twittersocialname =  $params->twittersocialname;
+$youtubesocialname =  $params->youtubesocialname;
 
 $httpClientj = JHttpFactory::getHttp();
 
 
+if (empty($fb_app_token)) { $fb_app_token = ''; }
 if (empty($fillbad)) { $fillbad = '100'; }
 if (empty($fillgood)) { $fillgood = '200'; }
 if (empty($fillnorm)) { $fillnorm = '300'; }

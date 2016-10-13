@@ -2925,7 +2925,7 @@ if (!empty($disqusApiShort)) { echo "<td><span class='disqus-comment-count' data
 
 echo "<td><a target='_blank' href='{$popurl}'>{$popurl}</a></td>";
 
-echo "<td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$popurl}'  data-size='m' data-counter=''></div></td>";
+echo "<td><div class='ya-share2' data-services='vkontakte,facebook,odnoklassniki,moimir,gplus' data-url='{$popurl}' data-access-token:facebook='{$fb_app_token}'  data-size='m' data-counter=''></div></td>";
 
 echo "</tr>";
 

@@ -50,7 +50,7 @@
     <field
         name="fb_app_token"
         type="text"
-        label="access token для счетчика FB"
+        label="Access token для счетчика FB"
         description=""
         default=""/>
     </fieldset>
