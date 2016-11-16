@@ -141,6 +141,7 @@ function disqusRequest($url, $params = [], $ttl = DISQUS_TTL, $debugurl = 0)
     $lpdisqusidcomment = $input->get('lpdisqusidcomment', null, 'string');
     $lpdisqusidcommentupdate = $input->get('lpdisqusidcommentupdate', null, 'string');
     $idcheckbl = $input->get('idcheckbl', null, 'string');
+    $checkbadcomments = $input->get('checkbadcomments', null, 'string');
     $calendstart = $input->get('calendstart', NULL, 'string');
     $calendend = $input->get('calendend', NULL, 'string');
     $needcalend = $input->get('needcalend', NULL, 'string');
@@ -906,9 +907,6 @@ if ($updateAr->code == 200) {
   }
 
 endif;
-
-$checkbadcomments = '';
-$checkbadcomments = $input->get('checkbadcomments', null, 'string');
 
 if ($checkbadcomments == 'yes' && empty($urllistPosts) && empty($userdisqusform) && !empty($calendstart) && !empty($calendend) && JComponentHelper::isEnabled('com_zoo') == '1') {
 

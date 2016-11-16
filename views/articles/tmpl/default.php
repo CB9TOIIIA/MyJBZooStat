@@ -3,6 +3,7 @@
 defined( '_JEXEC' ) or die; // No direct access
 ?>
 <?php
+
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 if (empty($threshold)) {
   $threshold = '2';
@@ -32,6 +33,7 @@ $("#myTable2").DataTable({language:{url:"/administrator/components/com_myjbzoost
 </script>';
 
 //JUST DO IT 😹 $this->app   ----> $app
+
 ?>
 
 
@@ -110,11 +112,15 @@ $("#myTable2").DataTable({language:{url:"/administrator/components/com_myjbzoost
 
 
 
+              echo '<input type="checkbox" name="seearticlemonth" value="yes" id="seearticlemonth">
+              <label for="seearticlemonth" class="checkbox"> Textarea urls item </label> ';
+
   echo '<input type="submit" class="btn"  value="Поиск по месяцам"></form>';
   echo '</div>';
   echo '<hr>';
   $monthnew = rdate('M', mktime(0, 0, 0, intval($month), 10));
 
+$seearticlemonth = $input->get('seearticlemonth', null, 'string');
 
   $articlesmonth = "SELECT COUNT(id)"
   ." FROM " . ZOO_TABLE_ITEM
@@ -339,6 +345,50 @@ echo "</tr>";
 
 echo "</tbody>";
 echo "</table>";
+
+echo "<br>";
+echo "<hr>";
+if ($seearticlemonth == 'yes' && $countarticleinmonth != 0) {
+echo "<p><big><big>{$countarticleinmonth} {$StatOrProduct} за данный период: </big></big></p>";
+
+  $monthdatetwo = $year.'-'.$month;
+  $querysmonth = $db->getQuery(true);
+  $querysmonth
+  ->select($db->quoteName('id'))
+  ->from($db->quoteName(ZOO_TABLE_ITEM))
+  ->where($db->quoteName('publish_up') . ' BETWEEN "' .$monthdatetwo.'-01 00:00:00' . '" AND "' .$monthdatetwo.'-31 23:59:59"');
+
+  $db->setQuery($querysmonth);
+  $itemIdsResultsdatemonth = $db->loadObjectList();
+
+foreach ($itemIdsResultsdatemonth as $itid) {
+  $item = $app->table->item->get($itid->id);
+  $itemUrl[] = "'".$app->jbrouter->externalItem($item)."'";
+}
+echo "<hr>";
+// echo implode('<br>',$itemUrl);
+// echo "<hr>";
+// echo "<br>";
+echo "<textarea style='width: 99%; height: 500px;'>".implode(',',$itemUrl)."</textarea>";
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
 
