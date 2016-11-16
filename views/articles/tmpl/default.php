@@ -32,6 +32,7 @@ $("#myTable2").DataTable({language:{url:"/administrator/components/com_myjbzoost
 });
 </script>';
 
+
 //JUST DO IT 😹 $this->app   ----> $app
 
 ?>
@@ -335,9 +336,14 @@ echo "<p><big><big>Глобальная статистика публикаци�
   echo "</thead>";
    echo "<tbody>";
 
+usort($datearraydate);
 foreach ($datearraydate as $valtagdate => $valuecount )  {
+$newdate = "01.".$valtagdate;
+$dateformat = date("Y-m-d", strtotime("+0 seconds", strtotime($newdate)));
+$dateformat2 = $dateformat.' 00:00';
+$dateorder = strtotime($newdate);
 echo "<tr>";
-echo "<td>";
+echo "<td data-order='{$dateorder}'>";
 echo  $datearraydate[] = ''.$valtagdate. '</td><td>'. $valuecount.'</td>';
 echo "</tr>";
 

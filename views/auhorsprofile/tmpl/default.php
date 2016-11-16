@@ -707,13 +707,16 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
     echo "<td>Количество публикаций <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td>";
     echo "</tr>";
     echo "</thead>";
-
+usort($datearraydate);
     foreach ($datearraydate as $valtagdate => $valuecount )  {
-
+      $newdate = "01.".$valtagdate;
+      $dateformat = date("Y-m-d", strtotime("+0 seconds", strtotime($newdate)));
+      $dateformat2 = $dateformat.' 00:00';
+      $dateorder = strtotime($newdate);
       $datearraydate[] = '<li>'.$valtagdate. ' ('. $valuecount.')</li>';
 
                       echo "<tr>";
-                      echo "<td>{$valtagdate}</td>";
+                      echo "<td data-order='{$dateorder}'>{$valtagdate}</td>";
                       echo "<td>{$valuecount}</td>";
                       echo "</tr>";
     }
