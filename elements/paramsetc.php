@@ -96,6 +96,13 @@ $disqusApiToken = $params->disqus_access_token;
 $disqusApiShort = $params->disqus_api_short_name;
 $disqusApplication = $params->disqus_api_app;
 
+$site_shortname = $params->site_shortname;
+$site_domain = $params->site_domain;
+$site_pagevievfilter = $params->site_pagevievfilter;
+$replaceone = $params->replaceone;
+$replacetwo = $params->replacetwo;
+$replacefree = $params->replacefree;
+
 $authoridmy = $user->get('id');
 $authorid = $input->get('authorids', $authoridmy, 'string');
 $monthdate = $input->get('monthdate', date('Y-m'), 'string');

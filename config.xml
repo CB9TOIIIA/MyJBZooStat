@@ -281,6 +281,16 @@
       default=""/>
   </fieldset>
   <fieldset name="disqus" label="Disqus" addfieldpath="administrator/components/com_myjbzoostat/elements">
+    <field
+      name="offondisqus"
+      type="radio"
+      label="Включить Disqus?"
+      description=""
+      class="btn-group btn-group-yesno"
+      default="no">
+      <option value="yes">Да</option>
+      <option value="no">Нет</option>
+    </field>
       <field
       name="disqus_url"
       type="DisqusUrl"
@@ -358,6 +368,44 @@
       <option value="stat">Статьи</option>
       <option value="product">Товары</option>
     </field>
+  </fieldset>
+  <fieldset name="report" label="Отчет">
+      <field
+      name="site_shortname"
+      type="text"
+      label="Название сайта"
+      description="Название сайта"
+      default=""/>
+      <field
+      name="site_domain"
+      type="text"
+      label="Домен сайта без www"
+      description="Домен сайта без www"
+      default=""/>
+      <field
+      name="site_pagevievfilter"
+      type="text"
+      label="Кол-во ТОП статей по просмотрам"
+      description="Кол-во ТОП статей по просмотрам"
+      default="15"/>
+      <field
+      name="replaceone"
+      type="text"
+      label="Сделать замену текста 1"
+      description="Замена текста 1"
+      default="-"/>
+      <field
+      name="replacetwo"
+      type="text"
+      label="Сделать замену текста 2"
+      description="Замена текста 2"
+      default=""/>
+      <field
+      name="replacefree"
+      type="text"
+      label="Сделать замену текста 3"
+      description="Замена текста 3"
+      default=""/>
   </fieldset>
   <fieldset      name="permissions"      label="JCONFIG_PERMISSIONS_LABEL"      description="JCONFIG_PERMISSIONS_DESC">
     <field
