@@ -117,7 +117,7 @@ if(!empty($counter_id) && !empty($app_token))
     $calendend = $input->get('calendend', NULL, 'string');
     $needcalend = $input->get('needcalend', NULL, 'string');
 
-    echo '<div style="margin-left: auto; width: 800px; margin-right: auto;" class="monthdate">';
+    echo '<div style="margin-left: auto; width: 600px; margin-right: auto;" class="monthdate">';
     echo '<form action="/administrator/index.php?option=com_myjbzoostat&view=report" method="post" class="form-inline">';
     echo "<div style='position: relative;display: inline;margin: 0px; left: 0px;' class='calendfix'>";
     echo '<input id="mask-date-calendarstart" type="text" name="calendstart" >';
@@ -165,6 +165,27 @@ if(!empty($counter_id) && !empty($app_token))
     $responce = MetrikaHelper::open_http($url, $method);
 
     $data = json_decode($responce);
+
+
+    $ApiYandexV2 = 'https://api-metrika.yandex.ru/stat/v1/data?id='.$counter_id;
+
+    $ApiYandexV2 .= '&oauth_token='.$app_token;
+
+    $ApiYandexV2 .= '&dimensions=ym:s:<attribution>SocialNetwork&metrics=ym:s:users,ym:s:pageviews&date1='.$date1;
+
+    $ApiYandexV2 .= '&date2='.$date2;
+
+    $ApiYandexV2 .= '&group='.$date_group;
+
+    $ApiYandexV2 .= '&per_page=500';
+
+    $ResponceApiYandexV2 = MetrikaHelper::open_http($ApiYandexV2, $method);
+
+    $DataResponceApiYandexV2 = json_decode($ResponceApiYandexV2);
+
+    $socnetworks = $DataResponceApiYandexV2->data;
+
+
 
 if ($data->errors[0]->code == 'ERR_PARAM_REQUIRED') {
 echo "<h1 align='center'>Неверно указан диапазон</h1>";
@@ -375,12 +396,9 @@ if ($dataurlfree) {
 
 }
 
-
-
-
 ?>
 
-<table width='800px' style='border: 1px dashed #ccc; margin-left: auto; margin-right: auto;'>
+<table width='600px' style='border: 1px dashed #ccc; margin-left: auto; margin-right: auto;'>
   <tr>
     <td>
 
@@ -448,8 +466,8 @@ $DataYanTic = trim($DataYanTicMatch[1]);
 echo "<ul style='list-style-type:none'>";
 echo "<li>Посетители: <b>{$globalvisitor}</b></li>";
 echo "<li>Просмотры: <b>{$globalgv}</b></li>";
-echo "<li>Общее количество репостов в соцсетях: <b><a href='https://github.com/CB9TOIIIA/GetSocialShare' target='_blank'>неизвестно</a></b></li>";
-echo "<li>(Фейсбук – неизвестно, ВКонтакте – неизвестно, Одноклассники неизвестно)</li>";
+echo "<li>Общее количество репостов в соцсетях: <b><a href='#getsocialshare'>неизвестно</a></b></li>";
+echo "<li>(Фейсбук – XXXXXXX, ВКонтакте – XXXXXXX, Одноклассники XXXXXXX)</li>";
 echo "<li>Рейтинг цитируемости (ТИЦ): <b>{$DataYanTic}</b></li>";
 echo "</ul>";
 
@@ -465,16 +483,8 @@ echo "<p align='center'><b>ТОП – {$site_pagevievfilter} просмотры<
 
 <?php
 
-echo "<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script> <script type='text/javascript' src='//yastatic.net/share2/share.js'></script>";
-
- ?>
-
-
-
-<?php
-
-
-echo "<table style='width: 100%; border: 1px solid #000'>";
+echo "<a name='getsocialshare'></a>";
+echo "<table style='width: 600px; border: 1px solid #000'>";
 
 echo "<thead>";
 
@@ -517,7 +527,7 @@ echo "<tbody>";
 //         $pretitle = str_replace($replacefree,'',$pretitle);
 //         $pretitle = trim($pretitle);
 
-preg_match("/http:\/\/.+item\/(.+?).html/", $popurl, $replaceurltoalias);
+preg_match($regexpforurl, $popurl, $replaceurltoalias);
 $urltobd = $replaceurltoalias[1];
 
 
@@ -582,7 +592,7 @@ foreach ($itemIdsResultsdatemonth as $itid) {
 // echo implode('<br>',$itemUrl);
 // echo "<hr>";
 // echo "<br>";
-echo "<textarea style='width: 99%; height: 100px;'>".implode(',',$itemUrl)."</textarea>";
+echo "<textarea style='width: 600px; height: 50px;'>".implode(',',$itemUrl)."</textarea>";
 
 echo "<br>";
 
@@ -616,7 +626,7 @@ echo "<p><b>3. Список журналистов и их материалы</b
 
 
 
-    echo "<table style='width: 100%; border: 1px solid #000'>";
+    echo "<table style='width: 600px; border: 1px solid #000'>";
 
     echo "<thead>";
 
@@ -671,12 +681,62 @@ echo "<p><b>3. Список журналистов и их материалы</b
     echo "</tbody>";
     echo "</table>";
 echo "<br>";
-echo "<p align='left'><b>Итого:</b> {$allarticles} публикаций</p>";
+$allarticles = bd_nice_number($allarticles);
+echo "<p align='left'><b>Итого:</b> {$allarticles} публикаций.</p>";
 
 echo "<br>";
 
 echo "<p><b>4. Социальные сети</b></p>";
-// todo
+
+    echo "<table style='width: 600px; border: 1px solid #000'>";
+
+    echo "<thead>";
+    echo "<tr>";
+    echo "<td style='border: 1px solid #000;text-align:center;'><b>Социальная сеть</b></td>";
+    echo "<td style='border: 1px solid #000;text-align:center; width: 100px;'><b>Пользователи</b></td>";
+    echo "<td style='border: 1px solid #000;text-align:center; width: 100px;'><b>Просмотры</b></td>";
+    echo "</tr>";
+
+    echo "</thead>";
+
+    echo "<tbody>";
+
+    foreach ($socnetworks as $socnet => $socialwww ) {
+
+        $NameSocial = $socialwww->dimensions;
+
+        foreach ($NameSocial as $NameSocialWork) {
+          $NameSocialWork = $NameSocialWork->name;  //name id favicon
+        }
+
+        $UsersSocial = $socialwww->metrics;
+
+        $UserS = $UsersSocial[0];
+        $PageviewS = $UsersSocial[1];
+
+        $AllUserSocial += $UserS;
+        $AllPageviewSocial += $PageviewS;
+
+    echo "<tr>";
+    echo "<td style='border: 1px solid #000;text-align:left;padding: 0px 5px;'>{$NameSocialWork}</td>";
+    echo "<td style='border: 1px solid #000;text-align:center; width: 100px;'>{$UserS}</td>";
+    echo "<td style='border: 1px solid #000;text-align:center; width: 100px;'>{$PageviewS}</td>";
+    echo "</tr>";
+
+    }
+
+    echo "</tbody>";
+    echo "</table>";
+
+    echo "<br>";
+
+$AllUserSocial = bd_nice_number($AllUserSocial);
+$AllPageviewSocial = bd_nice_number($AllPageviewSocial);
+
+    echo "<p align='left'><b>Итого:</b> {$AllUserSocial} пользователей и {$AllPageviewSocial} просмотров.</p>";
+
+    echo "<br>";
+
  ?>
 
 

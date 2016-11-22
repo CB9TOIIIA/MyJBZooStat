@@ -389,23 +389,11 @@
       description="Кол-во ТОП статей по просмотрам"
       default="15"/>
       <field
-      name="replaceone"
+      name="regexpforurl"
       type="text"
-      label="Сделать замену текста 1"
-      description="Замена текста 1"
-      default="-"/>
-      <field
-      name="replacetwo"
-      type="text"
-      label="Сделать замену текста 2"
-      description="Замена текста 2"
-      default=""/>
-      <field
-      name="replacefree"
-      type="text"
-      label="Сделать замену текста 3"
-      description="Замена текста 3"
-      default=""/>
+      label="RegExp для alias"
+      description="RegExp для alias"
+      default="/http:\/\/.+item\/(.+?).html/"/>
   </fieldset>
   <fieldset      name="permissions"      label="JCONFIG_PERMISSIONS_LABEL"      description="JCONFIG_PERMISSIONS_DESC">
     <field

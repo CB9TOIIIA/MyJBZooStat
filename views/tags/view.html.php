@@ -94,7 +94,7 @@ class MyjbzoostatViewTags extends JViewLegacy
 				$title = JText::_('Профиль автора');
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=auhorsprofile\" class=\"btn btn-small\"><i class=\"icon-user\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') {  $bar->appendButton('Custom', $dhtml, 'list'); }
-				
+
 
 				JToolBarHelper::divider();
 
@@ -110,9 +110,18 @@ class MyjbzoostatViewTags extends JViewLegacy
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=social\" class=\"btn btn-small\"><i class=\"icon-tree\" title=\"$title\"></i>$title</a>";
 				$bar->appendButton('Custom', $dhtml, 'list');
 
+
+				JToolBarHelper::divider();
+
+				$bar = JToolBar::getInstance('toolbar');
+				$title = JText::_('Отчет');
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=report\" class=\"btn btn-small\"><i class=\"icon-signup\" title=\"$title\"></i>$title</a>";
+				$bar->appendButton('Custom', $dhtml, 'list');
+
 				JToolBarHelper::preferences('com_myjbzoostat');
 
 
-    }
+			}
 
-}
+		}
+		
