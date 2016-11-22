@@ -6,7 +6,7 @@
       <element>webinstaller</element>
       <type>component</type>
       <folder>component</folder>
-      <version>1.0.5</version>
+      <version>2.5.7</version>
       <client>site</client>
  
       <infourl title="WebInstaller">http://docs.joomla.org/Install_from_Web</infourl>
