@@ -32,5 +32,5 @@
             <language tag="ru-RU">language/ru-RU/ru-RU.com_myjbzoostat.sys.ini</language>
         </languages>
     </administration>
-<updateservers><server type="extension" priority="1" name="MyJBZooStat">https://raw.githubusercontent.com/CB9TOIIIA/MyJBZooStat/master/updatemyjbzoostat.xml</server></updateservers>
+<updateservers><server type="extension" priority="1" name="MyJBZooStat">https://raw.githubusercontent.com/CB9TOIIIA/MyJBZooStat/master/updatemyjbzoostat.xml?12345</server></updateservers>
 </extension>
