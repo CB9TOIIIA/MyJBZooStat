@@ -21,7 +21,7 @@ class MyjbzoostatViewReport extends JViewLegacy
      */
     protected function _setToolBar()
     {
-        JToolBarHelper::title( JText::_( 'Статистика тегов' ) );
+        JToolBarHelper::title( JText::_( 'Генератор отчетов' ) );
 				JToolbarHelper::divider();
 
 				$component = JComponentHelper::getComponent('com_myjbzoostat');
