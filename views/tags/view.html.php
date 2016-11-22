@@ -116,7 +116,7 @@ class MyjbzoostatViewTags extends JViewLegacy
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Отчет');
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=report\" class=\"btn btn-small\"><i class=\"icon-signup\" title=\"$title\"></i>$title</a>";
-				$bar->appendButton('Custom', $dhtml, 'list');
+				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list');  }
 
 				JToolBarHelper::preferences('com_myjbzoostat');
 
@@ -124,4 +124,3 @@ class MyjbzoostatViewTags extends JViewLegacy
 			}
 
 		}
-		

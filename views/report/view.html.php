@@ -21,7 +21,7 @@ class MyjbzoostatViewReport extends JViewLegacy
      */
     protected function _setToolBar()
     {
-        JToolBarHelper::title( JText::_( 'Генератор отчетов' ) );
+        JToolBarHelper::title( JText::_( 'Статистика тегов' ) );
 				JToolbarHelper::divider();
 
 				$component = JComponentHelper::getComponent('com_myjbzoostat');
@@ -115,7 +115,7 @@ class MyjbzoostatViewReport extends JViewLegacy
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Отчет');
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=report\" class=\"btn btn-small\"><i class=\"icon-signup\" title=\"$title\"></i>$title</a>";
-				$bar->appendButton('Custom', $dhtml, 'list');
+				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list');  }
 
 				JToolBarHelper::preferences('com_myjbzoostat');
 
