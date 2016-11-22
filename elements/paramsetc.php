@@ -97,6 +97,17 @@ $disqusApiShort = $params->disqus_api_short_name;
 $disqusApplication = $params->disqus_api_app;
 
 $site_shortname = $params->site_shortname;
+
+if (empty($site_shortname)) {
+
+  $site_shortname = JURI::root();
+  $site_shortname = str_replace('/','',$site_shortname);
+  $site_shortname = str_replace(':','',$site_shortname);
+  $site_shortname = str_replace('https','',$site_shortname);
+  $site_shortname = str_replace('http','',$site_shortname);
+
+}
+
 $site_domain = $params->site_domain;
 $site_pagevievfilter = $params->site_pagevievfilter;
 // $replaceone = $params->replaceone;
