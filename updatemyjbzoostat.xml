@@ -2,7 +2,7 @@
 <updates>
  
     <update>
-        <name>com_myjbzoostat</name>
+        <name>Статистика JBZoo</name>
         <description>Компонент MyJBZooStat!</description>
         <element>com_myjbzoostat</element>
         <type>component</type>
