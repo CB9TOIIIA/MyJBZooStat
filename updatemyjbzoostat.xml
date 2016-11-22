@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <updates>
+ 
     <update>
-      <name>MyJBZooStat</name>
-      <description>MyJBZooStat</description>
-      <element>myjbzoostat</element>
-      <type>component</type>
-      <folder>component</folder>
-      <version>2.5.7</version>
-      <client>site</client>
+        <name>MyJBZooStat</name>
+        <description>Компонент MyJBZooStat!</description>
+        <element>com_myjbzoostat</element>
+        <type>component</type>
+        <version>2.5.7</version>
  
-      <infourl title="MyJBZooStat">http://docs.joomla.org/Install_from_Web</infourl>
-      <downloads>
-         <downloadurl type="full" format="zip">https://github.com/CB9TOIIIA/MyJBZooStat/releases/download/2.5.7/com_myjbzoostat_stable_2.5.7.zip</downloadurl>
-      </downloads>
+        <infourl title="Hello World! URL">https://github.com/CB9TOIIIA/MyJBZooStat/</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/CB9TOIIIA/MyJBZooStat/releases/download/2.5.7/com_myjbzoostat_stable_2.5.7.zip</downloadurl>
+        </downloads>
  
-      <maintainer>Efthimios Mavrogeorgiadis</maintainer>
-      <maintainerurl>http://www.joomla.org/</maintainerurl>
-
-   </update>
+        <maintainer>CB9TOIIIA</maintainer>
+        <maintainerurl>https://github.com/CB9TOIIIA</maintainerurl>
+        <targetplatform name="joomla" version="3.1" />
+    </update>
+ 
 </updates>
