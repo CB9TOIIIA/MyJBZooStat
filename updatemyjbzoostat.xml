@@ -3,10 +3,10 @@
 	<update>
 		<name>MyJBZooStat</name>
 		<description>MyJBZooStat</description>
-		<element>com_slogin</element>
+		<element>com_myjbzoostat</element>
 		<type>component</type>
 		<version>2.5.11</version>
-		<infourl title="MyJBZooStat 2.5.11">
+		<infourl title="MyJBZooStat">
 			https://github.com/CB9TOIIIA/MyJBZooStat/
 		</infourl>
 		<downloads>
@@ -20,7 +20,7 @@
 		<maintainer>CB9TOIIIA</maintainer>
 		<maintainerurl>https://github.com/CB9TOIIIA</maintainerurl>
 		<section>Updates</section>
-		<targetplatform name="joomla" version="3.4"/>
+		<targetplatform name="joomla" version="3"/>
 		<client>1</client>
 		<folder/>
 	</update>
