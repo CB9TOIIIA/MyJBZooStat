@@ -19,9 +19,12 @@ $JBZooSEFcanonical_redirect = $checkJBZooSEF->get('canonical_redirect');
 $JBZooSEFzoo_route_caching = $checkJBZooSEF->get('zoo_route_caching');
 
 
-if (version_compare(PHP_VERSION, '5.5.30') >= 0)
+preg_match("/\d{1,}.\d{1,}.\d{1,}/", PHP_VERSION, $MyPHPver);
+$MyPHPv = $MyPHPver[0];
+
+if ($MyPHPv <= '5.5.30')
 {
-	die('Вам нужно обновить PHP до ' . '5.5.30' . ' или выше, чтобы использовать Disqus!');
+		die('Вам нужно обновить PHP до ' . '5.5.30' . ' или выше, чтобы использовать Disqus!');
 }
 
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';

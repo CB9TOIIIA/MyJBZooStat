@@ -97,7 +97,10 @@ class MyjbzoostatViewArticles extends JViewLegacy
 
 				JToolBarHelper::divider();
 
-				if (version_compare(PHP_VERSION, '5.5.30') >= 0)
+				preg_match("/\d{1,}.\d{1,}.\d{1,}/", PHP_VERSION, $MyPHPver);
+				$MyPHPv = $MyPHPver[0];
+
+				if ($MyPHPv >= '5.5.30')
 				{
 					$bar = JToolBar::getInstance('toolbar');
 					$title = JText::_('Disqus');
