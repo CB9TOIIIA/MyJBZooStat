@@ -85,7 +85,6 @@ class MyjbzoostatViewIndex extends JViewLegacy
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=reportauthors\" class=\"btn btn-small\"><i class=\"icon-users\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list'); }
 
-
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
@@ -96,20 +95,22 @@ class MyjbzoostatViewIndex extends JViewLegacy
 
 				JToolBarHelper::divider();
 
-				$bar = JToolBar::getInstance('toolbar');
-				$title = JText::_('Disqus');
-				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=disqus\" class=\"btn btn-small\"><i class=\"icon-comments-2\" title=\"$title\"></i>$title</a>";
-				$bar->appendButton('Custom', $dhtml, 'list');
+				if (version_compare(PHP_VERSION, '5.5.30') >= 0)
+				{
+					$bar = JToolBar::getInstance('toolbar');
+					$title = JText::_('Disqus');
+					$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=disqus\" class=\"btn btn-small\"><i class=\"icon-comments-2\" title=\"$title\"></i>$title</a>";
+					$bar->appendButton('Custom', $dhtml, 'list');
 
-				JToolBarHelper::divider();
+					JToolBarHelper::divider();
+				}
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Социальные сети');
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=social\" class=\"btn btn-small\"><i class=\"icon-tree\" title=\"$title\"></i>$title</a>";
 				$bar->appendButton('Custom', $dhtml, 'list');
 
-
-				JToolBarHelper::divider();
+				JToolBarHelper::preferences('com_myjbzoostat');
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Отчет');

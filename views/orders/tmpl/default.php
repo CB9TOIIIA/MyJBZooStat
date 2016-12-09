@@ -8,6 +8,21 @@ if (empty($threshold)) {
   $threshold = '2';
 }
 
+$checkJBZooSEF = JBModelConfig::model()->getGroup('config.sef');
+$JBZooSEFenabled = $checkJBZooSEF->get('enabled');
+$JBZooSEFfix_item = $checkJBZooSEF->get('fix_item');
+$JBZooSEFitem_alias_id = $checkJBZooSEF->get('item_alias_id');
+$JBZooSEFfix_category_id = $checkJBZooSEF->get('fix_category_id');
+$JBZooSEFfix_category = $checkJBZooSEF->get('fix_category');
+$JBZooSEFcategory_alias_id = $checkJBZooSEF->get('category_alias_id');
+$JBZooSEFfix_feed = $checkJBZooSEF->get('fix_feed');
+$JBZooSEFredirect = $checkJBZooSEF->get('redirect');
+$JBZooSEFfix_canonical = $checkJBZooSEF->get('fix_canonical');
+$JBZooSEFparse_priority = $checkJBZooSEF->get('parse_priority');
+$JBZooSEFcanonical_redirect = $checkJBZooSEF->get('canonical_redirect');
+$JBZooSEFzoo_route_caching = $checkJBZooSEF->get('zoo_route_caching');
+
+
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
 
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');

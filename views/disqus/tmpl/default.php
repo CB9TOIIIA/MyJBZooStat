@@ -3,6 +3,27 @@
 // error_reporting(E_ALL);
 /** @var $this MyjbzoostatViewAutors */
 defined( '_JEXEC' ) or die; // No direct access
+
+$checkJBZooSEF = JBModelConfig::model()->getGroup('config.sef');
+$JBZooSEFenabled = $checkJBZooSEF->get('enabled');
+$JBZooSEFfix_item = $checkJBZooSEF->get('fix_item');
+$JBZooSEFitem_alias_id = $checkJBZooSEF->get('item_alias_id');
+$JBZooSEFfix_category_id = $checkJBZooSEF->get('fix_category_id');
+$JBZooSEFfix_category = $checkJBZooSEF->get('fix_category');
+$JBZooSEFcategory_alias_id = $checkJBZooSEF->get('category_alias_id');
+$JBZooSEFfix_feed = $checkJBZooSEF->get('fix_feed');
+$JBZooSEFredirect = $checkJBZooSEF->get('redirect');
+$JBZooSEFfix_canonical = $checkJBZooSEF->get('fix_canonical');
+$JBZooSEFparse_priority = $checkJBZooSEF->get('parse_priority');
+$JBZooSEFcanonical_redirect = $checkJBZooSEF->get('canonical_redirect');
+$JBZooSEFzoo_route_caching = $checkJBZooSEF->get('zoo_route_caching');
+
+
+if (version_compare(PHP_VERSION, '5.5.30') >= 0)
+{
+	die('Вам нужно обновить PHP до ' . '5.5.30' . ' или выше, чтобы использовать Disqus!');
+}
+
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/vendor/autoload.php'; // composer autoload.php
 // require_once '/../../../vendor/autoload.php'; // composer autoload.php
@@ -875,7 +896,14 @@ if ($updateAr->code == 200) {
           $Discreated_by = $Disitem->created_by;
           $userauthor = JFactory::getUser($Discreated_by);
           $userauthor = $userauthor->name;
-          $myurltosite = JRoute::_($app->jbrouter->externalItem($Disitem, false), false, 2);
+
+					          if ($JBZooSEFenabled == 1 && $JBZooSEFfix_item == 1) {
+					            $myurltosite = JRoute::_($app->jbrouter->externalItem($Disitem, false), false, 2);
+					            $myurltosite = str_replace('/item/','/',$myurltosite);
+					          }
+					          else {
+					            $myurltosite = JRoute::_($app->jbrouter->externalItem($Disitem, false), false, 2);
+					          }
 
           echo "</tr>";
 

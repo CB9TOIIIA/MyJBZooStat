@@ -3,6 +3,21 @@
 defined( '_JEXEC' ) or die; // No direct access
 // dump($_POST,0,'post');
 
+$checkJBZooSEF = JBModelConfig::model()->getGroup('config.sef');
+$JBZooSEFenabled = $checkJBZooSEF->get('enabled');
+$JBZooSEFfix_item = $checkJBZooSEF->get('fix_item');
+$JBZooSEFitem_alias_id = $checkJBZooSEF->get('item_alias_id');
+$JBZooSEFfix_category_id = $checkJBZooSEF->get('fix_category_id');
+$JBZooSEFfix_category = $checkJBZooSEF->get('fix_category');
+$JBZooSEFcategory_alias_id = $checkJBZooSEF->get('category_alias_id');
+$JBZooSEFfix_feed = $checkJBZooSEF->get('fix_feed');
+$JBZooSEFredirect = $checkJBZooSEF->get('redirect');
+$JBZooSEFfix_canonical = $checkJBZooSEF->get('fix_canonical');
+$JBZooSEFparse_priority = $checkJBZooSEF->get('parse_priority');
+$JBZooSEFcanonical_redirect = $checkJBZooSEF->get('canonical_redirect');
+$JBZooSEFzoo_route_caching = $checkJBZooSEF->get('zoo_route_caching');
+
+
 ?>
 
 <script type="text/javascript">
@@ -473,7 +488,15 @@ if (!empty($disqusApiShort)) :       echo "<td>Комментариев</td>"; e
 
           $monthitem = $app->table->item->get($monthiteid);
           //  jbdump($monthitem,0,'Месяцы');
-          $myurltosite = JRoute::_($app->jbrouter->externalItem($monthitem, false), false, 2);
+
+                    if ($JBZooSEFenabled == 1 && $JBZooSEFfix_item == 1) {
+                      $myurltosite = JRoute::_($app->jbrouter->externalItem($monthitem, false), false, 2);
+                      $myurltosite = str_replace('/item/','/',$myurltosite);
+                    }
+                    else {
+                      $myurltosite = JRoute::_($app->jbrouter->externalItem($monthitem, false), false, 2);
+                    }
+
           // dump($myurltosite,0,'$myurltosite');
           $aliasart  = $monthitem->alias;
           $aliasartitem  = 'item/'.$aliasart;
