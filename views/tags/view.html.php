@@ -116,7 +116,6 @@ class MyjbzoostatViewTags extends JViewLegacy
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=social\" class=\"btn btn-small\"><i class=\"icon-tree\" title=\"$title\"></i>$title</a>";
 				$bar->appendButton('Custom', $dhtml, 'list');
 
-				JToolBarHelper::preferences('com_myjbzoostat');
 
 				$bar = JToolBar::getInstance('toolbar');
 				$title = JText::_('Отчет');
