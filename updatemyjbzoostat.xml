@@ -22,6 +22,5 @@
 		<section>Updates</section>
 		<targetplatform name="joomla" version="3"/>
 		<client>1</client>
-		<folder/>
 	</update>
 </updates>
