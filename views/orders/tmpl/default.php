@@ -8,6 +8,7 @@ if (empty($threshold)) {
   $threshold = '2';
 }
 
+if (JFolder::exists(JPATH_ROOT . '/components/com_zoo')) {
 $checkJBZooSEF = JBModelConfig::model()->getGroup('config.sef');
 $JBZooSEFenabled = $checkJBZooSEF->get('enabled');
 $JBZooSEFfix_item = $checkJBZooSEF->get('fix_item');
@@ -21,6 +22,8 @@ $JBZooSEFfix_canonical = $checkJBZooSEF->get('fix_canonical');
 $JBZooSEFparse_priority = $checkJBZooSEF->get('parse_priority');
 $JBZooSEFcanonical_redirect = $checkJBZooSEF->get('canonical_redirect');
 $JBZooSEFzoo_route_caching = $checkJBZooSEF->get('zoo_route_caching');
+}
+
 
 
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/sort.css');
