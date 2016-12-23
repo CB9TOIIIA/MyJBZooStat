@@ -14,13 +14,8 @@
 				https://github.com/CB9TOIIIA/MyJBZooStat/releases/download/2.5.12/com_myjbzoostat_stable_2.5.12.zip
 			</downloadurl>
 		</downloads>
-		<tags>
-			<tag>stable</tag>
-		</tags>
-		<maintainer>CB9TOIIIA</maintainer>
-		<maintainerurl>https://github.com/CB9TOIIIA</maintainerurl>
-		<section>Updates</section>
-		<targetplatform name="joomla" version="3"/>
-		<client>1</client>
+<maintainer/>
+<maintainerurl/>
+		<targetplatform name="joomla" version="3.[0123456789]"/>
 	</update>
 </updates>
