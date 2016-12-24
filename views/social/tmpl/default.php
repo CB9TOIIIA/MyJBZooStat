@@ -128,10 +128,12 @@ else {
 
    if ($code == 200) {
      $body = $response->body;
-     if (preg_match('/MorePagerFetchOnScroll/', $body, $matchfb)) {
-       preg_match('/\<span id\="PagesLikesCountDOMID"\>.+PageStructured/', $body, $matchfb);
-       $matchfb = strip_tags($matchfb['0']);
-       $matchfb = str_replace('Отметки «Нравится»:','<span class="fbcount">',$matchfb);
+     if (preg_match('/MorePagerFetchOnScroll/', $body, $matchfb)) {   
+       
+       preg_match('/Нравится(.+?)\<\/span\>\<\/a\>\<\/div\>/', $body, $matchfb1);
+       $matchfb = strip_tags($matchfb1['0']);
+
+       $matchfb = str_replace('Нравится»:','<span class="fbcount">',$matchfb);
        $matchfb .= ' </span>';
      }
      else {
@@ -157,9 +159,12 @@ else {
     //  var_dump($body);
     //  echo "</pre>";
      if (preg_match('/подписчик/', $body, $matchgplustest) || preg_match('/послідовник/', $body, $matchgplustest) || preg_match('/користувач/', $body, $matchgplustest)) {
-       preg_match_all('/\<span class\=\"BOfSxb\"\>.+\<span class\=\"DtDbDb\"\>/', $body, $matchgplus);
+       preg_match_all('/profiles_social_bar(.+?)data-tooltip/', $body, $matchgplus);
+       dump($body,0,'test');
        foreach ($matchgplus as $matchgplusone) {
-         $matchgplusone = strip_tags($matchgplusone['0']);
+         $matchgplusone = strip_tags($matchgplusone[0]);
+         preg_match("/\d{1,10}/", $matchgplusone, $matchgplusoneN);
+         $matchgplusone = $matchgplusoneN[0];
          $matchgplusone = preg_replace('/&.*/', '', $matchgplusone);
          $matchgplusone = str_replace(' подписчика','',$matchgplusone);
          $matchgplusone = str_replace(' подписчик','',$matchgplusone);
@@ -182,6 +187,32 @@ else {
        //dump($body,0,'$body');
        //dump($matchgplus,0,'$matchgplus');
      }
+    //  if (preg_match('/подписчик/', $body, $matchgplustest) || preg_match('/послідовник/', $body, $matchgplustest) || preg_match('/користувач/', $body, $matchgplustest)) {
+    //    preg_match_all('/\<span class\=\"BOfSxb\"\>.+\<span class\=\"DtDbDb\"\>/', $body, $matchgplus);
+    //    foreach ($matchgplus as $matchgplusone) {
+    //      $matchgplusone = strip_tags($matchgplusone['0']);
+    //      $matchgplusone = preg_replace('/&.*/', '', $matchgplusone);
+    //      $matchgplusone = str_replace(' подписчика','',$matchgplusone);
+    //      $matchgplusone = str_replace(' подписчик','',$matchgplusone);
+    //      $matchgplusone = str_replace(' послідовник','',$matchgplusone);
+    //      $matchgplusone = str_replace(' послідовників','',$matchgplusone);
+    //      $matchgplusone = str_replace(' користувач','',$matchgplusone);
+    //      $matchgplusone = preg_replace('/і.*/', '', $matchgplusone);
+    //      $matchgplusone = preg_replace('/в.*/', '', $matchgplusone);
+    //      $matchgplusone = str_replace('і','',$matchgplusone);
+    //      $matchgplusone = str_replace('в','',$matchgplusone);
+    //     //  $matchgplusone = str_replace(' і підписалися','',$matchgplusone);
+    //     //  $matchgplusone = str_replace(' підписалися','',$matchgplusone);
+    //     //  $matchgplusone = str_replace('підписалися','',$matchgplusone);
+    //     //  $matchgplusone = str_replace(' пдписалося','',$matchgplusone);
+    //     //  $matchgplusone = str_replace('пдписалося','',$matchgplusone);
+    //     //  $matchgplusone = str_replace('і','',$matchgplusone);
+    //     //  $matchgplusone = str_replace('в','',$matchgplusone);
+    //    }
+
+    //    //dump($body,0,'$body');
+    //    //dump($matchgplus,0,'$matchgplus');
+    //  }
      else {
        $matchgplusone = '-';
      }
