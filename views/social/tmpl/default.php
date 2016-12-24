@@ -160,7 +160,7 @@ else {
     //  echo "</pre>";
      if (preg_match('/подписчик/', $body, $matchgplustest) || preg_match('/послідовник/', $body, $matchgplustest) || preg_match('/користувач/', $body, $matchgplustest)) {
        preg_match_all('/profiles_social_bar(.+?)data-tooltip/', $body, $matchgplus);
-       dump($body,0,'test');
+
        foreach ($matchgplus as $matchgplusone) {
          $matchgplusone = strip_tags($matchgplusone[0]);
          preg_match("/\d{1,10}/", $matchgplusone, $matchgplusoneN);
