@@ -4,3 +4,5 @@
 /vendor/*
 *.tar
 *.zip
+*.vscode
+*.vslink
