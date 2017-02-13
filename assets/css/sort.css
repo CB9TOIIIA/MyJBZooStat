@@ -2,6 +2,7 @@
 b > big {    text-transform: uppercase; }
  .zebratable {width: 98%; margin: 0 auto;}
  .zebratable td {padding: 5px;}
+
  .zebratable tr.upper {font-weight: bold;}
  tr.upper.tablesorter-headerRow { background: white !important;}
  .zebratable tr:nth-child(odd) {  background: #EFEFEF; }
@@ -12,6 +13,48 @@ b > big {    text-transform: uppercase; }
  /* pager wrapper, div */
  .tablesorter-pager {
   padding: 5px;
+ }
+ table.dataTable {
+    width: 100% !important;
+ }
+ .item-page .nomargin {
+     margin: 0px !important;
+ }
+ .item-uk-panel-box.nomargin {
+     margin: 0px !important;
+ }
+ .rowblocks {
+  /*padding: 50px;*/
+  font-size: 1.3em;
+  clear: both;
+  line-height: 1.4;
+  margin-bottom: 25px;    position: relative;
+}
+.rowblocks.mini {
+  font-size: 1em;
+}
+.labelblock {
+  margin-bottom: 15px; font-weight: bold;
+}
+.bigblocks {
+    padding: 30px;
+    font-size: 1.5em;
+    width: 15%;
+    float: left;
+    box-shadow: 0px 0px 5px #ccc;
+    margin: 0px 10px;    display: inline-block;
+    min-height: 90px;
+}
+.dataTables_wrapper {
+    position: relative;
+    margin-top: 20px; padding: 0px 50px;
+    display: inline-block; width: 95%;
+}
+ .uk-panel .minismall {
+     font-size: 14px !important; color: #101010 !important;
+ }
+ .uk-panel-box {
+     margin-bottom: 10px !important;
  }
  /* pager wrapper, in thead/tfoot */
  td.tablesorter-pager {

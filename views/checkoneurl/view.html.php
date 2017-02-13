@@ -8,7 +8,7 @@ defined( '_JEXEC' ) or die; // No direct access
 
 
 
-class MyjbzoostatViewReportauthors extends JViewLegacy
+class MyjbzoostatViewCheckoneurl extends JViewLegacy
 {
 
 	public function display( $tpl = null )
@@ -21,7 +21,7 @@ class MyjbzoostatViewReportauthors extends JViewLegacy
      */
     protected function _setToolBar()
     {
-        JToolBarHelper::title( JText::_( 'Статистика авторов' ) );
+        JToolBarHelper::title( JText::_( 'Статистика по URL' ) );
 				JToolbarHelper::divider();
 
 				$component = JComponentHelper::getComponent('com_myjbzoostat');
@@ -87,7 +87,6 @@ class MyjbzoostatViewReportauthors extends JViewLegacy
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=reportauthors\" class=\"btn btn-small\"><i class=\"icon-users\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list'); }
 
-
 				JToolBarHelper::divider();
 
 				$bar = JToolBar::getInstance('toolbar');
@@ -128,10 +127,9 @@ class MyjbzoostatViewReportauthors extends JViewLegacy
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=checkoneurl\" class=\"btn btn-small\"><i class=\"icon-filter\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list');  }
 
-				
 				JToolBarHelper::preferences('com_myjbzoostat');
 
 
-			}
+    }
 
-		}
+}

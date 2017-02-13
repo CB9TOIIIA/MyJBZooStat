@@ -122,6 +122,13 @@ class MyjbzoostatViewOrders extends JViewLegacy
 				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=report\" class=\"btn btn-small\"><i class=\"icon-signup\" title=\"$title\"></i>$title</a>";
 				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list');  }
 
+
+				$bar = JToolBar::getInstance('toolbar');
+				$title = JText::_('Статистика по URL');
+				$dhtml = "<a href=\"/administrator/index.php?option=com_myjbzoostat&view=checkoneurl\" class=\"btn btn-small\"><i class=\"icon-filter\" title=\"$title\"></i>$title</a>";
+				if (JComponentHelper::isEnabled('com_zoo') == '1') { $bar->appendButton('Custom', $dhtml, 'list');  }
+
+				
 				JToolBarHelper::preferences('com_myjbzoostat');
 
 
