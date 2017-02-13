@@ -51,7 +51,7 @@ b > big {    text-transform: uppercase; }
     display: inline-block; width: 95%;
 }
  .uk-panel .minismall {
-     font-size: 14px !important; color: #101010 !important;
+     font-size: 1em !important; color: #101010 !important;
  }
  .uk-panel-box {
      margin-bottom: 10px !important;

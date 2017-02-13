@@ -113,6 +113,13 @@ $("#myTable344").DataTable({language:{url:"/administrator/components/com_myjbzoo
 });
 </script>';
 
+echo '
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+$("#myTable3454").DataTable({language:{url:"/administrator/components/com_myjbzoostat/assets/js/Russian.json"}});
+});
+</script>';
+
 //JUST DO IT   $this->app   ----> $app
 
 ?>
@@ -280,7 +287,21 @@ $CountSocialNetwork = count($DataResponceApiYandexSocialNetwork->data);
 // dump($ResponceApiYandexexternalReferer,0,'ResponceApiYandexexternalReferer');
 // dump($DataResponceApiYandexexternalReferer,0,'DataResponceApiYandexexternalReferer');
 
+//переходы с фразы
+    $ApiYandexSearchPhrase = 'https://api-metrika.yandex.ru/stat/v1/data?id='.$counter_id;
+    $ApiYandexSearchPhrase .= '&oauth_token='.$app_token;
+    $ApiYandexSearchPhrase .= '&preset=traffic&dimensions=ym:s:<attribution>SearchPhrase&group=day&sort=ym:s:<attribution>SearchPhrase&metrics=ym:s:visits,ym:s:users,ym:s:pageviews';
+    $ApiYandexSearchPhrase .= '&date1='.$date1;
+    $ApiYandexSearchPhrase .= '&date2='.$date2;
+    $ApiYandexSearchPhrase .= '&limit=10000';
+    $ApiYandexSearchPhrase .= '&filters=(ym:pv:URL=*%27'.$myurltosite.'%27)';
+    $ResponceApiYandexSearchPhrase = MetrikaHelper::open_http($ApiYandexSearchPhrase, $method);
+    $DataResponceApiYandexSearchPhrase = json_decode($ResponceApiYandexSearchPhrase);
 
+    $CountYandexSearchPhrase = count($DataResponceApiYandexSearchPhrase->data);
+
+// dump($ResponceApiYandexSearchPhrase,0,'ResponceApiYandexSearchPhrase');
+// dump($DataResponceApiYandexSearchPhrase,0,'DataResponceApiYandexSearchPhrase');
 
 
     $ApiYandexisRobot = 'https://api-metrika.yandex.ru/stat/v1/data?id='.$counter_id;
@@ -348,7 +369,7 @@ endif;
 <?php echo "<p class='uk-text-bold'>Статистика по URL: " . "<a target='_blank' href=".strip_tags(trim($myurltosite)).">" .strip_tags(trim($myurltosite)). "</a></p>";?>
 </div>
 </div>
-
+<br>
 <?php endif; ?>
 
 <div class="ct-chart"></div>
@@ -521,6 +542,37 @@ $YandexexternalRefererNetworkMetrics = $DataResponceApiYandexexternalReferer->da
    echo "<td>" . $YandexexternalRefererNetworkMetrics['0']. "</td>";
    echo "<td>" . $YandexexternalRefererNetworkMetrics['1']. "</td>";
    echo "<td>" . $YandexexternalRefererNetworkMetrics['2']. "</td>";
+   echo "</tr>";
+ }
+
+ echo "</tbody>";
+ echo "</table>";
+endif;
+?>
+
+<br>
+<br>
+
+<?php
+if(count($DataResponceApiYandexSearchPhrase->data) > 1) :
+  echo "<h2 class='uk-text-bold uk-text-center'>Переходы по фразам</h2>";
+  echo "<table id='myTable3454' class='zebratable'>";
+  echo "<thead>";
+  echo "<tr class='upper'>";
+  echo "<td>Фраза <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td><td>Визиты <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td><td>Посетители <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td><td>Просмотры <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmUlEQVQ4T6WTPUgcURDHZ2bX7w+0VLCwFPQu4e27AxvPpLIQrQWtBFNoZ2NiJxj7NFGsBC2vsNFC9JLO213Wvc7OQrRUBA3q2xlZYWEjZj3M697Mm9/M/OcNwn8eTMeXSiX76ub2lxCu17zqVto3WCzmLJHFsFqdSdv/AiilGgzSgyB8rbnu9+ShUqrnUeAUiToIaS1wj5cS35uAONggHYJwPyA1AYAIwrckQSbgOVjoiIF7iHAHAL8A8zYQTQnIcs3zVjMBecfZY5Zhy6IxBhhBgdXb66vm9q6uDQGcJoTRTMCg1n3E3Fvz/eOc1ksxwBZu9H0/yms9Gbpu+U0NErFeAB7rFrEuwAfHmTjxvF2llJ0eY95xChRF50EQXPyzgpzWn1HgAAA2zJ+7Bbul9T7+BxZixZhonyz6HbrueGYLea1XQGBZIthEC2YB5CezTBHQJYn5lFlB0mMCie8ifI9CZ0lwbKtLxI+Fwg9mmWfhG5t5IM5cl4jp5RhSqkzGrIRhGKTtOacwgyxz3Z1tI5VKxbw6xvds9hPRaxT6nhWaoAAAAABJRU5ErkJggg=='></td></tr>";   
+  echo "</thead>";
+  echo "<tbody>";
+
+ for ($i=0; $i < $CountYandexSearchPhrase ; $i++) {   
+
+$YandexSearchPhraseName = $DataResponceApiYandexSearchPhrase->data[$i]->dimensions['0']->name;
+$YandexSearchPhraseMetrics = $DataResponceApiYandexSearchPhrase->data[$i]->metrics;
+
+   echo "<tr>";
+   echo "<td>" .$YandexSearchPhraseName. "</td>";
+   echo "<td>" . $YandexSearchPhraseMetrics['0']. "</td>";
+   echo "<td>" . $YandexSearchPhraseMetrics['1']. "</td>";
+   echo "<td>" . $YandexSearchPhraseMetrics['2']. "</td>";
    echo "</tr>";
  }
 
