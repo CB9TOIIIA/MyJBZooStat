@@ -167,65 +167,39 @@ if(!empty($counter_id) && !empty($app_token))
 
   }
 
-    $url = 'http://api-metrika.yandex.ru/stat/traffic/summary.json?id='.$counter_id;
+    $datePeriodData = 'https://api-metrika.yandex.ru/stat/v1/data?id='.$counter_id;
+    $datePeriodData .= '&oauth_token='.$app_token;
+    $datePeriodData .= '&preset=traffic&dimensions=ym:s:datePeriod<group>&group=day&sort=ym:s:datePeriod<group>&metrics=ym:s:visits,ym:s:users,ym:s:pageviews';
+    $datePeriodData .= '&date1='.$date1;
+    $datePeriodData .= '&date2='.$date2;
+    $SocialNetworkData .= '&group='.$date_group;
+    $SocialNetworkData .= '&per_page=500';
+    $ResponceurldatePeriodData = MetrikaHelper::open_http($datePeriodData, $method);
 
-    $url .= '&date1='.$date1;
+    $dataPeriod = json_decode($ResponceurldatePeriodData);
+    $dataPeriodData = $dataPeriod->data;
 
-    $url .= '&date2='.$date2;
+    $SocialNetworkData = 'https://api-metrika.yandex.ru/stat/v1/data?id='.$counter_id;
+    $SocialNetworkData .= '&oauth_token='.$app_token;
+    $SocialNetworkData .= '&dimensions=ym:s:<attribution>SocialNetwork&metrics=ym:s:users,ym:s:pageviews&date1='.$date1;
+    $SocialNetworkData .= '&date2='.$date2;
+    $SocialNetworkData .= '&group='.$date_group;
+    $SocialNetworkData .= '&per_page=500';
+    $ResponceSocialNetworkData = MetrikaHelper::open_http($SocialNetworkData, $method);
+    $DataResponceSocialNetworkData = json_decode($ResponceSocialNetworkData);
 
-    $url .= '&group='.$date_group;
+    $socnetworks = $DataResponceSocialNetworkData->data;
 
-    $url .= '&per_page=500';
+    $PopularData = 'https://api-metrika.yandex.ru/stat/v1/data?id='.$counter_id;
+    $PopularData .= '&oauth_token='.$app_token;
+    $PopularData .= '&dimensions=ym:pv:URL,ym:pv:title&metrics=ym:pv:pageviews&sort=-ym:pv:pageviews';
+    $PopularData .= '&date1='.$date1;
+    $PopularData .= '&date2='.$date2;
+    $PopularData .= '&per_page=500';
+    $ResponcePopularData = MetrikaHelper::open_http($PopularData, $method);
+    $DataResponcePopularData = json_decode($ResponcePopularData);
+    $PopularData = $DataResponcePopularData->data;
 
-    $url .= '&oauth_token='.$app_token;
-
-
-
-    $responce = MetrikaHelper::open_http($url, $method);
-
-    $data = json_decode($responce);
-
-
-    $ApiYandexV2 = 'https://api-metrika.yandex.ru/stat/v1/data?id='.$counter_id;
-
-    $ApiYandexV2 .= '&oauth_token='.$app_token;
-
-    $ApiYandexV2 .= '&dimensions=ym:s:<attribution>SocialNetwork&metrics=ym:s:users,ym:s:pageviews&date1='.$date1;
-
-    $ApiYandexV2 .= '&date2='.$date2;
-
-    $ApiYandexV2 .= '&group='.$date_group;
-
-    $ApiYandexV2 .= '&per_page=500';
-
-    $ResponceApiYandexV2 = MetrikaHelper::open_http($ApiYandexV2, $method);
-
-    $DataResponceApiYandexV2 = json_decode($ResponceApiYandexV2);
-
-    $socnetworks = $DataResponceApiYandexV2->data;
-
-
-
-if ($data->errors[0]->code == 'ERR_PARAM_REQUIRED') {
-echo "<h1 align='center'>Неверно указан диапазон</h1>";
-echo "<style>.item-page {display:none}</style>";
-}
-
-    $urlpopular = 'http://api-metrika.yandex.ru/stat/content/popular.json?id='.$counter_id;
-
-    $urlpopular .= '&date1='.$date1;
-
-    $urlpopular .= '&date2='.$date2;
-
-    $urlpopular .= '&per_page='.$perpagepopular;
-
-    $urlpopular .= '&oauth_token='.$app_token;
-
-
-
-    $responcepopular = MetrikaHelper::open_http($urlpopular, $method);
-
-    $datapopular = json_decode($responcepopular);
 
 
 // HACK: fix minus 1 day
@@ -255,48 +229,22 @@ $ModDate2 = $ModDate2->format('Ymd');
       $ModDate1 = $date1;
       $ModDate2 = $date2;
 
-      // dump($yamonth,0,'$yamonth');
     }
 
 
-    $urlexfree = 'http://api-metrika.yandex.ru/stat/traffic/summary.json?id='.$counter_id;
 
-    $urlexfree .= '&date1='.$ModDate1;
-
-    $urlexfree .= '&date2='.$ModDate2;
-
-    // $urlexfree .= '&group='.$date_group;
-
-    $urlexfree .= '&per_page=500';
-
+    $urlexfree = 'https://api-metrika.yandex.ru/stat/v1/data?id='.$counter_id;
     $urlexfree .= '&oauth_token='.$app_token;
-
-    $responceurlfree = MetrikaHelper::open_http($urlexfree, $method);
-
-    $dataurlfree = json_decode($responceurlfree);
-
-
-
-
-    $responcegeotree = MetrikaHelper::open_http($urlgeotree, $method);
-
-    $datageotree = json_decode($responcegeotree);
+    $urlexfree .= '&preset=traffic&dimensions=ym:s:<attribution>TrafficSource&group=day&sort=ym:s:<attribution>TrafficSource&metrics=ym:s:visits,ym:s:users,ym:s:pageviews';
+    $urlexfree .= '&date1='.$date1;
+    $urlexfree .= '&date2='.$date2;
+    $urlexfree .= '&per_page=500';
+    $Responceurlexfree = MetrikaHelper::open_http($urlexfree, $method);
+    $DataResponceurlexfree = json_decode($Responceurlexfree);
+    $dataurlfree = $DataResponceurlexfree->data;
 
 
-    $urlsvodka = 'http://api-metrika.yandex.ru/stat/sources/summary.json?id='.$counter_id;
 
-    $urlsvodka .= '&date1='.$date1;
-
-    $urlsvodka .= '&date2='.$date2;
-
-    $urlsvodka .= '&per_page=12';
-
-    $urlsvodka .= '&oauth_token='.$app_token;
-
-
-    $responcesvodka = MetrikaHelper::open_http($urlsvodka, $method);
-
-    $datasvodka = json_decode($responcesvodka);
 
 
 if (NULL !== $data->errors) {
@@ -386,7 +334,7 @@ if ($dataurlfree) {
 
 
 
-  $datebegin = $dataurlfree->date1;
+  $datebegin = $DataResponceurlexfree->query->date1;
 
   $datebegin = date("d.m.Y", strtotime($datebegin));
 
@@ -394,7 +342,7 @@ if ($dataurlfree) {
 
   $datebeginMonthY = date("Y", strtotime($datebegin));
 
-  $dateend = $dataurlfree->date2;
+  $dateend = $DataResponceurlexfree->query->date2;
 
   $dateend = date("d.m.Y", strtotime($dateend));
 
@@ -404,11 +352,11 @@ if ($dataurlfree) {
 
   //total
 
-  $globalpageviews = $dataurlfree->totals->page_views;
+  $globalpageviews = $DataResponceurlexfree->totals[2];
 
-  $globalvisits = $dataurlfree->totals->visits;
+  $globalvisits = $DataResponceurlexfree->totals[0];
 
-  $globalvisitors = $dataurlfree->totals->visitors;
+  $globalvisitors = $DataResponceurlexfree->totals[1];
 
   $nowYearstat = date("Y");
 
@@ -521,56 +469,29 @@ echo "<tbody>";
 
  $countadd = '0';
 
- if ($datapopular) {
+ if ($PopularData) {
 
-   $datapop = $datapopular->data;
+   $datapop = $DataResponcePopularData->data;
 
+   for ($i=0; $i < count($datapop); $i++) { 
+     
+     $poppage_views  = $PopularData[$i]->metrics[0];
 
-   foreach ($datapop as $key => $valueobjarticle) {
+     $popurl      = $PopularData[$i]->dimensions[0]->name;
 
-     $poppage_views  = $valueobjarticle->page_views;
+     $ItemName  = $PopularData[$i]->dimensions[1]->name;
 
-     $popurl  = $valueobjarticle->url;
 
      if (preg_match($filterpopular, $popurl)) :
 
        $countadd++;
-
-       if ($countadd <= $site_pagevievfilter) {
-
-//         $page_content = file_get_contents($popurl);
-//         preg_match_all( "|<title>(.*)</title>|sUSi", $page_content, $titles);
-//         $pretitle = $titles[1][0];
-//         $pretitle = str_replace($replaceone,'',$pretitle);
-//         $pretitle = str_replace($replacetwo,'',$pretitle);
-//         $pretitle = str_replace($replacefree,'',$pretitle);
-//         $pretitle = trim($pretitle);
-
-preg_match($regexpforurl, $popurl, $replaceurltoalias);
-$urltobd = $replaceurltoalias[1];
-
-
-$aliasqueryauthors = $db->getQuery(true);
-$aliasqueryauthors
-->select($db->quoteName('id'))
-->from($db->quoteName(ZOO_TABLE_ITEM))
-->where($db->quoteName('alias') . '= "' .$urltobd.'"');
-
-$db->setQuery($aliasqueryauthors);
-$UrlFromDB = $db->loadObjectList();
-
-foreach ($UrlFromDB as $itid) {
-$PopItem = $app->table->item->get($itid->id);
-$ItemName = $PopItem->name;
-}
-
 
          echo "<tr style='border: 1px solid #000;text-align:center;'>";
          echo "<td style='border: 1px solid #000;text-align:center;'>{$countadd}</td>";
          echo "<td style='border: 1px solid #000;text-align:left; padding: 0px 5px;'><a target='_blank' href='{$popurl}'>{$ItemName}</a><br><small>$popurl</small></td>";
          echo "<td style='border: 1px solid #000;text-align:center;'>{$poppage_views}</td>";
          echo "</tr>";
-       }
+  
      endif;
    }
 
@@ -611,6 +532,7 @@ foreach ($itemIdsResultsdatemonth as $itid) {
 // echo implode('<br>',$itemUrl);
 // echo "<hr>";
 // echo "<br>";
+
 echo "<textarea style='width: 600px; height: 50px;'>".implode(',',$itemUrl)."</textarea>";
 
 echo "<br>";
