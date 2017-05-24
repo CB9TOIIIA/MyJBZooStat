@@ -17,6 +17,7 @@ $JBZooSEFcanonical_redirect = $checkJBZooSEF->get('canonical_redirect');
 $JBZooSEFzoo_route_caching = $checkJBZooSEF->get('zoo_route_caching');
 }
 
+JHtml::_('jquery.framework');
 jimport('joomla.html.html.bootstrap');
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 
@@ -86,6 +87,7 @@ $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/social.css');
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/uikit.min.css');
 $document->addScript(JUri::root().'administrator/components/com_myjbzoostat/assets/js/chart.js');
+
 
 echo "<script src='//yastatic.net/es5-shims/0.0.2/es5-shims.min.js'></script> <script type='text/javascript' src='//yastatic.net/share2/share.js'></script>";
 if (!empty($disqusApiShort)) {

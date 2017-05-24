@@ -21,7 +21,7 @@ $JBZooSEFzoo_route_caching = $checkJBZooSEF->get('zoo_route_caching');
 }
 
 
-
+JHtml::_('jquery.framework');
 
 require_once JPATH_ADMINISTRATOR . '/components/com_myjbzoostat/elements/paramsetc.php';
 $document->addStyleSheet(JUri::root().'administrator/components/com_myjbzoostat/assets/css/autors.css');

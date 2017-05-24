@@ -1,3 +1,5 @@
+@media screen and (max-width: 1600px) { .uk-text-center table tr {   display: inline-grid !important;} }
+
 .clrred{color:red}
 blockquote.postaclass{margin-bottom:30px}
 li.inforepsmile img:not(:first-child),.messageauthor + img + img,.messageauthorafds + li img:not(:first-child){margin-left:10px}

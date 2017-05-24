@@ -17,7 +17,7 @@ $JBZooSEFcanonical_redirect = $checkJBZooSEF->get('canonical_redirect');
 $JBZooSEFzoo_route_caching = $checkJBZooSEF->get('zoo_route_caching');
 }
 
-
+JHtml::_('jquery.framework');
 
 
 jimport('joomla.html.html.bootstrap');

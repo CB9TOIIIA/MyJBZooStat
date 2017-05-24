@@ -5,12 +5,12 @@
 		<description>MyJBZooStat</description>
 		<element>com_myjbzoostat</element>
 		<type>component</type>
-		<version>2.6.0</version>
+		<version>2.7.0</version>
 		<infourl title="MyJBZooStat">
 			https://github.com/CB9TOIIIA/MyJBZooStat/
 		</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip"><![CDATA[https://github.com/CB9TOIIIA/MyJBZooStat/releases/download/2.6.0/com_myjbzoostat_stable_2.6.0.zip]]></downloadurl>
+			<downloadurl type="full" format="zip"><![CDATA[https://github.com/CB9TOIIIA/MyJBZooStat/releases/download/2.7.0/com_myjbzoostat_stable_2.7.0.zip]]></downloadurl>
 		</downloads>
 		<maintainer/>
 		<maintainerurl/>

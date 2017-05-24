@@ -1,3 +1,5 @@
+@media screen and (max-width: 1600px) { .uk-text-center table tr {   display: inline-grid !important;} }
+
 #mask-date-calendarstart, #mask-date-calendarend {width: 90px; margin-left: 5px; margin-right: 5px}
 
 input#togglecalend {
