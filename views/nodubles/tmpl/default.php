@@ -138,7 +138,7 @@ if (!empty($Arrayarticlesmonthtag[0])) {
 if (!empty($dublesd)) {
 foreach ($dublesd as $keyg) {
   $urll = urlencode($keyg);
-  echo '<li><a target="_blank" href="/?e%5B1331309a-133d-4208-9250-4330706af965%5D='.$urll.'&limit=20&order%5Bfield%5D=_none&order%5Bmode%5D=s&order%5Border%5D=asc&logic=and&send-form=%D0%98%D1%81%D0%BA%D0%B0%D1%82%D1%8C&exact=1&controller=search&option=com_zoo&task=filter&type=realty&app_id=1&Itemid=105">'.$keyg.'</a></li>';
+  echo '<li><a target="_blank" href="http://dom813.ru/?e%5B1331309a-133d-4208-9250-4330706af965%5D='.$urll.'&limit=20&order%5Bfield%5D=_none&order%5Bmode%5D=s&order%5Border%5D=asc&logic=and&send-form=%D0%98%D1%81%D0%BA%D0%B0%D1%82%D1%8C&exact=1&controller=search&option=com_zoo&task=filter&type=realty&app_id=1&Itemid=105">'.$keyg.'</a></li>';
 }
 }
 

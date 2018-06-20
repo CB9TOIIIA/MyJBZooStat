@@ -494,7 +494,8 @@ echo ' <div class="uk-text-center"><table class="uk-table"><tr><td>Визиты<
 
 
 <?php
-if(count($DataResponceApiYandexexternalReferer->data) > 1) :
+
+if(count($DataResponceApiYandexexternalReferer->data) > 1 && $fastboot != 'yes') :
   echo "<h2 class='uk-text-bold uk-text-center'>Переходы по ссылкам на сайтах</h2>";
   echo "<table id='myTable344' class='zebratable'>";
   echo "<thead>";
@@ -525,7 +526,7 @@ endif;
 <br>
 
 <?php
-if(count($DataResponceApiYandexSearchPhrase->data) > 1) :
+if(count($DataResponceApiYandexSearchPhrase->data) > 1 && $fastboot != 'yes') :
   echo "<h2 class='uk-text-bold uk-text-center'>Переходы по фразам</h2>";
   echo "<table id='myTable3454' class='zebratable'>";
   echo "<thead>";

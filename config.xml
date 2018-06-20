@@ -22,6 +22,16 @@
       <option value="no">Нет</option>
     </field>
     <field
+      name="fastboot"
+      type="radio"
+      label="Быстрый старт?"
+      description="com_content юзаешь?"
+      class="btn-group btn-group-yesno"
+      default="no">
+      <option value="yes">Да</option>
+      <option value="no">Нет</option>
+    </field>
+    <field
       name="enablecommerce"
       type="radio"
       label="Это интернет-магазин?"

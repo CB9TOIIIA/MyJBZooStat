@@ -65,6 +65,7 @@ $gplussocialname =  $params->gplussocialname;
 $oksocialname =  $params->oksocialname;
 $twittersocialname =  $params->twittersocialname;
 $youtubesocialname =  $params->youtubesocialname;
+$fastboot =  $params->fastboot;
 
 $httpClientj = JHttpFactory::getHttp();
 
