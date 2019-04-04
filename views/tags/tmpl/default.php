@@ -1,6 +1,11 @@
 <?php
 /** @var $this MyjbzoostatViewAutors */
 defined( '_JEXEC' ) or die; // No direct access
+	
+	/* add  Class 'JFolder */
+	JLoader::register('JFile', JPATH_LIBRARIES . '/joomla/filesystem/file.php');
+	JLoader::register('JFolder', JPATH_LIBRARIES . '/joomla/filesystem/folder.php');
+
 ?>
 <?php
 

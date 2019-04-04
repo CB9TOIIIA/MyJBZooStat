@@ -1,8 +1,12 @@
 <?php
 defined( '_JEXEC' ) or die;
-
-
-ini_set( 'display_errors', 1 );
+	
+	/* add  Class 'JFolder */
+	JLoader::register('JFile', JPATH_LIBRARIES . '/joomla/filesystem/file.php');
+	JLoader::register('JFolder', JPATH_LIBRARIES . '/joomla/filesystem/folder.php');
+	
+	
+	ini_set( 'display_errors', 1 );
 error_reporting( E_ALL );
 
 jimport('joomla.html.html.bootstrap');

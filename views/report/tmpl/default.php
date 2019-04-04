@@ -1,7 +1,12 @@
 <?php
 defined( '_JEXEC' ) or die;
-
-if (JFolder::exists(JPATH_ROOT . '/components/com_zoo')) {
+	
+	/* add  Class 'JFolder */
+	JLoader::register('JFile', JPATH_LIBRARIES . '/joomla/filesystem/file.php');
+	JLoader::register('JFolder', JPATH_LIBRARIES . '/joomla/filesystem/folder.php');
+	
+	
+	if (JFolder::exists(JPATH_ROOT . '/components/com_zoo')) {
 $checkJBZooSEF = JBModelConfig::model()->getGroup('config.sef');
 $JBZooSEFenabled = $checkJBZooSEF->get('enabled');
 $JBZooSEFfix_item = $checkJBZooSEF->get('fix_item');
